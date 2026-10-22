@@ -874,3 +874,11 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.target-sine-rule-page .target-sine-rule-flow,.target-sine-rule-page .target-sine-rule-model>div,.target-sine-rule-page .target-sine-rule-concepts,.target-sine-rule-page .target-sine-rule-cases,.target-sine-rule-page .target-sine-rule-worked,.target-sine-rule-page .target-sine-rule-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-sine-rule-page .target-sine-rule-flow>*,.target-sine-rule-page .target-sine-rule-model>div>*,.target-sine-rule-page .target-sine-rule-concepts>*,.target-sine-rule-page .target-sine-rule-cases>*,.target-sine-rule-page .target-sine-rule-worked>*,.target-sine-rule-page .target-sine-rule-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-sine-rule-flow article>svg:last-child{position:static}.target-sine-rule-cases svg,.target-sine-rule-worked>aside>b,.target-sine-rule-practice>aside{position:static;width:100%;height:auto}.target-sine-rule-header>section{position:static;flex-wrap:wrap}.target-sine-rule-practice{height:auto}}
+
+@media(max-width:900px){.target-sine-rule-page .target-sine-rule-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-sine-rule-page .target-sine-rule-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-sine-rule-practice>div{display:flex;flex-wrap:wrap;gap:10px}.target-sine-rule-practice>footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

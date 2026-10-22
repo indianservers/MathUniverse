@@ -1098,3 +1098,6 @@ body:has(.indices99-page)
     white-space: nowrap;
   }
 }
+
+
+@media(max-width:900px){.indices99-page .indices99-powers{grid-template-columns:minmax(0,1fr);height:auto;gap:12px}.indices99-powers>*{min-width:0;max-width:100%}}

@@ -1,3 +1,4 @@
+import "./AngleTargetLesson232.css";
 import {
   ArrowLeft,
   ArrowRight,

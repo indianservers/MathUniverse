@@ -534,3 +534,11 @@ body:has(.ri366-page) footer[aria-label="Site footer"] > div {
     min-width: 742px;
   }
 }
+
+/* Stack the linked model and learning panels on narrow screens. */
+@media(max-width:799px){
+.ri366-page :is(.ri366-learning,.ri366-nav){grid-template-columns:minmax(0,1fr);height:auto}
+.ri366-page :is(.ri366-lab,.ri366-explorer){height:auto}
+.ri366-page .ri366-tabs{overflow-x:auto}
+.ri366-page :is(article,aside){min-width:0;overflow-wrap:anywhere}
+}

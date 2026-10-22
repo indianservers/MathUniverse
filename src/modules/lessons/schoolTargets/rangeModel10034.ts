@@ -1,0 +1,5 @@
+export const rsInitial10034=[3,5,6,8,11];
+export function rsStats10034(values:number[]){if(!values.length||values.some(v=>!Number.isSafeInteger(v)||Math.abs(v)>1e6))return null;const sorted=[...values].sort((a,b)=>a-b),n=sorted.length;return{sorted,minimum:sorted[0],maximum:sorted[n-1],range:sorted[n-1]-sorted[0],median:n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2};}
+export function rsSnap10034(value:number,low=0,high=16){return Math.max(low,Math.min(high,Math.round(value)));}
+export function rsHandle10034(values:number[],kind:'minimum'|'maximum'){const stats=rsStats10034(values)!;const index=kind==='minimum'?values.indexOf(stats.minimum):values.lastIndexOf(stats.maximum),others=values.filter((_,i)=>i!==index);return{index,low:kind==='minimum'?0:Math.max(...others),high:kind==='minimum'?Math.min(...others):16};}
+export function rsChallenge10034(values:number[]){const stats=rsStats10034(values),valid=values.length===5&&values.every(v=>Number.isInteger(v)&&v>=0&&v<=16),changed=values.reduce((n,v,i)=>n+(v!==rsInitial10034[i]?1:0),0);return{stats,changed,correct:valid&&changed===1&&stats?.range===12&&stats.median===6};}

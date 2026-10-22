@@ -1,0 +1,337 @@
+[
+  {
+    "index": 885,
+    "source": "src/modules/lessons/schoolTargets/MultiplicationRuleTargetLesson10211.tsx",
+    "buttons": 10
+  },
+  {
+    "index": 874,
+    "source": "src/modules/lessons/schoolTargets/FormulatingLinearProgrammingTargetLesson10200.tsx",
+    "buttons": 9
+  },
+  {
+    "index": 868,
+    "source": "src/modules/lessons/schoolTargets/AdjointMatrixTargetLesson10194.tsx",
+    "buttons": 3
+  },
+  {
+    "index": 867,
+    "source": "src/modules/lessons/schoolTargets/MinorsCofactorsTargetLesson10193.tsx",
+    "buttons": 3
+  },
+  {
+    "index": 855,
+    "source": "src/modules/lessons/schoolTargets/IntegrationByPartsTargetLesson10181.tsx",
+    "buttons": 16
+  },
+  {
+    "index": 813,
+    "source": "src/modules/lessons/schoolTargets/PascalIdentityTargetLesson10139.tsx",
+    "buttons": 2
+  },
+  {
+    "index": 802,
+    "source": "src/modules/lessons/schoolTargets/InductionLogicTargetLesson10128.tsx",
+    "buttons": 10
+  },
+  {
+    "index": 795,
+    "source": "src/modules/lessons/schoolTargets/CompositionFunctionsTargetLesson10121.tsx",
+    "buttons": 4
+  },
+  {
+    "index": 790,
+    "source": "src/modules/lessons/schoolTargets/EquivalenceRelationsTargetLesson10116.tsx",
+    "buttons": 4
+  },
+  {
+    "index": 788,
+    "source": "src/modules/lessons/schoolTargets/SymmetricRelationsTargetLesson10114.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 786,
+    "source": "src/modules/lessons/schoolTargets/TypesRelationsTargetLesson10112.tsx",
+    "buttons": 4
+  },
+  {
+    "index": 727,
+    "source": "src/modules/lessons/schoolTargets/EuclideanFoundationsTargetLesson10053.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 721,
+    "source": "src/modules/lessons/schoolTargets/PolynomialDivisionTargetLesson10047.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 718,
+    "source": "src/modules/lessons/schoolTargets/RationalisationTargetLesson10044.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 711,
+    "source": "src/modules/lessons/schoolTargets/MagicSquaresTargetLesson10037.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 710,
+    "source": "src/modules/lessons/schoolTargets/PatternEncodingTargetLesson10036.tsx",
+    "buttons": 11
+  },
+  {
+    "index": 707,
+    "source": "src/modules/lessons/schoolTargets/MeanMedianModePathTargetLesson10033.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 701,
+    "source": "src/modules/lessons/schoolTargets/ParallelLineTargetLesson10027.tsx",
+    "buttons": 17
+  },
+  {
+    "index": 691,
+    "source": "src/modules/lessons/schoolTargets/RatioTableTargetLesson10017.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 687,
+    "source": "src/modules/lessons/schoolTargets/DivisibilityTargetLesson10013.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 686,
+    "source": "src/modules/lessons/schoolTargets/RuleMachineTargetLesson10012.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 682,
+    "source": "src/modules/lessons/schoolTargets/SurveyFrequencyTargetLesson10008.tsx",
+    "buttons": 14
+  },
+  {
+    "index": 670,
+    "source": "src/modules/lessons/adapters/finance/DimensionalAnalysisTargetLesson613.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 647,
+    "source": "src/modules/lessons/adapters/discrete/ProofMethodsTargetLesson590.tsx",
+    "buttons": 9
+  },
+  {
+    "index": 643,
+    "source": "src/modules/lessons/adapters/discrete/PowerSetsTargetLesson586.tsx",
+    "buttons": 4
+  },
+  {
+    "index": 628,
+    "source": "src/modules/lessons/adapters/discrete/EulerPathsTargetLesson571.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 537,
+    "source": "src/modules/lessons/adapters/matrix/TransposeTargetLesson352.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 473,
+    "source": "src/modules/lessons/adapters/VennDiagramsLesson510.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 467,
+    "source": "src/modules/lessons/adapters/AdditionRuleLesson504.tsx",
+    "buttons": 14
+  },
+  {
+    "index": 461,
+    "source": "src/modules/lessons/adapters/ModelComparisonLesson498.tsx",
+    "buttons": 3
+  },
+  {
+    "index": 460,
+    "source": "src/modules/lessons/adapters/ResidualPlotLesson497.tsx",
+    "buttons": 2
+  },
+  {
+    "index": 449,
+    "source": "src/modules/lessons/adapters/BarPieLesson486.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 448,
+    "source": "src/modules/lessons/adapters/CumulativeFrequencyLesson485.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 445,
+    "source": "src/modules/lessons/adapters/StemAndLeafLesson482.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 444,
+    "source": "src/modules/lessons/adapters/DotPlotLesson481.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 443,
+    "source": "src/modules/lessons/adapters/BoxPlotLesson480.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 438,
+    "source": "src/modules/lessons/adapters/QuartilesLesson475.tsx",
+    "buttons": 3
+  },
+  {
+    "index": 436,
+    "source": "src/modules/lessons/adapters/WeightedMeanLesson473.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 435,
+    "source": "src/modules/lessons/adapters/ModeLesson472.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 434,
+    "source": "src/modules/lessons/adapters/MedianLesson471.tsx",
+    "buttons": 3
+  },
+  {
+    "index": 433,
+    "source": "src/modules/lessons/adapters/MeanLesson470.tsx",
+    "buttons": 4
+  },
+  {
+    "index": 431,
+    "source": "src/modules/lessons/adapters/FrequencyTablesLesson468.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 354,
+    "source": "src/modules/lessons/adapters/cas/StepByStepAlgebraTargetLesson448.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 353,
+    "source": "src/modules/lessons/adapters/cas/ExactNumericTargetLesson447.tsx",
+    "buttons": 10
+  },
+  {
+    "index": 352,
+    "source": "src/modules/lessons/adapters/cas/AssumptionsTargetLesson446.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 346,
+    "source": "src/modules/lessons/adapters/cas/IntegralsTargetLesson440.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 343,
+    "source": "src/modules/lessons/adapters/cas/PartialFractionsTargetLesson437.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 336,
+    "source": "src/modules/lessons/adapters/cas/ExpandTargetLesson430.tsx",
+    "buttons": 9
+  },
+  {
+    "index": 223,
+    "source": "src/modules/lessons/adapters/GraphMatchingTargetLesson166.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 149,
+    "source": "src/modules/lessons/adapters/AlgebraTilesTargetLesson92.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 62,
+    "source": "src/modules/lessons/adapters/DecimalOperationsTargetLesson80.tsx",
+    "buttons": 2
+  },
+  {
+    "index": 61,
+    "source": "src/modules/lessons/adapters/DecimalPlaceValueTargetLesson79.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 46,
+    "source": "src/modules/lessons/adapters/PlaceValueTargetLesson64.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 44,
+    "source": "src/modules/lessons/adapters/RealNumbersTargetLesson62.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 40,
+    "source": "src/modules/lessons/adapters/WholeNumbersTargetLesson58.tsx",
+    "buttons": 7
+  },
+  {
+    "index": 36,
+    "source": "src/modules/lessons/adapters/BooleanVariablesTargetLesson36.tsx",
+    "buttons": 4
+  },
+  {
+    "index": 31,
+    "source": "src/modules/lessons/adapters/InequalityInputTargetLesson31.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 30,
+    "source": "src/modules/lessons/adapters/EquationInputTargetLesson30.tsx",
+    "buttons": 3
+  },
+  {
+    "index": 29,
+    "source": "src/modules/lessons/adapters/ObjectRedefinitionTargetLesson29.tsx",
+    "buttons": 6
+  },
+  {
+    "index": 28,
+    "source": "src/modules/lessons/adapters/AlgebraicInputTargetLesson28.tsx",
+    "buttons": 9
+  },
+  {
+    "index": 25,
+    "source": "src/modules/lessons/adapters/DependentObjectsTargetLesson25.tsx",
+    "buttons": 2
+  },
+  {
+    "index": 17,
+    "source": "src/modules/lessons/adapters/CalculationHistoryTargetLesson17.tsx",
+    "buttons": 12
+  },
+  {
+    "index": 7,
+    "source": "src/modules/lessons/adapters/ScientificNotationTargetLesson7.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 6,
+    "source": "src/modules/lessons/adapters/PowersRootsTargetLesson6.tsx",
+    "buttons": 8
+  },
+  {
+    "index": 3,
+    "source": "src/modules/lessons/adapters/MixedNumbersTargetLesson3.tsx",
+    "buttons": 5
+  },
+  {
+    "index": 2,
+    "source": "src/modules/lessons/adapters/FractionCalculatorTargetLesson2.tsx",
+    "buttons": 11
+  },
+  {
+    "index": 1,
+    "source": "src/modules/lessons/adapters/BasicCalculatorTargetLesson1.tsx",
+    "buttons": 10
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/geometry/239-reflection-in-circle",
+  "action": {
+    "control": "Drag P horizontally",
+    "before": "3",
+    "after": "3.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 737,
+      "scroll": 737
+    },
+    {
+      "width": 1440,
+      "client": 1402,
+      "scroll": 1402
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -414,3 +414,11 @@ body:has(.ma370-page) footer[aria-label="Site footer"] > div {
     min-width: 768px;
   }
 }
+
+/* Stack the linked model and learning panels on narrow screens. */
+@media(max-width:799px){
+.ma370-page :is(.ma370-work,.ma370-learning,.ma370-nav){grid-template-columns:minmax(0,1fr);height:auto}
+.ma370-page :is(.ma370-lab,.ma370-explorer){height:auto}
+.ma370-page .ma370-tabs{overflow-x:auto}
+.ma370-page :is(article,aside){min-width:0;overflow-wrap:anywhere}
+}

@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/3d-mathematics/412-ar-placement",
+  "action": {
+    "control": "Lock anchor\nKeep object fixed\nL",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 354,
+      "scroll": 354
+    },
+    {
+      "width": 768,
+      "client": 732,
+      "scroll": 732
+    },
+    {
+      "width": 1440,
+      "client": 1404,
+      "scroll": 1404
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "above"
+    },
+    {
+      "width": 1680,
+      "state": "below"
+    },
+    {
+      "width": 1680,
+      "state": "tangent"
+    },
+    {
+      "width": 1680,
+      "state": "separate"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "above"
+    },
+    {
+      "width": 1280,
+      "state": "below"
+    },
+    {
+      "width": 1280,
+      "state": "tangent"
+    },
+    {
+      "width": 1280,
+      "state": "separate"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "above"
+    },
+    {
+      "width": 992,
+      "state": "below"
+    },
+    {
+      "width": 992,
+      "state": "tangent"
+    },
+    {
+      "width": 992,
+      "state": "separate"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "above"
+    },
+    {
+      "width": 924,
+      "state": "below"
+    },
+    {
+      "width": 924,
+      "state": "tangent"
+    },
+    {
+      "width": 924,
+      "state": "separate"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "above"
+    },
+    {
+      "width": 768,
+      "state": "below"
+    },
+    {
+      "width": 768,
+      "state": "tangent"
+    },
+    {
+      "width": 768,
+      "state": "separate"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "above"
+    },
+    {
+      "width": 390,
+      "state": "below"
+    },
+    {
+      "width": 390,
+      "state": "tangent"
+    },
+    {
+      "width": 390,
+      "state": "separate"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "true P circle/chord U/V and equal auxiliary circles A/B, rotated perpendicular through P and right-angle foot H",
+    "six actual stages and meaningful line selection, real labels/steps, bounded radius/tangent/separate cases, no false geometry",
+    "one undo entry per captured drag, undo/redo selection/radius/P, new history branch, fine keys, inverseCTM zoom/letterbox/grab-offset, cancel/lost-capture",
+    "independent actual placement/drawn-line challenge; both A/B, three rotated above/below/on-line cases, invalid/pending/retry/line/correct grading, no-op/cancel certificates",
+    "real390x844 main P touch and touchCancel with preserved history; rotated challenge T touch placement/drawing/check",
+    "36 responsive cases at6 widths, real catalog navigation, live tabs/Docs and no page errors/horizontal overflow"
+  ]
+}

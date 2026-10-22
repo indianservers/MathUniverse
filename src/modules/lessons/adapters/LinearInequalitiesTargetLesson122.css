@@ -881,3 +881,5 @@ body:has(.lin122-page) .page-transition {
   background: #fff;
   font-weight: 700;
 }
+
+@media(max-width:900px){.lin122-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.lin122-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.lin122-footer>nav{position:static;flex-wrap:wrap}}

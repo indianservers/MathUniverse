@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "wrong and correct family assignments",
+    "appropriate graph assignment",
+    "drag variable classification"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

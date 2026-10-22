@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+  "action": {
+    "control": "0",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

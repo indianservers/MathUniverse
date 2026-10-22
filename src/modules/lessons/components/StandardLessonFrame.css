@@ -30,7 +30,7 @@ html body #main-content .standard-lesson-frame .standard-lesson-content :is(head
   align-items: center !important;
   flex-wrap: wrap !important;
   gap: 8px !important;
-  width: 100% !important;
+  width: auto !important;
   height: auto !important;
   min-height: 56px !important;
   max-height: none !important;

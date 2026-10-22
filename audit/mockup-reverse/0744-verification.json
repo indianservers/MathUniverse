@@ -1,0 +1,209 @@
+{
+  "status": "passed",
+  "errors": [],
+  "states": [
+    {
+      "hyp": 10,
+      "leg": 6,
+      "other": 8,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 12.5,
+      "leg": 6,
+      "other": 10.965856099730654,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 12.5,
+      "leg": 7.5,
+      "other": 10,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 11.149551560488877,
+      "leg": 7.5,
+      "other": 8.249999999999998,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 11.908505363814552,
+      "leg": 7.5,
+      "other": 9.249999999999996,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 6,
+      "other": 8,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 7,
+      "other": 7.14142842854285,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 6.9,
+      "other": 7.238093671679027,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 6.9,
+      "other": 7.238093671679027,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 5,
+      "other": 8.660254037844387,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 5,
+      "other": 8.660254037844387,
+      "view": "mirror",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 6,
+      "other": 8,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 20,
+      "leg": 19.9,
+      "other": 1.997498435543832,
+      "view": "normal",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 6,
+      "other": 8,
+      "view": "mirror",
+      "satisfied": "true"
+    },
+    {
+      "hyp": 10,
+      "leg": 6,
+      "other": 8,
+      "view": "overlay",
+      "satisfied": "true"
+    }
+  ],
+  "layouts": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "large",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "large",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "large",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "large",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "mirror",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "mirror",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "mirror",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "mirror",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "overlay",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "overlay",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "overlay",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "overlay",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

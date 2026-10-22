@@ -594,3 +594,6 @@ body:has(.real-page)
     display: none;
   }
 }
+
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .real-work{overflow-x:auto!important;max-width:100%}}

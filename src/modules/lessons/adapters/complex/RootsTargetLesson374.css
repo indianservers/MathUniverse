@@ -502,3 +502,13 @@ body:has(.rt374-page) button[aria-label="Open navigation"] {
     display: none !important;
   }
 }
+
+/* Stack the linked model and learning panels on narrow screens. */
+@media(max-width:799px){
+.rt374-page :is(.rt374-main,.rt374-results,.rt374-learning,.rt374-nav){grid-template-columns:minmax(0,1fr);height:auto}
+.rt374-page :is(.rt374-lab,.rt374-explorer){height:auto}
+.rt374-page .rt374-tabs{overflow-x:auto}
+.rt374-page :is(article,aside){min-width:0;overflow-wrap:anywhere}
+}
+
+@media(max-width:799px){.rt374-page .rt374-warning{display:flex;flex-wrap:wrap;height:auto;gap:10px}.rt374-page .rt374-warning > *{max-width:100%;overflow-wrap:anywhere}}

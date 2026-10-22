@@ -698,3 +698,7 @@ body:has(.sub312-page) {
     min-width: 778px;
   }
 }
+
+@media(max-width:900px){.sub312-page .sub312-flow,.sub312-page .sub312-mapper>main,.sub312-page .sub312-mapper>footer,.sub312-page .sub312-cards{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.sub312-page .sub312-flow>*,.sub312-page .sub312-mapper>main>*,.sub312-page .sub312-mapper>footer>*,.sub312-page .sub312-cards>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.sub312-page .sub312-flow article{padding-block:12px}.sub312-page .sub312-mapper{height:auto}.sub312-page .sub312-mapper>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.sub312-page .sub312-mapper>main>section,.sub312-page .sub312-mapper>footer>section,.sub312-page .sub312-cards article{height:auto}.sub312-page .sub312-cards article:first-child>b,.sub312-page .sub312-cards .practice>button{position:static;display:block;margin-top:10px}.sub312-page .sub312-hero>aside{position:static;width:auto;height:auto}.sub312-page .sub312-hero{height:auto}.sub312-page .sub312-footer{height:auto;padding:12px}.sub312-page .sub312-footer p{width:auto;max-width:100%}.sub312-page .sub312-footer nav,.sub312-page .sub312-footer small{position:static;display:flex;flex-wrap:wrap;gap:8px}.sub312-page .sub312-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}}

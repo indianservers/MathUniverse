@@ -15,5 +15,11 @@ describe("PValueVisualiserLesson553", () => {
     expect(html).toContain("-1.960");
     expect(html).toContain("1.960");
     expect(html).toContain("Fail to reject H0");
+    const tails = [...html.matchAll(/class="shade" points="([^"]+)"/g)].map(match =>
+      match[1].split(" ").map(point => Number(point.split(",")[0])),
+    );
+    expect(tails).toHaveLength(2);
+    expect(tails.every(points => points.length > 10)).toBe(true);
+    expect(Math.max(...tails[0])).toBeLessThan(Math.min(...tails[1]));
   });
 });

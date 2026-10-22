@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/311-area-between-curves",
+  "action": {
+    "control": "Inspection slice x",
+    "before": "-0.0141016151377544",
+    "after": "0.0358983848622456",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 339,
+      "scroll": 339
+    },
+    {
+      "width": 768,
+      "client": 717,
+      "scroll": 717
+    },
+    {
+      "width": 1440,
+      "client": 1389,
+      "scroll": 1389
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

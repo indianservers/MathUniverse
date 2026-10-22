@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/341-geometric-series",
+  "action": {
+    "control": "Geometric series first term",
+    "before": "3",
+    "after": "3.5",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 347,
+      "scroll": 347
+    },
+    {
+      "width": 768,
+      "client": 725,
+      "scroll": 725
+    },
+    {
+      "width": 1440,
+      "client": 1397,
+      "scroll": 1397
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

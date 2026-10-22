@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/algebra/128-numerical-solver",
+  "action": {
+    "control": "Use this practice",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 737,
+      "scroll": 737
+    },
+    {
+      "width": 1440,
+      "client": 1395,
+      "scroll": 1395
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

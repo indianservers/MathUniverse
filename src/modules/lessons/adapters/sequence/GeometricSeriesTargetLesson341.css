@@ -498,3 +498,6 @@ body:has(.seq341-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq341-page :is(.seq341-guide,.seq341-formulas,.seq341-worked,.seq341-check){grid-template-columns:minmax(0,1fr);height:auto}.seq341-page .seq341-tabs{overflow-x:auto}.seq341-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.seq341-page footer{height:auto;flex-wrap:wrap}}
+@media(max-width:799px){.seq341-page .seq341-explorer > main{grid-template-columns:minmax(0,1fr);height:auto}.seq341-page .seq341-explorer{height:auto}.seq341-page .seq341-plots{min-width:0;overflow-x:auto}}

@@ -80,7 +80,7 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
   const continueArtId = continueId;
 
   const pathIndex = useMemo(() => {
-    const map = new Map(GEO_PATH.map((item, index) => [item.id, index + 1]));
+    const map = new Map<string, number>(GEO_PATH.map((item, index) => [item.id, index + 1]));
     return map;
   }, []);
 

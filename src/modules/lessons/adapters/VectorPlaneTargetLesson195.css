@@ -411,3 +411,5 @@ body:has(.vp195-page) footer[aria-label="Site footer"] {
     display: block;
   }
 }
+
+@media(max-width:900px){.vp195-footer,.vp195-footer>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

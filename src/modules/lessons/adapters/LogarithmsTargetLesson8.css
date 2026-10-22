@@ -501,3 +501,5 @@
     height: auto;
   }
 }
+
+@media(max-width:900px){[data-testid="calculator-mockup-0008"] .log-answer>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="calculator-mockup-0008"] .log-answer>div>*{min-width:0;grid-column:auto;grid-row:auto}}

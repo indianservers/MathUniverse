@@ -1,0 +1,1 @@
+import{j as r}from"./vendor-react-3d-rtzHGS-k.js";import o from"./TriangularNumbersMobileProof-DGA_HyFC.js";import"./vendor-icons-B6CDzemE.js";import"./vendor-three-DTQp2vVi.js";import"./index-DJSvvGa4.js";import"./vendor-charts--ec67oWL.js";import"./vendor-math-rendering-CW4-XBXi.js";import"./vendor-cas-DlJIVW9n.js";function f(){return r.jsx(o,{})}export{f as default};

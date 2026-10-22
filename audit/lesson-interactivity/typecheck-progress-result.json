@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "exitCode": 0,
+  "command": "NODE_OPTIONS=--max-old-space-size=8192 npm run typecheck",
+  "checkedAt": "2026-10-19T07:18:46.542Z"
+}

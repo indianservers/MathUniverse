@@ -13,7 +13,8 @@ export function useCanvasZoomLock(
     const node = ref.current;
     if (!node) return;
 
-    const handleWheel = (event: WheelEvent) => {
+    const handleWheel = (event: Event) => {
+      if (!(event instanceof WheelEvent)) return;
       lockCanvasWheel(event);
       onWheel?.(event);
     };

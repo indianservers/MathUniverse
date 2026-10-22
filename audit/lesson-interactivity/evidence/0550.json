@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/365-complex-plane",
+  "action": {
+    "control": "Real part (a)",
+    "before": "2",
+    "after": "2.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 327,
+      "scroll": 327
+    },
+    {
+      "width": 768,
+      "client": 705,
+      "scroll": 705
+    },
+    {
+      "width": 1440,
+      "client": 1377,
+      "scroll": 1377
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "command": "NODE_OPTIONS=--max-old-space-size=8192 npm run typecheck",
+  "errors": 0,
+  "log": "workspace-typecheck-final.log"
+}

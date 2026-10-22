@@ -772,3 +772,7 @@ body:has(.sys435-page) .lesson-adjacent-nav {
     line-height: 8px !important;
   }
 }
+
+@media(max-width:900px){.sys435-page .sys435-how>div,.sys435-page .sys435-grid,.sys435-page .sys435-types>div,.sys435-page .sys435-lower{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.sys435-page .sys435-how>div>*,.sys435-page .sys435-grid>*,.sys435-page .sys435-types>div>*,.sys435-page .sys435-lower>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.sys435-page .sys435-how{height:auto}.sys435-page .sys435-how article>svg:last-child{position:static}.sys435-page .sys435-how article{min-width:0;grid-template-columns:25px minmax(0,1fr);padding-block:12px}.sys435-page .sys435-graph>aside,.sys435-page .sys435-graph>footer,.sys435-page .sys435-lower .hint,.sys435-page .sys435-lower em{position:static;width:auto;height:auto;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.sys435-page .sys435-nav{gap:12px;grid-template-columns:minmax(0,1fr)}}

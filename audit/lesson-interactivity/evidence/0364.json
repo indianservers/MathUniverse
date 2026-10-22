@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/285-instantaneous-rate-of-change",
+  "action": {
+    "control": "Change in x h",
+    "before": "0.05",
+    "after": "0.0501",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 337,
+      "scroll": 337
+    },
+    {
+      "width": 768,
+      "client": 715,
+      "scroll": 715
+    },
+    {
+      "width": 1440,
+      "client": 1387,
+      "scroll": 1387
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

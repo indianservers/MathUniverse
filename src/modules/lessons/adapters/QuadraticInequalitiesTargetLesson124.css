@@ -800,3 +800,5 @@ body:has(.quad124-page) footer[aria-label="Site footer"] {
 .quad124-footer a svg {
   width: 13px;
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .quad124-page .quad124-chart{overflow-x:auto!important;max-width:100%}.quad124-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.quad124-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.quad124-footer>nav{position:static;flex-wrap:wrap}}

@@ -141,7 +141,7 @@ function SequenceGraph({
         role="slider"
         tabIndex={0}
         aria-label="Drag recursive term probe"
-        aria-valuemin="0"
+        aria-valuemin={0}
         aria-valuemax={count}
         aria-valuenow={selected}
         onPointerDown={(event) => {

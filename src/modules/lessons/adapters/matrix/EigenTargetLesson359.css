@@ -388,3 +388,5 @@ body:has(.eig359-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.eig359-page :is(.eig359-setup,.eig359-analysis,.eig359-challenge){grid-template-columns:minmax(0,1fr);height:auto}.eig359-page .eig359-tabs{overflow-x:auto}.eig359-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.eig359-page .eig359-setup footer{flex-wrap:wrap;height:auto}.eig359-page .eig359-setup article > div{max-width:100%;flex-wrap:wrap}}

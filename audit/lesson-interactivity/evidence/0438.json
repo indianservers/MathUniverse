@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/data-and-probability/475-quartiles-and-iqr",
+  "action": {
+    "control": "Check answer",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "edited data moves to correct stem",
+    "split and ordinary stem grouping",
+    "wrong and correct median feedback"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

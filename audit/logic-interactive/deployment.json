@@ -1,0 +1,9 @@
+{
+  "commit": "add82f20529423e131deaebe4a8e6da6f783660b",
+  "deploymentId": 7167038868,
+  "status": "success",
+  "url": "https://maths.aimersociety.com/discrete-world/logic",
+  "deploymentUrl": "https://math-universe-e2cb55f1k-aimers10.vercel.app",
+  "liveBrowserVerification": "passed",
+  "workspaceTypecheck": "passed"
+}

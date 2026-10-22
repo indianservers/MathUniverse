@@ -1184,3 +1184,7 @@ body:has(.identity106-page) footer[aria-label="Site footer"] {
     min-width: 100px;
   }
 }
+
+.lesson-table-scroll-163{max-width:100%;width:100%;overflow-x:auto}
+
+@media(max-width:900px){.identity106-practice>article{height:auto}.identity106-practice>article>label{position:static;width:auto;max-width:100%;margin-top:12px}}

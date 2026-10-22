@@ -1,0 +1,29 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "union has eleven outcomes",
+    "A includes its intersection",
+    "B includes its intersection",
+    "single overlap outcome",
+    "neither has twenty-five outcomes",
+    "disjoint union has seven outcomes"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

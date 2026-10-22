@@ -704,3 +704,7 @@ body:has(.def308-page) {
     min-width: 753px;
   }
 }
+
+@media(max-width:900px){.def308-page .def308-workspace,.def308-page .def308-lab>footer,.def308-page .def308-learning,.def308-page .def308-learning>aside{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.def308-page .def308-workspace>*,.def308-page .def308-lab>footer>*,.def308-page .def308-learning>*,.def308-page .def308-learning>aside>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.def308-page .def308-lab,.def308-page .def308-practice{height:auto}.def308-page .def308-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.def308-page .def308-workspace>*{height:auto}.def308-page .def308-learning article{height:auto}.def308-page .def308-practice>div,.def308-page .def308-practice>button,.def308-page .def308-practice>output{position:static;width:auto;height:auto;margin-top:12px}.def308-page .def308-practice>div{flex-wrap:wrap}.def308-page .def308-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}}

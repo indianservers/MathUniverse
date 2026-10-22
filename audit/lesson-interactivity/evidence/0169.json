@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/algebra/112-simultaneous-linear-equations",
+  "action": {
+    "control": "Simultaneous equation system",
+    "before": "sum-difference-seven-one",
+    "after": "two-x-plus-y",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 737,
+      "scroll": 737
+    },
+    {
+      "width": 1440,
+      "client": 1398,
+      "scroll": 1398
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

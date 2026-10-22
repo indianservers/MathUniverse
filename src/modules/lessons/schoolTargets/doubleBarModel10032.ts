@@ -1,0 +1,8 @@
+export type DbSeries10032='boys'|'girls';
+export type DbRow10032={day:string;boys:number;girls:number};
+export const dbInitial10032:DbRow10032[]=[{day:'Mon',boys:12,girls:9},{day:'Tue',boys:15,girls:12},{day:'Wed',boys:10,girls:14},{day:'Thu',boys:18,girls:16},{day:'Fri',boys:14,girls:11}];
+export function dbCount10032(raw:string){const s=raw.trim();if(!/^\d{1,2}$/.test(s))return null;const n=Number(s);return n>=0&&n<=30?n:null;}
+export function dbStats10032(rows:DbRow10032[]){const differences=rows.map(r=>r.boys-r.girls),greatest=Math.max(...differences.map(Math.abs));return{boys:rows.reduce((s,r)=>s+r.boys,0),girls:rows.reduce((s,r)=>s+r.girls,0),differences,greatest,winners:rows.filter((_,i)=>Math.abs(differences[i])===greatest).map(r=>r.day)};}
+export function dbScale10032(rows:DbRow10032[],requested:number){return Math.max(5,Number.isFinite(requested)?Math.ceil(requested/5)*5:5,Math.ceil(Math.max(...rows.flatMap(r=>[r.boys,r.girls]))/5)*5);}
+export function dbProposal10032(index:number,series:DbSeries10032,raw:string){const value=dbCount10032(raw);if(value===null||!Number.isInteger(index)||index<0||index>4||!['boys','girls'].includes(series))return null;return dbInitial10032.map((r,i)=>i===index?{...r,[series]:value}:{...r});}
+export function dbGrade10032(index:number,series:DbSeries10032,raw:string){if(!raw.trim())return'pending';const rows=dbProposal10032(index,series,raw);if(!rows)return'invalid';const changes=rows.reduce((n,r,i)=>n+Number(r.boys!==dbInitial10032[i].boys)+Number(r.girls!==dbInitial10032[i].girls),0),s=dbStats10032(rows);return changes===1&&s.winners.length===1&&s.winners[0]==='Fri'?'correct':'retry';}

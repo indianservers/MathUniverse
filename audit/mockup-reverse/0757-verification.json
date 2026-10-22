@@ -1,0 +1,788 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": -2,
+        "y": 1
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 7,
+      "dy": 4,
+      "distance": 8.06225774829855,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": -2,
+        "y": 1
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 7,
+      "dy": 4,
+      "distance": 8.06225774829855,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": -2,
+        "y": 1
+      },
+      "b": {
+        "x": 4.5,
+        "y": 3.5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 6.5,
+      "dy": 2.5,
+      "distance": 6.96419413859206,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": -2,
+        "y": 1
+      },
+      "b": {
+        "x": 4.1,
+        "y": 3.5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 6.1,
+      "dy": 2.5,
+      "distance": 6.592419889539803,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": -2,
+        "y": 1
+      },
+      "b": {
+        "x": 4.1,
+        "y": 3.5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 6.1,
+      "dy": 2.5,
+      "distance": 6.592419889539803,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 4,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 3,
+      "dy": 3,
+      "distance": 4.242640687119286,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 1,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 0,
+      "dy": 3,
+      "distance": 3,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 1,
+        "y": 2
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 0,
+      "dy": 0,
+      "distance": 0,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 5,
+        "y": 5
+      },
+      "b": {
+        "x": 1,
+        "y": 2
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 0,
+        "y": 0
+      },
+      "b": {
+        "x": 1e-200,
+        "y": 0
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 1e-200,
+      "dy": 0,
+      "distance": 1e-200,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 4,
+        "y": 4
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 3,
+      "dy": 2,
+      "distance": 3.6055512754639896,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": true
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": true
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 11,
+        "y": 2
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 10,
+      "dy": 0,
+      "distance": 10,
+      "challenge": true
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 10.99999999,
+        "y": 2
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 9.99999999,
+      "dy": 0,
+      "distance": 9.99999999,
+      "challenge": true
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 7,
+        "y": 10
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 6,
+      "dy": 8,
+      "distance": 10,
+      "challenge": true
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 7,
+        "y": 9
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 6,
+      "dy": 7,
+      "distance": 9.219544457292887,
+      "challenge": true
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 1,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 0,
+      "dy": 3,
+      "distance": 3,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 1,
+        "y": 2
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 0,
+      "dy": 0,
+      "distance": 0,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": 5,
+        "y": 5
+      },
+      "v": {
+        "scale": 34.285714285714285,
+        "ox": 240,
+        "oy": 240
+      },
+      "dx": 4,
+      "dy": 3,
+      "distance": 5,
+      "challenge": false
+    },
+    {
+      "a": {
+        "x": 1,
+        "y": 2
+      },
+      "b": {
+        "x": -5,
+        "y": -6
+      },
+      "v": {
+        "scale": 20,
+        "ox": 220,
+        "oy": 280
+      },
+      "dx": 6,
+      "dy": 8,
+      "distance": 10,
+      "challenge": true
+    }
+  ],
+  "responsive": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "vertical",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "vertical",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "vertical",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "vertical",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "coincident",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "coincident",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "coincident",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "coincident",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "challenge",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "challenge",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "challenge",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "challenge",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

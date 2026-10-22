@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/324-euler-s-method",
+  "action": {
+    "control": "Euler step size",
+    "before": "0.2",
+    "after": "0.25",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 350,
+      "scroll": 350
+    },
+    {
+      "width": 768,
+      "client": 728,
+      "scroll": 728
+    },
+    {
+      "width": 1440,
+      "client": 1400,
+      "scroll": 1400
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

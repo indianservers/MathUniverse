@@ -43,7 +43,7 @@ export default function DedicatedStudioLab({ page, extra }: { page: StudioMockup
   if (page.id === "circles") return <CirclesGeometryLab page={page} />;
   if (page.id === "graphs" && page.route.includes("trigonometry")) return <TargetTrigGraphsLab page={page} />;
   if (page.id === "modular-arithmetic") return <ModularLab page={page} />;
-  if (page.id === "interactive-distributions") return <DistributionsLab page={page} />;
+  if (page.id === "interactive-distributions") return <StatisticsCoreLab page={page} />;
   if (page.id === "identities") return <TargetIdentitiesLab page={page} />;
   if (page.id === "inverse") return <TargetInverseTrigLab page={page} />;
   if (page.id === "oblique") return <TargetObliqueTriangleLab page={page} />;

@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import PolynomialInequalitiesTargetLesson125 from "./PolynomialInequalitiesTargetLesson125";
@@ -5,7 +6,7 @@ import PolynomialInequalitiesTargetLesson125 from "./PolynomialInequalitiesTarge
 describe("PolynomialInequalitiesTargetLesson125", () => {
   it("renders the dedicated target model, numerical sign chart, and worked examples", () => {
     const html = renderToStaticMarkup(
-      <PolynomialInequalitiesTargetLesson125
+      <PolynomialInequalitiesTargetLesson125 lesson={lessonCatalog.find(item => item.id === 125)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

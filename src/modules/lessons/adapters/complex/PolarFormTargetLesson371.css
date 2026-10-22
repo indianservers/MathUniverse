@@ -628,3 +628,11 @@ body:has(.pf371-page) footer[aria-label="Site footer"] > div {
     display: none !important;
   }
 }
+
+/* Stack the linked model and learning panels on narrow screens. */
+@media(max-width:799px){
+.pf371-page :is(.pf371-work,.pf371-learning,.pf371-nav){grid-template-columns:minmax(0,1fr);height:auto}
+.pf371-page :is(.pf371-lab,.pf371-explorer){height:auto}
+.pf371-page .pf371-tabs{overflow-x:auto}
+.pf371-page :is(article,aside){min-width:0;overflow-wrap:anywhere}
+}

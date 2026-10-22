@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "errors": [],
+  "tools": [
+    {
+      "width": 1680,
+      "bad": []
+    },
+    {
+      "width": 1280,
+      "bad": []
+    },
+    {
+      "width": 992,
+      "bad": []
+    },
+    {
+      "width": 924,
+      "bad": []
+    },
+    {
+      "width": 768,
+      "bad": []
+    },
+    {
+      "width": 390,
+      "bad": []
+    }
+  ],
+  "checks": [
+    "narrow20/r2 and wide140/r7 arc paths remain inside SVG viewport",
+    "final default/narrow/wide/draft and phone board screenshots",
+    "tool and construction-progress contents fit at6 widths"
+  ]
+}

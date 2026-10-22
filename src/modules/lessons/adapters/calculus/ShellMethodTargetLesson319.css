@@ -725,3 +725,5 @@ body:has(.sh319-page) {
     min-width: 706px;
   }
 }
+
+@media(max-width:900px){.sh319-page .sh319-hero,.sh319-page .sh319-flow,.sh319-page .sh319-model>main,.sh319-page .sh319-metrics,.sh319-page .sh319-accum,.sh319-page .sh319-worked,.sh319-page .sh319-warning{grid-template-columns:minmax(0,1fr);height:auto}.sh319-page .sh319-model{height:auto}.sh319-page .sh319-flow article>b{position:static}.sh319-page .sh319-flow article,.sh319-page .sh319-metrics article,.sh319-page .sh319-accum article,.sh319-page .sh319-worked>*{min-width:0;height:auto}.sh319-page .sh319-practice{height:auto}.sh319-page .sh319-practice>span,.sh319-page .sh319-practice>button,.sh319-page .sh319-practice output{position:static;display:inline-block;margin:8px}.sh319-page .sh319-worked ol{overflow-wrap:anywhere}}

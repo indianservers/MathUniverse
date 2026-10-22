@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/symbolic-mathematics/448-step-by-step-algebra",
+  "action": {
+    "control": "Distribute 2 across (x + 3)\nDistributive Property",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 347,
+      "scroll": 347
+    },
+    {
+      "width": 768,
+      "client": 725,
+      "scroll": 725
+    },
+    {
+      "width": 1440,
+      "client": 1397,
+      "scroll": 1397
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

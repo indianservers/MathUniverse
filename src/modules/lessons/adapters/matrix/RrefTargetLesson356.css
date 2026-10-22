@@ -467,3 +467,7 @@ body:has(.mat356-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.mat356-page :is(.mat356-setup,.mat356-body,.mat356-interpret,.mat356-challenge){grid-template-columns:minmax(0,1fr);height:auto}.mat356-page .mat356-tabs{overflow-x:auto}.mat356-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.mat356-page :is(.mat356-workspace,.mat356-gauss){height:auto}.mat356-page .mat356-gauss > div{grid-template-columns:minmax(0,1fr);height:auto}.mat356-page footer{flex-wrap:wrap;height:auto}}
+
+@media(max-width:799px){.mat356-page .mat356-setup > div{grid-template-columns:minmax(0,1fr);height:auto;gap:8px}.mat356-page .mat356-steps > button{grid-template-columns:28px minmax(0,1fr);height:auto;gap:6px}.mat356-page .mat356-steps > button > code{grid-column:1/-1}.mat356-page .mat356-matrix{display:block;min-width:0;max-width:100%;overflow-x:auto;white-space:pre}.mat356-page .mat356-setup footer{height:auto;flex-wrap:wrap}}

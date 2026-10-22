@@ -845,3 +845,9 @@
     height: auto;
   }
 }
+
+@media(max-width:900px){.target-bearings-flow article,.target-bearings-practice>div,.target-bearings-practice article>div{min-width:0;display:flex;flex-wrap:wrap;gap:8px}.target-bearings-flow article>*{min-width:0;max-width:100%}.target-bearings-practice{height:auto}}
+
+@media(max-width:900px){.target-bearings-flow article{height:auto;min-height:80px}.target-bearings-flow article>svg{flex-shrink:0;width:24px}.target-bearings-flow article>div{flex:1 1 180px}}
+
+@media(max-width:900px){.target-bearings-flow>article:not(:last-child)::after{position:static;content:"â†“"}}

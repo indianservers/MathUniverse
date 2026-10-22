@@ -552,3 +552,11 @@ body:has(.inf279-page) {
     min-width: 760px;
   }
 }
+
+@media(max-width:900px){.inf279-page .inf279-model,.inf279-page .inf279-model .graph-facts,.inf279-page .inf279-model .sign,.inf279-page .inf279-flow,.inf279-page .inf279-learning,.inf279-page .inf279-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.inf279-page .inf279-model>*,.inf279-page .inf279-model .graph-facts>*,.inf279-page .inf279-model .sign>*,.inf279-page .inf279-flow>*,.inf279-page .inf279-learning>*,.inf279-page .inf279-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.inf279-page .inf279-model>main,.inf279-page .inf279-model>aside{height:auto}.inf279-page .inf279-model input{max-width:100%;min-width:0}.inf279-page .inf279-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media(max-width:900px){.inf279-page .inf279-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}}
+
+.lesson-table-scroll-358{max-width:100%;width:100%;overflow-x:auto}

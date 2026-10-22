@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "lower"
+    },
+    {
+      "width": 1680,
+      "state": "tangent"
+    },
+    {
+      "width": 1680,
+      "state": "separate"
+    },
+    {
+      "width": 1680,
+      "state": "contained"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "lower"
+    },
+    {
+      "width": 1280,
+      "state": "tangent"
+    },
+    {
+      "width": 1280,
+      "state": "separate"
+    },
+    {
+      "width": 1280,
+      "state": "contained"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "lower"
+    },
+    {
+      "width": 992,
+      "state": "tangent"
+    },
+    {
+      "width": 992,
+      "state": "separate"
+    },
+    {
+      "width": 992,
+      "state": "contained"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "lower"
+    },
+    {
+      "width": 924,
+      "state": "tangent"
+    },
+    {
+      "width": 924,
+      "state": "separate"
+    },
+    {
+      "width": 924,
+      "state": "contained"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "lower"
+    },
+    {
+      "width": 768,
+      "state": "tangent"
+    },
+    {
+      "width": 768,
+      "state": "separate"
+    },
+    {
+      "width": 768,
+      "state": "contained"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "lower"
+    },
+    {
+      "width": 390,
+      "state": "tangent"
+    },
+    {
+      "width": 390,
+      "state": "separate"
+    },
+    {
+      "width": 390,
+      "state": "contained"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "true two-circle radii/centers/intersections and actual candidate distances, congruent reflection fitting",
+    "actual1–5 replay/Stop and stage objects; native range single-step and A/B base resizing with fixed opposite endpoint",
+    "separate/contained/outer- and inner-tangent rejection with visible circles, honest inequalities and no false C",
+    "near-only snap, fine keys, zoom/letterboxing/grab-offset, captured cancel/lost capture, native touch/touchCancel",
+    "actual4–5–6 placement challenge, both mirrors and alternate assignment, invalid/wrong-side/pending outcomes, live step labels, no-op/cancel certificate behavior and independent resets",
+    "36 responsive cases at6 widths, real390x844 phone touch, visible canonical navigation/Docs and no errors/overflow"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/371-polar-form",
+  "action": {
+    "control": "Real part (a)",
+    "before": "3",
+    "after": "3.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 355,
+      "scroll": 355
+    },
+    {
+      "width": 768,
+      "client": 733,
+      "scroll": 733
+    },
+    {
+      "width": 1440,
+      "client": 1405,
+      "scroll": 1405
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

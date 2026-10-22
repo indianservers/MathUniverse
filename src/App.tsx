@@ -158,6 +158,7 @@ const Home = lazyRoute(() => import("./pages/Home"));
 const LessonsHomePage = lazyRoute(
   () => import("./modules/lessons/pages/LessonsHomePage"),
 );
+const UpcomingLessonsPage = lazy(() => import('./modules/lessons/pages/UpcomingLessonsPage'));
 const LearnDiscoveryPage = lazyRoute(
   () => import("./modules/lessons/pages/LearnDiscoveryPage"),
 );
@@ -797,7 +798,8 @@ export default function App() {
               element={<LearnDiscoveryPage />}
             />
             <Route path="lessons" element={<LessonsHomePage />} />
-            <Route path="lessons/upcoming" element={<Navigate to="/lessons?browse=all" replace />} />
+            <Route path="lessons/upcoming" element={<UpcomingLessonsPage />} />
+            <Route path="lessons/indices-and-powers/orders-of-magnitude" element={<Navigate to="/lessons/numbers-and-arithmetic/30026-order-of-magnitude-estimates-and-fermi-questions" replace />} />
             <Route path="lessons/upgrades" element={<LessonUpgradeAuditPage />} />
             <Route path="lessons/planned/:lessonSlug" element={<StandardLessonFrame><AuthoredCurriculumLessonPage /></StandardLessonFrame>} />
             <Route

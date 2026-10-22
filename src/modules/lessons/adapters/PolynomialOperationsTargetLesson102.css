@@ -1092,3 +1092,7 @@ body:has(.poly102-page) footer[aria-label="Site footer"] {
 .poly102-footer {
   height: 104px;
 }
+
+@media(max-width:900px){.poly102-dashboard>header,.poly102-dashboard>header>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}.poly102-page .poly102-body{width:auto!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}}
+
+.poly102-page .poly102-body{width:auto!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}

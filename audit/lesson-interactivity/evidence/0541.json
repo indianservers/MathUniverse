@@ -1,0 +1,27 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "row reduction playback",
+    "independent exact final solution",
+    "incorrect and correct pivot grading",
+    "labelled keyboard step and pivot controls"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 346,
+      "scroll": 346
+    },
+    {
+      "width": 768,
+      "client": 724,
+      "scroll": 724
+    },
+    {
+      "width": 1440,
+      "client": 1396,
+      "scroll": 1396
+    }
+  ],
+  "errors": []
+}

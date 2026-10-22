@@ -130,3 +130,5 @@
 .target-fixed-nav > section { display: grid; place-content: center; gap: 8px; color: #334155; text-align: center; font-size: 7px; }
 .target-fixed-nav > section i { position: relative; display: block; width: 235px; height: 5px; border-radius: 99px; background: #e2e8f0; }
 .target-fixed-nav > section i span { display: block; width: 55%; height: 100%; border-radius: inherit; background: linear-gradient(90deg,#1769e8,#8b5cf6); }
+
+@media(max-width:900px){.target-fixed-page .target-fixed-workspace-grid,.target-fixed-page .target-fixed-controls,.target-fixed-page .target-fixed-two-col,.target-fixed-page .target-fixed-worked,.target-fixed-page .target-fixed-practice>div,.target-fixed-page .target-fixed-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-fixed-page .target-fixed-workspace-grid>*,.target-fixed-page .target-fixed-controls>*,.target-fixed-page .target-fixed-two-col>*,.target-fixed-page .target-fixed-worked>*,.target-fixed-page .target-fixed-practice>div>*,.target-fixed-page .target-fixed-nav>*{min-width:0;grid-column:auto;grid-row:auto}}

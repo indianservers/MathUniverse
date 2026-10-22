@@ -232,3 +232,5 @@ body:has(.target-unit-circle-page) footer[aria-label="Site footer"] { display: n
   .target-unit-circle-tabs { margin-top: 10px; }
   .target-unit-circle-readouts { grid-template-rows: auto; }
 }
+
+@media(max-width:900px){.target-unit-circle-quick{grid-template-columns:repeat(auto-fit,minmax(43px,1fr))}.target-unit-circle-flow article::after{position:static}}

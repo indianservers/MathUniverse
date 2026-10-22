@@ -381,3 +381,5 @@ body:has(.vs362-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.vs362-page :is(.vs362-lab,.vs362-verdict,.vs362-notes,.vs362-bottom){grid-template-columns:minmax(0,1fr);height:auto}.vs362-page .vs362-plot{width:100%;min-width:0;min-height:330px}.vs362-page .vs362-tabs{overflow-x:auto}.vs362-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}

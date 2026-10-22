@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "errors": [],
+  "layouts": [
+    {
+      "method": "Common Factor",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "method": "Common Factor",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "method": "Common Factor",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "method": "Common Factor",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "method": "Difference of Squares",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "method": "Difference of Squares",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "method": "Difference of Squares",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "method": "Difference of Squares",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "method": "Grouping",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "method": "Grouping",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "method": "Grouping",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "method": "Grouping",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "method": "Zero Factor",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "method": "Zero Factor",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "method": "Zero Factor",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "method": "Zero Factor",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "checks": [
+    "exact coefficient equality",
+    "native factor and real term drag",
+    "unknown payload ignored",
+    "partial versus unequal product",
+    "all four editable methods",
+    "grouping permutations",
+    "exact root theorem including near-zero rejection",
+    "practice factor/sign/term order equivalence",
+    "unexpanded and partial answers rejected",
+    "numeric common factors extracted",
+    "near-coefficient mismatch",
+    "reset and explicit worked answers",
+    "feedback disclosure",
+    "touch and keyboard",
+    "real next URL and tabs"
+  ]
+}

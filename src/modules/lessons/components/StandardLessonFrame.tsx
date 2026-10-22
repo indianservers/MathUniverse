@@ -21,7 +21,7 @@ function hideLegacyChrome(root:HTMLElement){
 export default function StandardLessonFrame({children}:{children:ReactNode}){
  const {pathname}=useLocation();
  const slug=pathname.split('/').at(-1)??'',lesson=lessonByRoute(pathname)??lessonById(Number(slug.split('-')[0]));
- if(!lesson)return <>{children}</>;
+ if(!lesson || (lesson.id>=30001 && lesson.id<=30040))return <>{children}</>;
  return <FrameContent key={pathname} id={lesson.id}>{children}</FrameContent>;
 }
 function FrameContent({children,id}:{children:ReactNode;id:number}){

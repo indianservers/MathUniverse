@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/3d-mathematics/425-normal-vector",
+  "action": {
+    "control": "Vector u x",
+    "before": "1",
+    "after": "1.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 737,
+      "scroll": 737
+    },
+    {
+      "width": 1440,
+      "client": 1404,
+      "scroll": 1404
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

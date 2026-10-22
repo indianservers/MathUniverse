@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "clear"
+    },
+    {
+      "width": 1680,
+      "state": "cycle"
+    },
+    {
+      "width": 1680,
+      "state": "invalid"
+    },
+    {
+      "width": 1680,
+      "state": "huge"
+    },
+    {
+      "width": 1680,
+      "state": "repaired"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "clear"
+    },
+    {
+      "width": 1280,
+      "state": "cycle"
+    },
+    {
+      "width": 1280,
+      "state": "invalid"
+    },
+    {
+      "width": 1280,
+      "state": "huge"
+    },
+    {
+      "width": 1280,
+      "state": "repaired"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "clear"
+    },
+    {
+      "width": 768,
+      "state": "cycle"
+    },
+    {
+      "width": 768,
+      "state": "invalid"
+    },
+    {
+      "width": 768,
+      "state": "huge"
+    },
+    {
+      "width": 768,
+      "state": "repaired"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "clear"
+    },
+    {
+      "width": 390,
+      "state": "cycle"
+    },
+    {
+      "width": 390,
+      "state": "invalid"
+    },
+    {
+      "width": 390,
+      "state": "huge"
+    },
+    {
+      "width": 390,
+      "state": "repaired"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual graph run/step/back/pause and output timing",
+    "exact signed/zero/large parity and invalid fractional input",
+    "six real editable connectors, cycles, wrong outputs, missing/read-before-condition/outputless paths",
+    "single successful input versus global validity",
+    "pointer offset/zoom/letterbox/no-op/cancel/lostcapture/keyboard/native touch",
+    "connector endpoints match drawn shapes before and after dragging",
+    "Zero exit repair rejects cycle/double-output and verifies all three sign classes",
+    "exact practice decimal tests and independent reset",
+    "24 responsive cases and single-line tabs",
+    "real sections/navigation and no page errors"
+  ]
+}

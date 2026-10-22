@@ -1,0 +1,27 @@
+{
+  "checks": [
+    "six keyboard-controlled markers",
+    "pointer dragging in each graph",
+    "sample values agree with graph functions",
+    "approach buttons move toward the discontinuity",
+    "wrong and correct classification feedback"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 331,
+      "scroll": 331
+    },
+    {
+      "width": 768,
+      "client": 709,
+      "scroll": 709
+    },
+    {
+      "width": 1440,
+      "client": 1381,
+      "scroll": 1381
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,507 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "sides": [
+        4,
+        4.47213595499958,
+        4.47213595499958
+      ],
+      "s": 6.47213595499958,
+      "coordinate": 8,
+      "heron": 8,
+      "history": 1
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "sides": [
+        4,
+        3,
+        5
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 1
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "sides": [
+        4,
+        3,
+        5
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 1
+    },
+    {
+      "x": 1.25,
+      "y": 2.75,
+      "sides": [
+        4,
+        3.8890872965260113,
+        3.020761493398643
+      ],
+      "s": 5.454924394962327,
+      "coordinate": 5.5,
+      "heron": 5.5,
+      "history": 2
+    },
+    {
+      "x": 1.25,
+      "y": 2.75,
+      "sides": [
+        4,
+        3.8890872965260113,
+        3.020761493398643
+      ],
+      "s": 5.454924394962327,
+      "coordinate": 5.5,
+      "heron": 5.5,
+      "history": 2
+    },
+    {
+      "x": 1.25,
+      "y": 2.75,
+      "sides": [
+        4,
+        3.8890872965260113,
+        3.020761493398643
+      ],
+      "s": 5.454924394962327,
+      "coordinate": 5.5,
+      "heron": 5.5,
+      "history": 2
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "sides": [
+        4,
+        3,
+        5
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 1
+    },
+    {
+      "x": 3.9,
+      "y": 3,
+      "sides": [
+        4,
+        3.0016662039607267,
+        4.920365840057017
+      ],
+      "s": 5.961016022008872,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 2
+    },
+    {
+      "x": 2,
+      "y": 1e-8,
+      "sides": [
+        4,
+        2,
+        2
+      ],
+      "s": 4,
+      "coordinate": 2e-8,
+      "heron": 2e-8,
+      "history": 4
+    },
+    {
+      "x": 2,
+      "y": 1e-50,
+      "sides": [
+        4,
+        2,
+        2
+      ],
+      "s": 4,
+      "coordinate": 2e-50,
+      "heron": 2e-50,
+      "history": 5
+    },
+    {
+      "x": 2,
+      "y": 1e-50,
+      "sides": [
+        4,
+        2,
+        2
+      ],
+      "s": 4,
+      "coordinate": 2e-50,
+      "heron": 2e-50,
+      "history": 5
+    },
+    {
+      "x": 2.1,
+      "y": 1e-50,
+      "sides": [
+        4,
+        1.9,
+        2.1
+      ],
+      "s": 4,
+      "coordinate": 2e-50,
+      "heron": 2e-50,
+      "history": 6
+    },
+    {
+      "x": 2.1,
+      "y": 0,
+      "sides": [
+        4,
+        1.9,
+        2.1
+      ],
+      "s": 4,
+      "coordinate": 0,
+      "heron": 0,
+      "history": 7
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "sides": [
+        4,
+        4,
+        0
+      ],
+      "s": 4,
+      "coordinate": 0,
+      "heron": 0,
+      "history": 8
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "sides": [
+        4,
+        0,
+        4
+      ],
+      "s": 4,
+      "coordinate": 0,
+      "heron": 0,
+      "history": 9
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "sides": [
+        4,
+        0,
+        4
+      ],
+      "s": 4,
+      "coordinate": 0,
+      "heron": 0,
+      "history": 9
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "sides": [
+        4,
+        4.242640687119285,
+        3.1622776601683795
+      ],
+      "s": 5.702459173643832,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 5
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 2,
+      "y": 1e-8,
+      "sides": [
+        4,
+        2,
+        2
+      ],
+      "s": 4,
+      "coordinate": 2e-8,
+      "heron": 2e-8,
+      "history": 2
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "sides": [
+        4,
+        5.385164807134504,
+        7.810249675906654
+      ],
+      "s": 8.59770724152058,
+      "coordinate": 10,
+      "heron": 10,
+      "history": 2
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "sides": [
+        4,
+        5,
+        3
+      ],
+      "s": 6,
+      "coordinate": 6,
+      "heron": 6,
+      "history": 0
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "sides": [
+        4,
+        0,
+        4
+      ],
+      "s": 4,
+      "coordinate": 0,
+      "heron": 0,
+      "history": 2
+    }
+  ],
+  "responsive": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "thin",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "thin",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "thin",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "thin",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "boundary",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "boundary",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "boundary",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "boundary",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "degenerate",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "degenerate",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "degenerate",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "degenerate",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

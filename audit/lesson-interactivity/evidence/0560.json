@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/375-polynomial-roots",
+  "action": {
+    "control": "a",
+    "before": "1",
+    "after": "1.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 352,
+      "scroll": 352
+    },
+    {
+      "width": 768,
+      "client": 730,
+      "scroll": 730
+    },
+    {
+      "width": 1440,
+      "client": 1402,
+      "scroll": 1402
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

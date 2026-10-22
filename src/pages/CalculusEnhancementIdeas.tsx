@@ -109,6 +109,7 @@ function topicTitle(page: Exclude<CalculusStudioPage, "home">) {
     "series-parametric-polar": "Σ Series / Parametric / Polar",
     "multivariable-vector": "Multivariable / Vector",
     advanced: "Advanced Calculus",
+    jacobians: "Jacobians", "beta-gamma": "Beta and Gamma Functions", "series-tests": "Series Tests", "curve-tracing": "Curve Tracing", "taylor-two-variables": "Taylor Expansions in Two Variables", "lagrange-multipliers": "Lagrange Multipliers", "change-order": "Changing Integration Order", centroid: "Centroid", "moments-of-inertia": "Moments of Inertia", "integral-engineering": "Engineering Integrals",
   };
   return titles[page];
 }

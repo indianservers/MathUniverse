@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "zero pair preserves evaluated expression",
+    "bank tile drop changes constant and evaluation",
+    "new problem updates expression and clears zero pairs"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 737,
+      "scroll": 737
+    },
+    {
+      "width": 1440,
+      "client": 1378,
+      "scroll": 1378
+    }
+  ],
+  "errors": []
+}

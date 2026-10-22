@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "errors": [],
+  "tools": [
+    {
+      "width": 1680,
+      "bad": []
+    },
+    {
+      "width": 1280,
+      "bad": []
+    },
+    {
+      "width": 992,
+      "bad": []
+    },
+    {
+      "width": 924,
+      "bad": []
+    },
+    {
+      "width": 768,
+      "bad": []
+    },
+    {
+      "width": 390,
+      "bad": []
+    }
+  ],
+  "checks": [
+    "no-snap checked-point no-op preserves certificate",
+    "P cancellation restores point and construction independently of challenge; P fine keyboard movement",
+    "final complete/obtuse and phone worked/solved screenshots",
+    "all tool icon/label contents fit at6 widths"
+  ]
+}

@@ -10,24 +10,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SssCongruenceTargetLesson10069.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{ssStart10069,ssChallenge10069,ssModel10069,ssSame10069,ssRigid10069,ssFit10069,ssArcs10069,ssGrade10069,type SSides10069 as Sides}from'./sssCongruenceModel10069';
 
-type Sides = { red: number; blue: number; green: number };
-const START: Sides = { red: 5, blue: 6, green: 7 };
-const modes = ["None", "Translate", "Rotate", "Flip", "Perfect Overlay"];
-
-function triangle(sides: Sides) {
-  const valid =
-    sides.red + sides.blue > sides.green &&
-    sides.red + sides.green > sides.blue &&
-    sides.blue + sides.green > sides.red;
-  if (!valid) return { valid, x: 130, y: 90 };
-  const x =
-      (sides.green ** 2 + sides.red ** 2 - sides.blue ** 2) / (2 * sides.red),
-    y = Math.sqrt(Math.max(0, sides.green ** 2 - x ** 2));
-  return { valid, x: 25 + x * 28, y: 225 - y * 28 };
-}
-
+const START=ssStart10069;
+const modes=['None','Translate','Rotate','Flip','Perfect Overlay'];
 export default function SssCongruenceTargetLesson10069({
   lesson: _lesson,
 }: {
@@ -42,17 +28,16 @@ export default function SssCongruenceTargetLesson10069({
     [challengePairs, setChallengePairs] = useState(["DE", "EF", "FD"]),
     [challengeOverlay, setChallengeOverlay] = useState(false),
     [actions, setActions] = useState(0);
-  const construction = triangle(sides),
-    congruent = construction.valid,
-    challengeCorrect =
-      challengePairs.join(",") === "DE,EF,FD" && challengeOverlay;
+  const [second,setSecond]=useState<Sides>(START),[linked,setLinked]=useState(true),[points,setPoints]=useState(true),[tested,setTested]=useState(false);
+  const construction=ssModel10069(sides),secondModel=ssModel10069(second),congruent=ssSame10069(sides,second),challengeCorrect=ssGrade10069(challengePairs)&&tested;
+  const update=(key:keyof Sides,n:number)=>{setSides(old=>({...old,[key]:n}));if(linked)setSecond(old=>({...old,[key]:n}));setActions(n=>n+1);};
   const act = (fn: () => void) => {
     fn();
     setActions((n) => n + 1);
   };
   const reset = () =>
     act(() => {
-      setSides(START);
+      setSides(START);setSecond(START);setLinked(true);setPoints(true);
       setShowCorrespondence(true);
       setShowMeasures(true);
       setArcs(true);
@@ -64,7 +49,7 @@ export default function SssCongruenceTargetLesson10069({
       data-testid="school-mockup-0743"
       data-object-model="dedicated-linked-sss-circle-intersection-rigid-overlay-engine"
       data-sides={`${sides.red},${sides.blue},${sides.green}`}
-      data-valid={String(construction.valid)}
+      data-valid={String(construction.valid&&secondModel.valid)} data-kind={construction.kind} data-second={`${second.red},${second.blue},${second.green}`} data-linked={String(linked)} data-congruent={String(congruent)} data-points={String(points)}
       data-mode={modes[mode]}
       data-arcs={String(arcs)}
       data-measures={String(showMeasures)}
@@ -73,7 +58,7 @@ export default function SssCongruenceTargetLesson10069({
       data-challenge={String(challengeCorrect)}
       data-actions={actions}
     >
-      <header className="sss10069-hero">
+      <div role="banner" className="sss10069-hero">
         <small>CLASS 9 · TRIANGLE PROOFS</small>
         <h1>SSS Congruence</h1>
         <p>
@@ -88,29 +73,28 @@ export default function SssCongruenceTargetLesson10069({
           <span>SSS</span>
         </div>
 
-      </header>
-      <div className="lesson-header-content sss10069-hero"><aside>
-          <h2>Theorem (SSS)</h2>
+      <aside>
+          <h2 id="sss10069-formula">Theorem (SSS)</h2>
           <p>
             If three sides of one triangle are equal to three sides of another
             triangle, then the triangles are congruent.
           </p>
           <p>In symbols: SSS ⇒ △ABC ≅ △DEF</p>
         </aside></div>
-      <nav className="sss10069-tabs">
+      <div role="group" aria-label="Lesson sections" className="sss10069-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((x, i) => (
           <button
             key={x}
             className={tab === i ? "active" : ""}
-            aria-selected={tab === i}
-            onClick={() => act(() => setTab(i))}
+            aria-pressed={tab === i}
+            onClick={() => act(() => {setTab(i);document.getElementById(['sss10069-interact','sss10069-learn','sss10069-example','sss10069-formula','sss10069-practice'][i])?.scrollIntoView({behavior:'smooth',block:'start'});})}
           >
             {x}
           </button>
         ))}
-      </nav>
+      </div>
       <main>
-        <section className="sss10069-lab">
+        <section id="sss10069-interact" className="sss10069-lab">
           <header>
             <div>
               <h2>Explore & Construct</h2>
@@ -147,35 +131,36 @@ export default function SssCongruenceTargetLesson10069({
                 color="red"
                 label="AB ↔ DE"
                 value={sides.red}
-                onChange={(red) => act(() => setSides({ ...sides, red }))}
+                onChange={red=>update('red',red)}
               />
               <SideControl
                 color="blue"
                 label="BC ↔ EF"
                 value={sides.blue}
-                onChange={(blue) => act(() => setSides({ ...sides, blue }))}
+                onChange={blue=>update('blue',blue)}
               />
               <SideControl
                 color="green"
                 label="CA ↔ FD"
                 value={sides.green}
-                onChange={(green) => act(() => setSides({ ...sides, green }))}
+                onChange={green=>update('green',green)}
               />
-              <button className="lock">
-                <Link2 /> Lock Linking
+              <button className="lock" aria-pressed={linked} onClick={()=>act(()=>{if(!linked)setSecond({...sides});setLinked(v=>!v);})}>
+                <Link2 /> {linked?"Linking locked":"Link triangles"}
               </button>
+              {!linked&&<section className="sss10069-second-controls"><h3>Triangle DEF (unlinked)</h3>{(['red','blue','green'] as const).map((key,i)=><SideControl key={key} color={key} label={['DE','EF','FD'][i]} value={second[key]} onChange={n=>act(()=>setSecond(old=>({...old,[key]:n})))}/>)}</section>}
               <section>
                 <h3>Tools</h3>
-                <button onClick={() => act(() => setArcs(false))}>
+                <button aria-label="Point tool" aria-pressed={points&&!arcs} onClick={() => act(() => {setArcs(false);setPoints(true);})}>
                   ● Point
                 </button>
                 <button
                   className={arcs ? "active" : ""}
-                  onClick={() => act(() => setArcs(true))}
+                  aria-label="Add construction arcs" aria-pressed={arcs} onClick={() => act(() => {setArcs(true);setPoints(true);})}
                 >
                   ◌ Add Arc
                 </button>
-                <button onClick={() => act(() => setArcs(false))}>
+                <button aria-label="Clear construction marks" onClick={() => act(() => {setArcs(false);setPoints(false);})}>
                   ▱ Clear All
                 </button>
                 <label>
@@ -195,14 +180,14 @@ export default function SssCongruenceTargetLesson10069({
               letters="ABC"
               sides={sides}
               arcs={arcs}
-              measures={showMeasures}
+              measures={showMeasures} points={points}
             />
             <SssTriangle
               title="△DEF"
               letters="DEF"
-              sides={sides}
+              sides={second}
               arcs={arcs}
-              measures={showMeasures}
+              measures={showMeasures} points={points}
             />
             <section className="sss10069-overlay-panel">
               <header>
@@ -211,7 +196,7 @@ export default function SssCongruenceTargetLesson10069({
                   {modes.map((x, i) => (
                     <button
                       key={x}
-                      className={mode === i ? "active" : ""}
+                      aria-label={`Motion: ${x}`} aria-pressed={mode===i} className={mode === i ? "active" : ""}
                       onClick={() => act(() => setMode(i))}
                     >
                       {x}
@@ -224,14 +209,14 @@ export default function SssCongruenceTargetLesson10069({
                   congruent ? "sss10069-result" : "sss10069-result invalid"
                 }
               >
-                <Check />
+                {congruent?<Check/>:<TriangleAlert/>}
                 <p>
                   <b>Congruence Result</b>
-                  <strong>△ABC {congruent ? "≅" : "≇"} △DEF by SSS</strong>
+                  <strong>{!construction.valid||!secondModel.valid?"No proper triangle to compare":`△ABC ${congruent?"≅":"≇"} △DEF${congruent?" by SSS":" in this correspondence"}`}</strong>
                   <span>
                     {congruent
                       ? "All three pairs of corresponding sides are equal."
-                      : "These lengths cannot construct a triangle."}
+                      : !construction.valid||!secondModel.valid?"A strict triangle inequality fails; adjust the lengths.":"The chosen corresponding side lengths differ."}
                   </span>
                 </p>
                 {showCorrespondence && (
@@ -248,12 +233,12 @@ export default function SssCongruenceTargetLesson10069({
                     </span>
                   </aside>
                 )}
-                <OverlayMini sides={sides} mode={mode} />
+                <OverlayMini sides={sides} second={second} mode={mode} />
               </div>
             </section>
           </div>
         </section>
-        <section className="sss10069-theory">
+        <section id="sss10069-learn" className="sss10069-theory">
           <article>
             <h2>Why SSS Works</h2>
             <p>
@@ -264,22 +249,21 @@ export default function SssCongruenceTargetLesson10069({
             <ol>
               <li>Fix side AB onto DE.</li>
               <li>
-                Point C must lie at the intersection of two arcs with radii CA
-                and CB.
+                Point C lies at the intersection of circles centered at A and B, with radii CA and CB.
               </li>
-              <li>Hence the triangles coincide perfectly.</li>
+              <li>The two possible intersections are reflections across the base, so reflection may be needed before the triangles coincide.</li>
             </ol>
             <div>
               <SssMini />
               <b>Rigid motion →</b>
-              <SssMini />
+              <SssMini letters="DEF"/>
             </div>
             <strong>
               Conclusion: Three equal corresponding sides determine congruence.
             </strong>
           </article>
           <article>
-            <h2>Worked Example</h2>
+            <h2 id="sss10069-example">Worked Example</h2>
             <p>
               <b>Given:</b> In △ABC and △DEF,
             </p>
@@ -310,11 +294,11 @@ export default function SssCongruenceTargetLesson10069({
             </p>
           </div>
           <SssMini sides={{ red: 5, blue: 4, green: 3 }} />
-          <SssMini sides={{ red: 6, blue: 5, green: 1 }} />
+          <SssMini sides={{ red: 5, blue: 5, green: 2 }} />
           <aside>
             Perimeter = 3+4+5 = 12
             <br />
-            Perimeter = 5+1+6 = 12
+            Perimeter = 2+5+5 = 12
             <br />
             <b>
               Same perimeter,
@@ -323,7 +307,7 @@ export default function SssCongruenceTargetLesson10069({
             </b>
           </aside>
         </section>
-        <section className="sss10069-challenge">
+        <section id="sss10069-practice" className="sss10069-challenge">
           <header>
             <h2>Challenge: Match, Measure & Decide</h2>
             <p>
@@ -334,32 +318,32 @@ export default function SssCongruenceTargetLesson10069({
           <SssTriangle
             title="Triangle 1"
             letters="ABC"
-            sides={START}
+            sides={ssChallenge10069}
             arcs={false}
             measures
           />
           <section>
             <h3>1. Match the sides</h3>
             {[
-              ["CA (7)", "FD"],
-              ["CB (6)", "EF"],
-              ["AB (5)", "DE"],
+              ["CA (6)", "DE"],
+              ["CB (7)", "EF"],
+              ["AB (5)", "FD"],
             ].map(([label, correct], i) => (
               <label key={label}>
                 <i className={["green", "blue", "red"][i]} />
                 {label} ↔{" "}
                 <select
-                  value={challengePairs[i]}
+                  aria-label={`Match ${label}`} value={challengePairs[i]}
                   onChange={(e) =>
                     act(() => {
                       const next = [...challengePairs];
                       next[i] = e.target.value;
-                      setChallengePairs(next);
+                      setChallengePairs(next);setTested(false);
                     })
                   }
                 >
                   {["DE", "EF", "FD"].map((x) => (
-                    <option key={x}>{x}</option>
+                    <option key={x} value={x}>{x} ({({DE:6,EF:7,FD:5} as Record<string,number>)[x]})</option>
                   ))}
                 </select>
                 {challengePairs[i] === correct ? <Check /> : <TriangleAlert />}
@@ -368,22 +352,16 @@ export default function SssCongruenceTargetLesson10069({
           </section>
           <section>
             <h3>2. Test with overlay</h3>
-            <button onClick={() => act(() => setChallengeOverlay(false))}>
+            <button aria-label="Challenge Overlay" onClick={() => act(() => {setChallengeOverlay(false);setTested(true);})}>
               Overlay
             </button>
             <button
               className="perfect"
-              onClick={() => act(() => setChallengeOverlay(true))}
+              aria-label="Challenge Perfect Overlay" onClick={() => act(() => {setChallengeOverlay(true);setTested(true);})}
             >
               Perfect Overlay
             </button>
-            <p className={challengeCorrect ? "pass" : "fail"}>
-              <b>{challengeCorrect ? "Congruent!" : "Not congruent."}</b>
-              <br />
-              {challengeCorrect
-                ? "All side correspondences match."
-                : "Side lengths do not match the correspondence."}
-            </p>
+            <OverlayMini sides={ssChallenge10069} mode={challengeOverlay?4:0}/><p role="status" className={challengeCorrect?'pass':tested?'fail':''}><b>{!tested?'Test the correspondence.':challengeCorrect?'Congruent: △ABC ≅ △DFE by SSS.':'Correspondence mismatch.'}</b><br/>{tested&&(challengeCorrect?'CA ↔ DE, CB ↔ EF, AB ↔ FD.':'These triangles are congruent, but the selected side matching is wrong.')}</p>
           </section>
           <aside>
             <h3>Goal</h3>
@@ -399,25 +377,21 @@ export default function SssCongruenceTargetLesson10069({
           </aside>
         </section>
       </main>
-      <nav className="sss10069-adjacent">
-        <Link to="/lessons/school/class-9/class-9-triangle-proofs-asa-congruence">
+      <nav className="sss10069-nav">
+        <Link to="/lessons/school/class-9/class-9-triangle-proofs-aas-congruence">
           <ArrowLeft />
           <span>
-            Previous
-            <br />
-            <b>ASA Congruence</b>
+            <b>AAS Congruence</b>
           </span>
         </Link>
         <Link to="/lessons/school/class-9/class-9-triangle-proofs-rhs-congruence">
           <span>
-            Next
-            <br />
             <b>RHS Congruence</b>
           </span>
           <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10069} view={tab} />
+      <footer className="sss10069-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
@@ -456,106 +430,7 @@ function SideControl({
     </label>
   );
 }
-function SssTriangle({
-  title,
-  letters,
-  sides,
-  arcs,
-  measures,
-}: {
-  title: string;
-  letters: string;
-  sides: Sides;
-  arcs: boolean;
-  measures: boolean;
-}) {
-  const p = triangle(sides),
-    [a, b, c] = letters.split("");
-  return (
-    <article className="sss10069-triangle">
-      <i>{title}</i>
-      <svg viewBox="0 0 280 270" aria-label={`SSS triangle ${letters}`}>
-        {arcs && (
-          <>
-            <path className="arc green" d="M62 70A150 150 0 0 1 140 118" />
-            <path className="arc blue" d="M140 118A140 140 0 0 1 218 70" />
-          </>
-        )}
-        <path
-          className="shape"
-          d={`M25 230L${25 + sides.red * 28} 230L${p.x} ${p.y}Z`}
-        />
-        {[
-          [25, 230],
-          [25 + sides.red * 28, 230],
-          [p.x, p.y],
-        ].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="5" />
-        ))}
-        <text x="9" y="250">
-          {a}
-        </text>
-        <text x={20 + sides.red * 28} y="250">
-          {b}
-        </text>
-        <text x={p.x - 5} y={p.y - 12}>
-          {c}
-        </text>
-        {measures && (
-          <>
-            <text className="red" x={20 + sides.red * 14} y="250">
-              {sides.red}
-            </text>
-            <text
-              className="blue"
-              x={p.x + (25 + sides.red * 28 - p.x) / 2 + 10}
-              y={(p.y + 230) / 2}
-            >
-              {sides.blue}
-            </text>
-            <text className="green" x={p.x / 2} y={(p.y + 230) / 2}>
-              {sides.green}
-            </text>
-          </>
-        )}
-      </svg>
-    </article>
-  );
-}
-function OverlayMini({ sides, mode }: { sides: Sides; mode: number }) {
-  const shift = mode === 0 ? 16 : mode === 1 ? 8 : 0,
-    rotate = mode === 2 ? "rotate(8deg)" : "",
-    flip = mode === 3 ? "scaleX(-1)" : "";
-  return (
-    <svg className="sss10069-overlay-mini" viewBox="0 0 120 90">
-      <path d="M10 75L100 75L55 10Z" />
-      <path
-        className="second"
-        style={{
-          transform: `translateX(${shift}px) ${rotate} ${flip}`,
-          transformOrigin: "55px 50px",
-        }}
-        d="M10 75L100 75L55 10Z"
-      />
-      <text x="36" y="88">
-        {sides.red}-{sides.blue}-{sides.green}
-      </text>
-    </svg>
-  );
-}
-function SssMini({ sides = START }: { sides?: Sides }) {
-  return (
-    <svg className="sss10069-mini" viewBox="0 0 130 90">
-      <path d="M5 75L110 75L55 10Z" />
-      <text className="red" x="50" y="88">
-        {sides.red}
-      </text>
-      <text className="blue" x="87" y="45">
-        {sides.blue}
-      </text>
-      <text className="green" x="20" y="45">
-        {sides.green}
-      </text>
-    </svg>
-  );
-}
+function SssTriangle({title,letters,sides,arcs,measures,points=true}:{title:string;letters:string;sides:Sides;arcs:boolean;measures:boolean;points?:boolean}){return <article className="sss10069-triangle"><i>{title}</i><TriangleDrawing sides={sides} letters={letters} arcs={arcs} measures={measures} points={points}/></article>;}
+function TriangleDrawing({sides,letters='ABC',arcs=false,measures=true,points=true,mini=false}:{sides:Sides;letters?:string;arcs?:boolean;measures?:boolean;points?:boolean;mini?:boolean}){const m=ssModel10069(sides),circles=arcs?ssArcs10069(sides):[];if(!m.points)return <svg className={mini?'sss10069-mini':''} viewBox="0 0 280 270" aria-label={`SSS triangle ${letters}`}><text className="invalid-caption" x="140" y="110">{m.kind==='flat'?'Flat lengths':'Triangle cannot close'}</text><text className="invalid-caption" x="140" y="140">{sides.red}, {sides.blue}, {sides.green}</text><text className="invalid-caption" x="140" y="170">Strict triangle inequalities required.</text></svg>;const fit=ssFit10069([...m.points,...circles.flatMap(a=>[a.start,a.end])]),p=m.points.map(fit.map),path=`M${p[0].x} ${p[0].y}L${p[1].x} ${p[1].y}L${p[2].x} ${p[2].y}Z`;return <svg className={mini?'sss10069-mini':''} viewBox="0 0 280 270" aria-label={`SSS triangle ${letters}`} data-coordinates={p.map(q=>`${q.x},${q.y}`).join(';')} data-scale={fit.k}>{circles.map((a,i)=>{const from=fit.map(a.start),to=fit.map(a.end);return <path key={i} className={`construction-arc ${i?'blue':'green'}`} d={`M${from.x} ${from.y}A${a.r*fit.k} ${a.r*fit.k} 0 0 0 ${to.x} ${to.y}`}/>;})}<path className="triangle-fill" d={path}/>{p.map((a,i)=>{const b=p[(i+1)%3],color=['red','blue','green'][i],dx=b.x-a.x,dy=b.y-a.y,n=Math.hypot(dx,dy),mx=(a.x+b.x)/2,my=(a.y+b.y)/2;return <g key={i}><line className={`edge ${color}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y}/>{points&&<circle cx={a.x} cy={a.y} r="4"/>}<text className="letter" x={a.x+(i===0?-10:i===1?10:0)} y={a.y+(i===2?-12:14)}>{letters[i]}</text>{measures&&<text className={`measure ${color}`} x={mx-dy/n*14} y={my+dx/n*14+4}>{[sides.red,sides.blue,sides.green][i]}</text>}</g>;})}</svg>;}
+function OverlayMini({sides,second=sides,mode}:{sides:Sides;second?:Sides;mode:number}){const a=ssModel10069(sides),b=ssModel10069(second);if(!a.points||!b.points)return <div className="sss10069-overlay-empty">No rigid triangle overlay for invalid lengths.</div>;const q=b.points.map(p=>ssRigid10069(p,mode,{x:second.red/2,y:0})),fit=ssFit10069([...a.points,...q],240,190),first=a.points.map(fit.map),last=q.map(fit.map),path=(p:typeof first)=>`M${p.map(v=>`${v.x} ${v.y}`).join('L')}Z`;return <svg className="sss10069-overlay-mini" viewBox="0 0 240 190" aria-label={`Rigid motion: ${modes[mode]}`} data-first={first.map(p=>`${p.x},${p.y}`).join(';')} data-second={last.map(p=>`${p.x},${p.y}`).join(';')} data-scale={fit.k}><path className="first" d={path(first)}/><path className="second" d={path(last)}/><text x="120" y="184">{mode===4?(ssSame10069(sides,second)?'Triangles coincide perfectly':'Compare corresponding vertices'):modes[mode]}</text></svg>;}
+function SssMini({sides=START,letters="ABC"}:{sides?:Sides;letters?:string}){return <TriangleDrawing sides={sides} letters={letters} mini/>;}

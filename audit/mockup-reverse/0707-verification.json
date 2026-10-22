@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "stage": 1
+    },
+    {
+      "width": 1680,
+      "stage": 2
+    },
+    {
+      "width": 1680,
+      "stage": 3
+    },
+    {
+      "width": 1680,
+      "stage": 4
+    },
+    {
+      "width": 1280,
+      "stage": 1
+    },
+    {
+      "width": 1280,
+      "stage": 2
+    },
+    {
+      "width": 1280,
+      "stage": 3
+    },
+    {
+      "width": 1280,
+      "stage": 4
+    },
+    {
+      "width": 992,
+      "stage": 1
+    },
+    {
+      "width": 992,
+      "stage": 2
+    },
+    {
+      "width": 992,
+      "stage": 3
+    },
+    {
+      "width": 992,
+      "stage": 4
+    },
+    {
+      "width": 768,
+      "stage": 1
+    },
+    {
+      "width": 768,
+      "stage": 2
+    },
+    {
+      "width": 768,
+      "stage": 3
+    },
+    {
+      "width": 768,
+      "stage": 4
+    },
+    {
+      "width": 390,
+      "stage": 1
+    },
+    {
+      "width": 390,
+      "stage": 2
+    },
+    {
+      "width": 390,
+      "stage": 3
+    },
+    {
+      "width": 390,
+      "stage": 4
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "stable duplicate identities; native drag, keyboard focus, touch drag/cancel and foreign payload rejection",
+    "six mathematical presets, even median, tied/no modes, exact frequency block counts and mean geometry",
+    "four gated stages, outlier prediction and answer invalidation",
+    "exact/fraction/rounded answers, reject adjacent hundredths and blanks",
+    "purpose-conditioned reasoning, optional reflection not graded, independent resets and completion invalidation",
+    "16 responsive stage states, live tabs and canonical links"
+  ]
+}

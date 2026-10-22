@@ -1,0 +1,26 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "editable cuboid dimensions",
+    "independent surface-area calculations",
+    "positive dimension boundary"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 354,
+      "scroll": 354
+    },
+    {
+      "width": 768,
+      "client": 732,
+      "scroll": 732
+    },
+    {
+      "width": 1440,
+      "client": 1404,
+      "scroll": 1404
+    }
+  ],
+  "errors": []
+}

@@ -525,3 +525,7 @@ body:has(.cap281-page) {
     min-width: 750px;
   }
 }
+
+@media(max-width:900px){.cap281-page .cap281-flow,.cap281-page .cap281-model,.cap281-page .cap281-controls,.cap281-page .cap281-concept,.cap281-page .cap281-concept ol,.cap281-page .cap281-learning,.cap281-page .cap281-learning .practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.cap281-page .cap281-flow>*,.cap281-page .cap281-model>*,.cap281-page .cap281-controls>*,.cap281-page .cap281-concept>*,.cap281-page .cap281-concept ol>*,.cap281-page .cap281-learning>*,.cap281-page .cap281-learning .practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.cap281-page .cap281-lab{height:auto}.cap281-page .cap281-model>main{height:auto}.cap281-page .cap281-model .checks article{height:auto;min-height:58px}.cap281-page .cap281-controls input{max-width:100%;min-width:0}.cap281-page .cap281-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

@@ -1,0 +1,274 @@
+{
+  "status": "passed",
+  "errors": [],
+  "states": [
+    {
+      "models": [
+        [
+          50,
+          70,
+          6,
+          60
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": true
+    },
+    {
+      "models": [
+        [
+          55,
+          70,
+          6,
+          55
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "models": [
+        [
+          50,
+          70,
+          6,
+          60
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": true
+    },
+    {
+      "models": [
+        [
+          50.1,
+          69.9,
+          6,
+          60
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "models": [
+        [
+          120,
+          120,
+          6,
+          -60
+        ],
+        [
+          120,
+          120,
+          6,
+          -60
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "models": [
+        [
+          40,
+          65,
+          7,
+          75
+        ],
+        [
+          40,
+          65,
+          7,
+          75
+        ]
+      ],
+      "matches": true
+    },
+    {
+      "models": [
+        [
+          50,
+          70,
+          6,
+          60
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": true
+    },
+    {
+      "models": [
+        [
+          50,
+          70,
+          6,
+          60
+        ],
+        [
+          50,
+          70,
+          8,
+          60
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "models": [
+        [
+          120,
+          20,
+          6,
+          40
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "models": [
+        [
+          120,
+          120,
+          6,
+          -60
+        ],
+        [
+          50,
+          70,
+          6,
+          60
+        ]
+      ],
+      "matches": false
+    }
+  ],
+  "layouts": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "different",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "different",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "different",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "different",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "obtuse",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "obtuse",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "obtuse",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "obtuse",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "invalid",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "invalid",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "invalid",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "invalid",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

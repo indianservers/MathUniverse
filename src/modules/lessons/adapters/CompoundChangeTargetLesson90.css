@@ -652,3 +652,5 @@ body:has(.compound90-page)
     padding-bottom: 7px;
   }
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .compound90-page .compound90-lab{overflow-x:auto!important;max-width:100%}}

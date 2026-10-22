@@ -535,3 +535,5 @@ body:has(.dep599-page) footer[aria-label="Site footer"] {
     min-height: 61px;
   }
 }
+
+.dep599-page .dep599-pattern > article { min-width: 0; overflow-x: auto; }

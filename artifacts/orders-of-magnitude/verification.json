@@ -1,0 +1,11 @@
+{
+  "controls": true,
+  "conventions": true,
+  "quiz": true,
+  "sorting": true,
+  "tabs": true,
+  "reset": true,
+  "mobile": true,
+  "image": true,
+  "errors": []
+}

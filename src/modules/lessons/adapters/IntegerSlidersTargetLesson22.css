@@ -642,3 +642,5 @@ body:has(.integer-slider-page)
   .integer-tabs button { flex: 0 0 auto; min-height: 44px; padding: 8px; }
 }
 
+
+@media(max-width:900px){.integer-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.integer-footer>:is(p,small,span){width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.integer-footer>nav{position:static;flex-wrap:wrap}.integer-footer:after{max-width:100%;white-space:normal;overflow-wrap:anywhere;flex-basis:100%}}

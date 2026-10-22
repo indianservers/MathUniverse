@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "errors": [],
+  "widths": [
+    {
+      "width": 1680,
+      "bad": []
+    },
+    {
+      "width": 1280,
+      "bad": []
+    },
+    {
+      "width": 992,
+      "bad": []
+    },
+    {
+      "width": 924,
+      "bad": []
+    },
+    {
+      "width": 768,
+      "bad": []
+    },
+    {
+      "width": 390,
+      "bad": []
+    }
+  ],
+  "phoneTryTop": 90.1875,
+  "checks": [
+    "final navy ray/cyan radius/orange chord palette and default/narrow/obtuse/phone main screenshots",
+    "changed-radius tangent180 and contained no-intersection have no false copied ray",
+    "all tool/action labels fit at6 widths",
+    "real390x844 Try activation settles90px below main scroll-container top"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/292-quotient-rule",
+  "action": {
+    "control": "Quotient point x0",
+    "before": "0",
+    "after": "0.01",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 341,
+      "scroll": 341
+    },
+    {
+      "width": 768,
+      "client": 719,
+      "scroll": 719
+    },
+    {
+      "width": 1440,
+      "client": 1391,
+      "scroll": 1391
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

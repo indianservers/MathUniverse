@@ -116,7 +116,7 @@ export default function AbsoluteValueTargetLesson14({
             ⌘ Share
           </button>
         </nav>
-        <button type="button" onClick={onInteraction}>
+        <button type="button" onClick={() => onInteraction()}>
           ↗ Workspace
         </button>
       </header>

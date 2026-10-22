@@ -464,7 +464,7 @@ export function reconcileRecognition(
   const latex = replaceConfusedAngle(remote.latex || local.latex, local.digits);
   if (!latex) return remote;
   const alternatives = [
-    { latex, confidence: Math.max(remote.confidence ?? 0.5, local.confidence) },
+    { latex, confidence: Math.max(remote.confidence ?? 0.5, local.confidence ?? 0.5) },
     ...(remote.alternatives ?? [])
       .map((alternative) => ({
         ...alternative,
@@ -472,7 +472,7 @@ export function reconcileRecognition(
       }))
       .filter((alternative, index, list) => list.findIndex((item) => item.latex === alternative.latex) === index)
       .filter((alternative) => alternative.latex !== latex),
-    ...local.alternatives.filter((alternative) => alternative.latex !== latex),
+    ...(local.alternatives ?? []).filter((alternative) => alternative.latex !== latex),
   ];
   return {
     ...remote,

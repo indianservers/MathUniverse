@@ -598,3 +598,7 @@ body:has(.rie307-page) {
     min-width: 760px;
   }
 }
+
+@media(max-width:900px){.rie307-page .rie307-flow,.rie307-page .rie307-lab>main,.rie307-page .rie307-lab .graph-panel>header,.rie307-page .rie307-lab .graph-panel>footer,.rie307-page .rie307-lab .convergence,.rie307-page .rie307-rule,.rie307-page .rie307-worked>div,.rie307-page .rie307-practice>main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.rie307-page .rie307-flow>*,.rie307-page .rie307-lab>main>*,.rie307-page .rie307-lab .graph-panel>header>*,.rie307-page .rie307-lab .graph-panel>footer>*,.rie307-page .rie307-lab .convergence>*,.rie307-page .rie307-rule>*,.rie307-page .rie307-worked>div>*,.rie307-page .rie307-practice>main>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.rie307-page .rie307-lab,.rie307-page .rie307-worked,.rie307-page .rie307-practice{height:auto}.rie307-page .rie307-flow article{padding-block:10px;border:0}.rie307-page .rie307-lab .graph-panel{height:auto}.rie307-page .rie307-lab select,.rie307-page .rie307-lab input{max-width:100%;min-width:0}.rie307-page .rie307-practice>footer{height:auto;padding:12px}.rie307-page .rie307-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

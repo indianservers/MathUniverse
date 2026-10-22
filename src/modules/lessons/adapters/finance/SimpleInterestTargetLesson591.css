@@ -508,3 +508,5 @@ body:has(.si591-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:700px){.si591-page .si591-hero{width:calc(100% - 8px)}}

@@ -1,0 +1,154 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "right"
+    },
+    {
+      "width": 1680,
+      "state": "obtuse"
+    },
+    {
+      "width": 1680,
+      "state": "near-parallel"
+    },
+    {
+      "width": 1680,
+      "state": "invalid"
+    },
+    {
+      "width": 1680,
+      "state": "cleared"
+    },
+    {
+      "width": 1680,
+      "state": "challenge"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "right"
+    },
+    {
+      "width": 1280,
+      "state": "obtuse"
+    },
+    {
+      "width": 1280,
+      "state": "near-parallel"
+    },
+    {
+      "width": 1280,
+      "state": "invalid"
+    },
+    {
+      "width": 1280,
+      "state": "cleared"
+    },
+    {
+      "width": 1280,
+      "state": "challenge"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "right"
+    },
+    {
+      "width": 992,
+      "state": "obtuse"
+    },
+    {
+      "width": 992,
+      "state": "near-parallel"
+    },
+    {
+      "width": 992,
+      "state": "invalid"
+    },
+    {
+      "width": 992,
+      "state": "cleared"
+    },
+    {
+      "width": 992,
+      "state": "challenge"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "right"
+    },
+    {
+      "width": 768,
+      "state": "obtuse"
+    },
+    {
+      "width": 768,
+      "state": "near-parallel"
+    },
+    {
+      "width": 768,
+      "state": "invalid"
+    },
+    {
+      "width": 768,
+      "state": "cleared"
+    },
+    {
+      "width": 768,
+      "state": "challenge"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "right"
+    },
+    {
+      "width": 390,
+      "state": "obtuse"
+    },
+    {
+      "width": 390,
+      "state": "near-parallel"
+    },
+    {
+      "width": 390,
+      "state": "invalid"
+    },
+    {
+      "width": 390,
+      "state": "cleared"
+    },
+    {
+      "width": 390,
+      "state": "challenge"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual ray directions, protractor pivots, included-side ratios at2/7/12cm, sine-law lengths, separated handles and correct50/65/65 geometry",
+    "right/obtuse/near-parallel fitting; parallel/backward rays have no false C/triangle/checkmarks",
+    "range arrows once, accessible ray keyboard controls, real Measure/Labels/Clear/Restore/Move/reset-view tools",
+    "captured drag, offset, inverseCTM letterboxing, cancel/lost-capture, native touch/touchCancel",
+    "independent both-ray challenge, unsolved start, one-ray rejection, valid success, edit invalidation and snapshot restoration on cancel/no-op",
+    "35 responsive states plus real390x844 phone drag; live tabs, visible catalog links, canonical Docs; no page errors/overflow"
+  ]
+}

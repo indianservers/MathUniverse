@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/321-surface-area-of-revolution",
+  "action": {
+    "control": "Surface lower slider",
+    "before": "1",
+    "after": "1.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 340,
+      "scroll": 340
+    },
+    {
+      "width": 768,
+      "client": 718,
+      "scroll": 718
+    },
+    {
+      "width": 1440,
+      "client": 1390,
+      "scroll": 1390
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

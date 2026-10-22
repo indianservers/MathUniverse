@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "small"
+    },
+    {
+      "width": 1680,
+      "state": "large"
+    },
+    {
+      "width": 1680,
+      "state": "ray"
+    },
+    {
+      "width": 1680,
+      "state": "cleared"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "small"
+    },
+    {
+      "width": 1280,
+      "state": "large"
+    },
+    {
+      "width": 1280,
+      "state": "ray"
+    },
+    {
+      "width": 1280,
+      "state": "cleared"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "small"
+    },
+    {
+      "width": 992,
+      "state": "large"
+    },
+    {
+      "width": 992,
+      "state": "ray"
+    },
+    {
+      "width": 992,
+      "state": "cleared"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "small"
+    },
+    {
+      "width": 924,
+      "state": "large"
+    },
+    {
+      "width": 924,
+      "state": "ray"
+    },
+    {
+      "width": 924,
+      "state": "cleared"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "small"
+    },
+    {
+      "width": 768,
+      "state": "large"
+    },
+    {
+      "width": 768,
+      "state": "ray"
+    },
+    {
+      "width": 768,
+      "state": "cleared"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "small"
+    },
+    {
+      "width": 390,
+      "state": "large"
+    },
+    {
+      "width": 390,
+      "state": "ray"
+    },
+    {
+      "width": 390,
+      "state": "cleared"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "correct reference4.95/41.48/83.52 measurements; true ray/arc centers/radii and arc midpoint intersection",
+    "six actual construction stages, timed1–6 replay/stop, functional tools/clear/placement and zoom",
+    "fixed givens preserved while dragging; near-only snap, disabled-snap continuous coordinates and fine keyboard nudges",
+    "native pointer grab offset, inverseCTM with zoom/letterboxing, cancel/lost capture and native touch/touchCancel",
+    "actual independently graded C placement; no preset-only pass; alternategivens accepted; committed changes/cancel/no-op certificate rules and isolated resets",
+    "36 responsive cases at6 widths including924px reference; real390x844 challenge touch; visual screenshots and canonical navigation/Docs"
+  ]
+}

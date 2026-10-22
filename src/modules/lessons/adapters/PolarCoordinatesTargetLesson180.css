@@ -576,3 +576,5 @@ body:has(.pc180-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:900px){.pc180-page .pc180-explore>footer,.pc180-page .pc180-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.pc180-page .pc180-explore>footer>*,.pc180-page .pc180-nav>*{min-width:0;grid-column:auto;grid-row:auto}}

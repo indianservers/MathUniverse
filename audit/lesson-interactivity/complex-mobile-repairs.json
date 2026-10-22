@@ -1,0 +1,101 @@
+[
+  {
+    "index": 559,
+    "file": "src/modules/lessons/adapters/complex/RootsTargetLesson374.css",
+    "prefix": "rt374",
+    "selectors": [
+      ".rt374-main",
+      ".rt374-results",
+      ".rt374-learning",
+      ".rt374-nav"
+    ]
+  },
+  {
+    "index": 558,
+    "file": "src/modules/lessons/adapters/complex/PowersTargetLesson373.css",
+    "prefix": "pw373",
+    "selectors": [
+      ".pw373-main",
+      ".pw373-learning",
+      ".pw373-nav"
+    ]
+  },
+  {
+    "index": 557,
+    "file": "src/modules/lessons/adapters/complex/EulerFormTargetLesson372.css",
+    "prefix": "ef372",
+    "selectors": [
+      ".ef372-work",
+      ".ef372-learning",
+      ".ef372-nav"
+    ]
+  },
+  {
+    "index": 556,
+    "file": "src/modules/lessons/adapters/complex/PolarFormTargetLesson371.css",
+    "prefix": "pf371",
+    "selectors": [
+      ".pf371-work",
+      ".pf371-learning",
+      ".pf371-nav"
+    ]
+  },
+  {
+    "index": 555,
+    "file": "src/modules/lessons/adapters/complex/ModulusArgumentTargetLesson370.css",
+    "prefix": "ma370",
+    "selectors": [
+      ".ma370-work",
+      ".ma370-learning",
+      ".ma370-nav"
+    ]
+  },
+  {
+    "index": 554,
+    "file": "src/modules/lessons/adapters/complex/ComplexConjugateTargetLesson369.css",
+    "prefix": "cc369",
+    "selectors": [
+      ".cc369-work",
+      ".cc369-learning",
+      ".cc369-nav"
+    ]
+  },
+  {
+    "index": 553,
+    "file": "src/modules/lessons/adapters/complex/ComplexMultiplicationTargetLesson368.css",
+    "prefix": "cm368",
+    "selectors": [
+      ".cm368-work",
+      ".cm368-learning",
+      ".cm368-nav"
+    ]
+  },
+  {
+    "index": 552,
+    "file": "src/modules/lessons/adapters/complex/ComplexAdditionTargetLesson367.css",
+    "prefix": "ca367",
+    "selectors": [
+      ".ca367-work",
+      ".ca367-lab",
+      ".ca367-learning",
+      ".ca367-nav"
+    ]
+  },
+  {
+    "index": 551,
+    "file": "src/modules/lessons/adapters/complex/RealImaginaryTargetLesson366.css",
+    "prefix": "ri366",
+    "selectors": [
+      ".ri366-learning",
+      ".ri366-nav"
+    ]
+  },
+  {
+    "index": 550,
+    "file": "src/modules/lessons/adapters/complex/ComplexPlaneTargetLesson365.css",
+    "prefix": "cp365",
+    "selectors": [
+      ".cp365-nav"
+    ]
+  }
+]

@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "narrow"
+    },
+    {
+      "width": 1680,
+      "state": "all-equal"
+    },
+    {
+      "width": 1680,
+      "state": "bounds"
+    },
+    {
+      "width": 1680,
+      "state": "comparison-hidden"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "narrow"
+    },
+    {
+      "width": 1280,
+      "state": "all-equal"
+    },
+    {
+      "width": 1280,
+      "state": "bounds"
+    },
+    {
+      "width": 1280,
+      "state": "comparison-hidden"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "narrow"
+    },
+    {
+      "width": 768,
+      "state": "all-equal"
+    },
+    {
+      "width": 768,
+      "state": "bounds"
+    },
+    {
+      "width": 768,
+      "state": "comparison-hidden"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "narrow"
+    },
+    {
+      "width": 390,
+      "state": "all-equal"
+    },
+    {
+      "width": 390,
+      "state": "bounds"
+    },
+    {
+      "width": 390,
+      "state": "comparison-hidden"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "correct observed-data extrema/median/range and explicit preview exclusion",
+    "actual maximum animation/stop and observed16 inclusion",
+    "crossing point identities and constrained min/max handles",
+    "duplicate stacking/selection, zero/narrow range cards and in-bounds labels",
+    "committed moves, no-op/cancel/lost-capture preserve grade",
+    "one changed identity, both valid solutions, two-point numeric false positive rejected",
+    "read-only hints/answer and independent resets",
+    "native touch/cancel, mobile nearest-dot hit selection, inverse-CTM letterboxing/offset",
+    "24 responsive states with actual responsive SVG geometry",
+    "single-line tabs, actual navigation and no page errors"
+  ]
+}

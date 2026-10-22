@@ -801,3 +801,5 @@ body:has(.decimal80-page)
   width: 422px;
   grid-template-columns: 202px 111px 109px;
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .decimal80-page .decimal80-left{overflow-x:auto!important;max-width:100%}}

@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "narrow"
+    },
+    {
+      "width": 1680,
+      "state": "obtuse"
+    },
+    {
+      "width": 1680,
+      "state": "reset"
+    },
+    {
+      "width": 1680,
+      "state": "no-intersection"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "narrow"
+    },
+    {
+      "width": 1280,
+      "state": "obtuse"
+    },
+    {
+      "width": 1280,
+      "state": "reset"
+    },
+    {
+      "width": 1280,
+      "state": "no-intersection"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "narrow"
+    },
+    {
+      "width": 992,
+      "state": "obtuse"
+    },
+    {
+      "width": 992,
+      "state": "reset"
+    },
+    {
+      "width": 992,
+      "state": "no-intersection"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "narrow"
+    },
+    {
+      "width": 924,
+      "state": "obtuse"
+    },
+    {
+      "width": 924,
+      "state": "reset"
+    },
+    {
+      "width": 924,
+      "state": "no-intersection"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "narrow"
+    },
+    {
+      "width": 768,
+      "state": "obtuse"
+    },
+    {
+      "width": 768,
+      "state": "reset"
+    },
+    {
+      "width": 768,
+      "state": "no-intersection"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "narrow"
+    },
+    {
+      "width": 390,
+      "state": "obtuse"
+    },
+    {
+      "width": 390,
+      "state": "reset"
+    },
+    {
+      "width": 390,
+      "state": "no-intersection"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "true source/target vertex radii and transferred source chord circle centered at1; actual upper intersection",
+    "six stage objects, actual tools and step Undo/Redo, native radius single-step/buttons, independent source/construction resets",
+    "continuous source/quick-check dragging and fine keys; exact cancellation restores source angle/stage/draft, free2 placement, physical near snap, letterbox/grab-offset and actual native capture-loss restoration",
+    "unequal-radius fixed-chord experiment with visible no-intersection circles and no false copied ray; lower reflection has equal unsigned measure but fails requested upper-side task",
+    "independent72-degree challenge requires placed2 plus drawn XR, alternate chosen radius, pending/retry/line/correct states and no-op/cancel certificate preservation",
+    "real390x844 source/quick touch and touchCancel, free target2 touch and challenge placement/draw/check",
+    "36 responsive states at6 widths, real tabs/catalog/Docs and no page errors/horizontal overflow"
+  ]
+}

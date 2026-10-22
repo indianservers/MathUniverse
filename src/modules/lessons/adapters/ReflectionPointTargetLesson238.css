@@ -10,3 +10,5 @@
 @media(max-width:959px){.target-point-reflection-page{height:auto}.target-point-reflection-header{height:auto}.target-point-reflection-header>div>footer{flex-wrap:wrap}.target-point-reflection-workspace{height:auto;grid-template-columns:1fr}.target-point-reflection-controls{height:auto}.target-point-reflection-learning{height:auto;grid-template-columns:1fr}.target-point-reflection-learning>article{height:auto}.target-point-reflection-practice{height:auto;grid-template-columns:1fr}}
 
 .target-point-reflection-app footer[aria-label="Site footer"] .target-geometry-action{height:33px;padding:0 14px}
+
+@media(max-width:900px){.target-point-reflection-page .target-point-reflection-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-point-reflection-page .target-point-reflection-nav>*{min-width:0;grid-column:auto;grid-row:auto}}

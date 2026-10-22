@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "a": 7,
+      "c": 40
+    },
+    {
+      "width": 1680,
+      "a": 7,
+      "c": 12
+    },
+    {
+      "width": 1680,
+      "a": 1,
+      "c": 97
+    },
+    {
+      "width": 1680,
+      "a": 0,
+      "c": 75
+    },
+    {
+      "width": 1680,
+      "a": "",
+      "c": 0
+    },
+    {
+      "width": 1280,
+      "a": 7,
+      "c": 40
+    },
+    {
+      "width": 1280,
+      "a": 7,
+      "c": 12
+    },
+    {
+      "width": 1280,
+      "a": 1,
+      "c": 97
+    },
+    {
+      "width": 1280,
+      "a": 0,
+      "c": 75
+    },
+    {
+      "width": 1280,
+      "a": "",
+      "c": 0
+    },
+    {
+      "width": 768,
+      "a": 7,
+      "c": 40
+    },
+    {
+      "width": 768,
+      "a": 7,
+      "c": 12
+    },
+    {
+      "width": 768,
+      "a": 1,
+      "c": 97
+    },
+    {
+      "width": 768,
+      "a": 0,
+      "c": 75
+    },
+    {
+      "width": 768,
+      "a": "",
+      "c": 0
+    },
+    {
+      "width": 390,
+      "a": 7,
+      "c": 40
+    },
+    {
+      "width": 390,
+      "a": 7,
+      "c": 12
+    },
+    {
+      "width": 390,
+      "a": 1,
+      "c": 97
+    },
+    {
+      "width": 390,
+      "a": 0,
+      "c": 75
+    },
+    {
+      "width": 390,
+      "a": "",
+      "c": 0
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual gcd/factors/decimal places",
+    "recurring prefix and true repetend/long-division transitions",
+    "negative denominators/zero/integer states",
+    "invalid raw input and zero-denominator swap",
+    "native touch/keyboard controls",
+    "long-period prefix expansion and honest preview cap",
+    "independent challenge stages and solution/edit semantics",
+    "tabs/navigation and16 responsive states"
+  ]
+}

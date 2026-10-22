@@ -1,0 +1,8 @@
+export type RhsData10031={hypotenuse:number;leg:number};
+export const rhsInitial10031:RhsData10031={hypotenuse:8,leg:5};
+export function rhsRound10031(n:number){return Math.round(n*10)/10;}
+export function rhsSet10031(data:RhsData10031,key:keyof RhsData10031,value:number){if(!Number.isFinite(value))return data;const hypotenuse=key==='hypotenuse'?rhsRound10031(Math.max(2,Math.min(12,value))):data.hypotenuse,leg=rhsRound10031(Math.max(.1,Math.min(hypotenuse-.1,key==='leg'?value:data.leg)));return{hypotenuse,leg};}
+export function rhsGeometry10031({hypotenuse:h,leg:a}:RhsData10031){if(!Number.isFinite(h)||!Number.isFinite(a)||h<=0||a<=0||a>=h)return null;const other=Math.sqrt((h-a)*(h+a)),ratio=a/h,x=50+500*ratio*ratio,y=360-500*ratio*(other/h),scale=500/h,ac=a*scale,bc=other*scale,u={x:(50-x)/ac,y:(360-y)/ac},v={x:(550-x)/bc,y:(360-y)/bc},d=Math.min(18,ac*.25,bc*.25),marker=[{x:x+u.x*d,y:y+u.y*d},{x:x+(u.x+v.x)*d,y:y+(u.y+v.y)*d},{x:x+v.x*d,y:y+v.y*d}],angle=Math.atan2(y-360,x-50),radius=a*scale;
+return{h,a,other,x,y,scale,ac,bc,u,v,marker,radius,arc:`M${50+radius*Math.cos(angle-.25)} ${360+radius*Math.sin(angle-.25)}A${radius} ${radius} 0 0 1 ${50+radius*Math.cos(angle+.25)} ${360+radius*Math.sin(angle+.25)}`};}
+export function rhsProject10031(h:number,x:number,y:number){if(!Number.isFinite(h)||h<=0||![x,y].every(Number.isFinite))return null;if(y>360)return rhsRound10031(x<300?.1:h-.1);const theta=Math.max(0,Math.min(Math.PI,Math.atan2(360-y,x-300)));return rhsRound10031(Math.max(.1,Math.min(h-.1,h*Math.cos(theta/2))));}
+export function rhsGrade10031(started:boolean,leg:number){return !started?'idle':leg===6?'correct':'retry';}

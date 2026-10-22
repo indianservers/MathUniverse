@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "errors": [],
+  "phoneTryTop": 91.21875,
+  "checks": [
+    "final default and large/tangent/separate/whole-circle/mobile-board screenshots",
+    "large partial arcs and invalid whole circles fit inside SVG viewport",
+    "real390x844 Try activation opens exercise and scrolls it90px below main scroll-container top",
+    "actual native releasePointerCapture restores B after a preview edit"
+  ]
+}

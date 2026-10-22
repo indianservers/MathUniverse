@@ -1,0 +1,7 @@
+export type TSPoint10064={x:number;y:number};
+export type TSTriangle10064={A:TSPoint10064;B:TSPoint10064;C:TSPoint10064};
+export function tsFrom10064(a=48,b=67):TSTriangle10064{const r=Math.PI/180,h=370*Math.sin(a*r)*Math.sin(b*r)/Math.sin((180-a-b)*r);return{A:{x:70,y:320},B:{x:440,y:320},C:{x:70+h/Math.tan(a*r),y:320-h}};}
+export const tsInitial10064=tsFrom10064();
+export function tsModel10064(p:TSTriangle10064){const v=[p.A,p.B,p.C],edges=v.map((q,i)=>Math.hypot(q.x-v[(i+1)%3].x,q.y-v[(i+1)%3].y)),cross=(p.B.x-p.A.x)*(p.C.y-p.A.y)-(p.B.y-p.A.y)*(p.C.x-p.A.x),proper=Math.min(...edges)>1e-7&&Math.abs(cross)/Math.max(...edges)>1e-7;const angles=proper?v.map((q,i)=>{const a=v[(i+1)%3],b=v[(i+2)%3],ux=a.x-q.x,uy=a.y-q.y,vx=b.x-q.x,vy=b.y-q.y;return Math.atan2(Math.abs(ux*vy-uy*vx),ux*vx+uy*vy)*180/Math.PI;}):[null,null,null];const sum=proper?angles.reduce<number>((s,a)=>s+a!,0):null;const kind=!proper?'Degenerate':angles.some(a=>Math.abs(a!-90)<1e-8)?'Right':angles.some(a=>a!>90)?'Obtuse':'Acute';return{proper,angles,sum,kind};}
+export function tsMove10064(p:TSTriangle10064,k:keyof TSTriangle10064,q:TSPoint10064){return{...p,[k]:{x:Math.max(35,Math.min(485,q.x)),y:Math.max(35,Math.min(340,q.y))}};}
+export function tsWedge10064(degrees:number,start:number,r=105,cx=260,cy=135){const rad=Math.PI/180,a=start*rad,b=(start+degrees)*rad,m=(a+b)/2;return{path:`M${cx} ${cy}L${cx+r*Math.cos(a)} ${cy-r*Math.sin(a)}A${r} ${r} 0 ${degrees>180?1:0} 0 ${cx+r*Math.cos(b)} ${cy-r*Math.sin(b)}Z`,label:{x:cx+r*.65*Math.cos(m),y:cy-r*.65*Math.sin(m)}};}

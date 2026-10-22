@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "baseSpan": 370,
+  "badge": {
+    "content": "\"☆\"",
+    "width": "43px"
+  },
+  "errors": [],
+  "checks": [
+    "served final370-unit base and green circle preview badge",
+    "near-parallel fit note with separate A/B labels and scaled protractors",
+    "solved phone challenge layout"
+  ]
+}

@@ -1,11 +1,14 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import registry from "../catalog/upcoming/apCurriculumRegistry.generated.json";
+import mockupManifest from '../upcoming-ui/mockupManifest.json';
+const mockups:Record<string,{title:string;image:string}>=mockupManifest;
 
 export default function UpcomingLessonsPage() {
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("All");
   const [chapter, setChapter] = useState("All");
+  const [limit,setLimit]=useState(40);
   const levels = [...new Set(registry.upcomingLessons.map((lesson) => lesson.level))];
   const chapters = [...new Set(registry.upcomingLessons.filter((lesson) => level === "All" || lesson.level === level).map((lesson) => lesson.chapterName))];
   const lessons = useMemo(() => registry.upcomingLessons.filter((lesson) => {
@@ -34,15 +37,17 @@ export default function UpcomingLessonsPage() {
       </label>
     </div>
     <p className="text-sm font-bold">{lessons.length} matching upcoming lessons</p>
-    {lessons.length === 0 ? <p className="rounded-xl bg-slate-100 p-6 dark:bg-white/5">No upcoming lessons match these filters.</p> : <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{lessons.map((lesson) => <article key={lesson.lessonId} className="space-y-2 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950">
+    {lessons.length === 0 ? <p className="rounded-xl bg-slate-100 p-6 dark:bg-white/5">No upcoming lessons match these filters.</p> : <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{lessons.slice(0,limit).map((lesson) => <article key={lesson.lessonId} className="space-y-2 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950">
+      {mockups[lesson.lessonId]&&<Link to={`/lessons/planned/${lesson.lessonId}`} aria-label={`Open ${lesson.topicName}`}><img src={mockups[lesson.lessonId].image} alt={`Design reference for ${lesson.topicName}`} loading="lazy" width={768} height={512} className="mb-3 aspect-[3/2] w-full rounded-xl border border-slate-200 object-cover"/></Link>}
       <div className="flex justify-between gap-2 text-xs font-black"><span>Lesson {lesson.lessonId}</span><span className="rounded-full bg-amber-100 px-2 py-1 text-amber-900">Upcoming</span></div>
       <p className="text-xs font-bold text-cyan-700 dark:text-cyan-300">{lesson.level} · {lesson.chapterName}</p>
       <h2 className="font-black">{lesson.topicName}</h2>
       <p className="text-sm text-slate-600 dark:text-slate-300">Page: {lesson.pageName}</p>
       <p className="text-xs text-slate-500 dark:text-slate-400">{lesson.reason}</p>
-      <p className="text-xs font-semibold">Mockup: {lesson.mockupStatus}</p>
+      <p className="text-xs font-semibold">Mockup: {mockups[lesson.lessonId]?'Matched by ID and topic':lesson.lessonId>=30001&&lesson.lessonId<=30040?'UI adapted from chapter designs':lesson.mockupStatus}</p>
       <p className="text-xs font-semibold">Content: {lesson.contentStatus}</p>
-      {lesson.contentStatus === "Drafted" && <Link to={`/lessons/planned/${lesson.lessonId}`} className="inline-block rounded-lg bg-cyan-700 px-3 py-2 text-sm font-bold text-white">Open lesson draft</Link>}
+      {lesson.contentStatus === "Drafted" && <Link to={`/lessons/planned/${lesson.lessonId}`} className="inline-block rounded-lg bg-cyan-700 px-3 py-2 text-sm font-bold text-white">{lesson.lessonId>=30001&&lesson.lessonId<=30040?'Open interactive lesson':'Open lesson draft'}</Link>}
     </article>)}</div>}
+    {lessons.length>limit&&<button className="rounded-xl bg-cyan-700 px-4 py-3 font-bold text-white" onClick={()=>setLimit(value=>value+40)}>Show more lessons ({Math.min(limit,lessons.length)} of {lessons.length})</button>}
   </main>;
 }

@@ -811,3 +811,7 @@
 .target-steps-nav svg {
   width: 13px;
 }
+
+@media(max-width:900px){.target-steps-page .target-steps-workspace,.target-steps-page .target-steps-cards,.target-steps-page .target-steps-learning,.target-steps-page .target-steps-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-steps-page .target-steps-workspace>*,.target-steps-page .target-steps-cards>*,.target-steps-page .target-steps-learning>*,.target-steps-page .target-steps-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-steps-cards button{grid-template-rows:auto;gap:8px;min-height:120px}.target-steps-cards button:not(:last-child)::after{position:static;content:"â†“"}}

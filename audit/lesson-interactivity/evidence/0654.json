@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/discrete-and-applied-mathematics/597-loans-and-emis",
+  "action": {
+    "control": "Loan principal (P) slider",
+    "before": "500000",
+    "after": "501000",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    },
+    {
+      "width": 768,
+      "client": 721,
+      "scroll": 721
+    },
+    {
+      "width": 1440,
+      "client": 1393,
+      "scroll": 1393
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

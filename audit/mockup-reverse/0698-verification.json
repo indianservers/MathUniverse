@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "small"
+    },
+    {
+      "width": 1680,
+      "state": "large"
+    },
+    {
+      "width": 1680,
+      "state": "tangent"
+    },
+    {
+      "width": 1680,
+      "state": "separate"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "small"
+    },
+    {
+      "width": 1280,
+      "state": "large"
+    },
+    {
+      "width": 1280,
+      "state": "tangent"
+    },
+    {
+      "width": 1280,
+      "state": "separate"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "small"
+    },
+    {
+      "width": 992,
+      "state": "large"
+    },
+    {
+      "width": 992,
+      "state": "tangent"
+    },
+    {
+      "width": 992,
+      "state": "separate"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "small"
+    },
+    {
+      "width": 924,
+      "state": "large"
+    },
+    {
+      "width": 924,
+      "state": "tangent"
+    },
+    {
+      "width": 924,
+      "state": "separate"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "small"
+    },
+    {
+      "width": 768,
+      "state": "large"
+    },
+    {
+      "width": 768,
+      "state": "tangent"
+    },
+    {
+      "width": 768,
+      "state": "separate"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "small"
+    },
+    {
+      "width": 390,
+      "state": "large"
+    },
+    {
+      "width": 390,
+      "state": "tangent"
+    },
+    {
+      "width": 390,
+      "state": "separate"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual equal radii in control/metadata/circle paths, true P/Q intersections and perpendicular midpoint line",
+    "tangent/disjoint full circles remain visible with honest proof checks; actual tool stages/full circles/line/delete, show/hide and finite numeric drafts/native step",
+    "A/B resizing keeps other endpoint fixed, continuous geometry and fine keys; inverseCTM zoom/letterboxing/offset, captured cancel/lost capture; actual background pan and Fit/cancel",
+    "independent two-point placement plus drawn-line challenge; same intersection twice and arbitrary vertical points rejected; swapped assignments accepted; no-op/cancel certificate preservation and independent main reset",
+    "real390x844 native A/B resize/cancel and both challenge P/Q placement/draw/check",
+    "36 states at6 widths, learning-sequence activation, tabs/catalog/Docs and no page errors/horizontal overflow"
+  ]
+}

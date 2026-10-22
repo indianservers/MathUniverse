@@ -130,3 +130,5 @@ body:has(.modular72-page) #main-content .flex.items-center.gap-2:has(> nav[aria-
   .modular72-side { margin-top: 12px; }
   .modular72-navigation { position: static; margin-top: 14px; gap: 8px; }
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .modular72-page .modular72-work{overflow-x:auto!important;max-width:100%}.modular72-navigation{gap:12px;height:auto;position:static;margin-top:12px}}

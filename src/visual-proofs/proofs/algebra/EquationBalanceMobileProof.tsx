@@ -72,7 +72,7 @@ export default function EquationBalanceMobileProof() {
 
           <g className={step >= 2 ? "" : "future"}>
             <Scale y={544} afterSubtract divided active={step >= 2} />
-            <g className="answer" transform="translate(195 713)"><rect x="-160" y="-42" width="320" height="84" rx="14" /><Tile x={-112} y="-18" variable /><text x="-51" y="13">=</text>{[0,1,2,3].map((item) => <Tile key={item} x={-10 + item * 28} y="-13" />)}<line x1="116" y1="-28" x2="116" y2="28" /><text className="result" x="140" y="13">x = 4</text></g>
+            <g className="answer" transform="translate(195 713)"><rect x="-160" y="-42" width="320" height="84" rx="14" /><Tile x={-112} y={-18} variable /><text x="-51" y="13">=</text>{[0,1,2,3].map((item) => <Tile key={item} x={-10 + item * 28} y={-13} />)}<line x1="116" y1="-28" x2="116" y2="28" /><text className="result" x="140" y="13">x = 4</text></g>
           </g>
         </svg>
       </section>

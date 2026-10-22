@@ -589,3 +589,7 @@ body:has(.eul324-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.eul324-page .eul324-lab,.eul324-page .eul324-learning,.eul324-page .eul324-practice{grid-template-columns:minmax(0,1fr);height:auto}.eul324-page .eul324-center{grid-template-rows:auto auto auto auto;gap:10px}.eul324-page .eul324-center>header{height:auto;flex-wrap:wrap}.eul324-page .eul324-center>svg{width:100%;height:auto;min-height:280px}.eul324-page .eul324-center>footer{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.eul324-page .eul324-results{min-width:0;padding-block:12px}.eul324-page .eul324-learning article{min-width:0;padding-block:12px}.eul324-page .eul324-practice>label{grid-template-columns:minmax(0,1fr) 60px}.eul324-page .eul324-hero{height:auto}}
+
+.eul324-page .eul324-results .table header,.eul324-page .eul324-results .table p{grid-template-columns:26px repeat(4,minmax(0,1fr))}.eul324-page .eul324-results{min-width:0;overflow-wrap:anywhere}.eul324-page .eul324-results>section p{flex-wrap:wrap;gap:4px}

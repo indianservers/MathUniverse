@@ -628,3 +628,5 @@ body:has(.multiples66-page)
     height: auto;
   }
 }
+
+@media(max-width:900px){.multiples66-addition>div{height:auto;display:flex;flex-wrap:wrap;gap:8px}.multiples66-addition{height:auto}}

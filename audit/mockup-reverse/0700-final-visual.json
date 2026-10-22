@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "errors": [],
+  "tools": [
+    {
+      "width": 1680,
+      "bad": []
+    },
+    {
+      "width": 1280,
+      "bad": []
+    },
+    {
+      "width": 992,
+      "bad": []
+    },
+    {
+      "width": 924,
+      "bad": []
+    },
+    {
+      "width": 768,
+      "bad": []
+    },
+    {
+      "width": 390,
+      "bad": []
+    }
+  ],
+  "checks": [
+    "undo then new P edit clears redo branch",
+    "final default/above/below/tangent/separate/mobile screenshots",
+    "all construction button contents fit at6 widths"
+  ]
+}

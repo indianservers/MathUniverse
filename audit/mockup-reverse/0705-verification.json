@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "small"
+    },
+    {
+      "width": 1680,
+      "state": "large"
+    },
+    {
+      "width": 1680,
+      "state": "challenge"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "small"
+    },
+    {
+      "width": 1280,
+      "state": "large"
+    },
+    {
+      "width": 1280,
+      "state": "challenge"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "small"
+    },
+    {
+      "width": 992,
+      "state": "large"
+    },
+    {
+      "width": 992,
+      "state": "challenge"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "small"
+    },
+    {
+      "width": 768,
+      "state": "large"
+    },
+    {
+      "width": 768,
+      "state": "challenge"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "small"
+    },
+    {
+      "width": 390,
+      "state": "large"
+    },
+    {
+      "width": 390,
+      "state": "challenge"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual Thales circle/leg lengths/orthogonality and orientation-aware right marker",
+    "hypotenuse reduction clamps leg atomically; range arrows move once; keyboard arrows/Home/End/PageDown",
+    "compass arc uses actual center A/radius AC; independent display toggles and instructions",
+    "native captured pointer, grab offset, inverseCTM letterboxing, cancel/lost capture restoration",
+    "native touch and touchCancel; real390x844 phone drag",
+    "real independent challenge: unsolved start/check/retry/success/edit invalidation; no-op and cancelled gestures preserve grade",
+    "20 responsive state layouts; live tabs and visible real catalog navigation, canonical Docs"
+  ]
+}

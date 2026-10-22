@@ -1,0 +1,116 @@
+[
+  [
+    "Read the Area Between Curves inputs, apply the exact rule, and report the labelled output.",
+    [
+      "311: Area Between Curves",
+      "10185: Area Between Curves"
+    ]
+  ],
+  [
+    "Read the Integration by Parts inputs, apply the exact rule, and report the labelled output.",
+    [
+      "313: Integration by Parts",
+      "10181: Integration by Parts"
+    ]
+  ],
+  [
+    "Read the Direction Fields inputs, apply the exact rule, and report the labelled output.",
+    [
+      "323: Direction Fields",
+      "10192: Direction Fields"
+    ]
+  ],
+  [
+    "tool",
+    [
+      "462: Spreadsheet Charts",
+      "463: Regression from Data",
+      "464: Dynamic Cell Links",
+      "465: Import CSV",
+      "466: Export Data",
+      "514: Simulation",
+      "516: Distribution Calculator"
+    ]
+  ],
+  [
+    "concept",
+    [
+      "467: Data Types",
+      "468: Frequency Tables",
+      "469: Grouped Frequency Tables",
+      "470: Mean",
+      "471: Median",
+      "472: Mode",
+      "473: Weighted Mean",
+      "474: Range",
+      "475: Quartiles and IQR",
+      "476: Variance and Standard Deviation",
+      "477: Percentiles",
+      "478: Z-Scores",
+      "479: Outliers",
+      "489: Correlation Coefficient",
+      "499: Interpolation and Extrapolation",
+      "500: Sample Spaces",
+      "501: Events",
+      "502: Probability Scale",
+      "506: Independent Events",
+      "507: Mutually Exclusive Events",
+      "508: Conditional Probability",
+      "513: Expected Value",
+      "515: Law of Large Numbers",
+      "518: Cumulative Distribution",
+      "521: Bernoulli Distribution",
+      "522: Binomial Distribution",
+      "523: Hypergeometric Distribution",
+      "524: Poisson Distribution",
+      "525: Geometric Distribution",
+      "526: Negative Binomial Distribution",
+      "527: Uniform Distribution",
+      "528: Normal Distribution",
+      "529: Student t Distribution",
+      "530: Chi-Square Distribution"
+    ]
+  ],
+  [
+    "visual_exploration",
+    [
+      "481: Dot Plot",
+      "482: Stem-and-Leaf Plot",
+      "483: Histogram",
+      "484: Frequency Polygon",
+      "485: Cumulative Frequency Curve",
+      "486: Bar and Pie Charts",
+      "487: Scatter Plot",
+      "488: Time-Series Plot",
+      "497: Residual Plot",
+      "509: Tree Diagrams",
+      "510: Venn Diagrams",
+      "511: Two-Way Tables",
+      "517: Probability Plot"
+    ]
+  ],
+  [
+    "modelling",
+    [
+      "490: Linear Regression",
+      "491: Polynomial Regression",
+      "492: Exponential Regression",
+      "493: Logarithmic Regression",
+      "494: Power Regression",
+      "495: Logistic Regression",
+      "496: Sinusoidal Regression",
+      "498: Model Comparison"
+    ]
+  ],
+  [
+    "procedure",
+    [
+      "503: Complement Rule",
+      "504: Addition Rule",
+      "505: Multiplication Rule",
+      "512: Bayes' Theorem",
+      "519: Interval / Tail Probability",
+      "520: Inverse Probability"
+    ]
+  ]
+]

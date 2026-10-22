@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "exitCode": 0,
+  "command": "NODE_OPTIONS=--max-old-space-size=8192 npm run typecheck",
+  "log": "audit/lesson-interactivity/typecheck-statistics-checkpoint.log",
+  "checkedAt": "2026-10-19T11:40:05.204766+00:00",
+  "scope": "statistics and draggable-regression checkpoint; final release check remains required"
+}

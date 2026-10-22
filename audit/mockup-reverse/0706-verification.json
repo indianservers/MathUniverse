@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "maximum"
+    },
+    {
+      "width": 1680,
+      "state": "zero"
+    },
+    {
+      "width": 1680,
+      "state": "hidden"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "maximum"
+    },
+    {
+      "width": 1280,
+      "state": "zero"
+    },
+    {
+      "width": 1280,
+      "state": "hidden"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "maximum"
+    },
+    {
+      "width": 992,
+      "state": "zero"
+    },
+    {
+      "width": 992,
+      "state": "hidden"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "maximum"
+    },
+    {
+      "width": 768,
+      "state": "zero"
+    },
+    {
+      "width": 768,
+      "state": "hidden"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "maximum"
+    },
+    {
+      "width": 390,
+      "state": "zero"
+    },
+    {
+      "width": 390,
+      "state": "hidden"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual affine shared-scale bar geometry and zero/max values",
+    "invalid raw input preserves valid data and shows errors; no coercion or clipping",
+    "keyboard focus/arrows/Space, hover and native desktop/mobile touch",
+    "series hiding removes corresponding bars/labels/deltas but preserves data",
+    "exact one-cell independent challenge; both-series solutions; no-op/tie/non-Friday/invalid rejected",
+    "all largest-gap ties, correct signed differences and total difference",
+    "misleading scale example uses true 2:1 height ratio for equal18 counts",
+    "native top-layer expanded view/escape/focus; real390x844 phone scrolling and Tab/ShiftTab containment;20 responsive states",
+    "live section tabs, visible catalog navigation and canonical Docs"
+  ]
+}

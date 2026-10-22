@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import QuadraticInequalitiesTargetLesson124 from "./QuadraticInequalitiesTargetLesson124";
@@ -5,7 +6,7 @@ import QuadraticInequalitiesTargetLesson124 from "./QuadraticInequalitiesTargetL
 describe("QuadraticInequalitiesTargetLesson124", () => {
   it("renders the target factorization, roots, sign intervals, and solution", () => {
     const html = renderToStaticMarkup(
-      <QuadraticInequalitiesTargetLesson124
+      <QuadraticInequalitiesTargetLesson124 lesson={lessonCatalog.find(item => item.id === 124)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

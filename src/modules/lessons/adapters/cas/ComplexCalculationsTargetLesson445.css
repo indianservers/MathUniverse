@@ -460,3 +460,7 @@ body:has(.cc445-page) .lesson-workbench.is-target-graphing-workbench {
     padding: 9px 14px;
   }
 }
+
+@media(max-width:900px){.cc445-page .cc445-lab,.cc445-page .cc445-flow>div,.cc445-page .cc445-learning,.cc445-page .cc445-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.cc445-page .cc445-lab>*,.cc445-page .cc445-flow>div>*,.cc445-page .cc445-learning>*,.cc445-page .cc445-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.cc445-page .cc445-workspace,.cc445-page .cc445-flow{height:auto}.cc445-page .cc445-lab>*{height:auto}.cc445-page .cc445-lab>main>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.cc445-page .cc445-lab input,.cc445-page .cc445-practice input{max-width:100%;min-width:0}.cc445-page .cc445-flow article{padding-block:12px}}

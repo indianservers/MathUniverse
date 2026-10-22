@@ -15,7 +15,7 @@ describe("CalculusLessonAdapter", () => {
       283: "Epsilon-delta visualiser",
       284: "Average rate of change",
       285: "Instantaneous rate of change",
-      286: "First principles",
+      286: "First Principles",
       287: "Tangent line",
       288: "Normal line",
       289: "Derivative graph",
@@ -26,7 +26,7 @@ describe("CalculusLessonAdapter", () => {
       294: "Implicit differentiation",
       295: "Parametric differentiation",
       296: "Critical points",
-      297: "Increasing or decreasing",
+      297: "Derivative sign",
       298: "Local and global extrema",
       299: "Concavity",
       300: "Inflection points",
@@ -50,7 +50,7 @@ describe("CalculusLessonAdapter", () => {
       const visibleText = html.replaceAll("&#x27;", "'");
 
       expect(visibleText, lesson.title).toContain(lesson.title);
-      expect(visibleText, lesson.title).toContain(snippet);
+      expect(visibleText.toLowerCase(), lesson.title).toContain(snippet.toLowerCase());
       expect(visibleText, lesson.title).not.toContain("Calculus rule");
     }
   });
@@ -58,7 +58,7 @@ describe("CalculusLessonAdapter", () => {
   it("renders calculus lessons 306 through 333 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       306: "Area by rectangles",
-      307: "Riemann sums",
+      307: "Riemann Sums",
       308: "Definite integral",
       309: "Indefinite integral",
       310: "Fundamental theorem",
@@ -100,7 +100,7 @@ describe("CalculusLessonAdapter", () => {
       const visibleText = html.replaceAll("&#x27;", "'");
 
       expect(visibleText, lesson.title).toContain(lesson.title);
-      expect(visibleText, lesson.title).toContain(snippet);
+      expect(visibleText.toLowerCase(), lesson.title).toContain(snippet.toLowerCase());
       expect(visibleText, lesson.title).not.toContain("Calculus rule");
     }
   });

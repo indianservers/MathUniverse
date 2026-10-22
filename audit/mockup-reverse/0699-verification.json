@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "narrow"
+    },
+    {
+      "width": 1680,
+      "state": "wide"
+    },
+    {
+      "width": 1680,
+      "state": "draft"
+    },
+    {
+      "width": 1680,
+      "state": "stage2"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "narrow"
+    },
+    {
+      "width": 1280,
+      "state": "wide"
+    },
+    {
+      "width": 1280,
+      "state": "draft"
+    },
+    {
+      "width": 1280,
+      "state": "stage2"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "narrow"
+    },
+    {
+      "width": 992,
+      "state": "wide"
+    },
+    {
+      "width": 992,
+      "state": "draft"
+    },
+    {
+      "width": 992,
+      "state": "stage2"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "narrow"
+    },
+    {
+      "width": 924,
+      "state": "wide"
+    },
+    {
+      "width": 924,
+      "state": "draft"
+    },
+    {
+      "width": 924,
+      "state": "stage2"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "narrow"
+    },
+    {
+      "width": 768,
+      "state": "wide"
+    },
+    {
+      "width": 768,
+      "state": "draft"
+    },
+    {
+      "width": 768,
+      "state": "stage2"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "narrow"
+    },
+    {
+      "width": 390,
+      "state": "wide"
+    },
+    {
+      "width": 390,
+      "state": "draft"
+    },
+    {
+      "width": 390,
+      "state": "stage2"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "true vertex circle and equal B/C circles passing through D; actual bisector endpoint and measures",
+    "four real stages, timed1–4 replay/Stop, genuine tools, show/hide, native range one-step",
+    "continuous B/C opening edits and cancellation restores angle plus draft; D placement, fine keys, near-only physical snap, inverseCTM zoom/letterbox/grab offset, captured cancel/lost capture",
+    "near-vertex and external equal-angle rays rejected; independent60-degree challenge requires placed non-vertex D plus drawn YD, arbitrary chosen radius accepted, snapshots/no-op/cancel/reset behavior",
+    "real390x844 native B/C angle touch/cancel, free D touch and rotated challenge placement/draw/check",
+    "36 responsive states at6 widths, actual tabs/catalog/Docs and no page errors/horizontal overflow"
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "results": [
+    {
+      "id": 30001,
+      "title": "Square numbers and geometric arrays",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30002,
+      "title": "Perfect-square digit and factor patterns",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30003,
+      "title": "Consecutive squares and sums of odd numbers",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30004,
+      "title": "Squares and triangular numbers",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30005,
+      "title": "Square roots by prime factorisation",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30006,
+      "title": "Estimating square roots between integers",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30007,
+      "title": "Smallest multiplier or divisor to make a square",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30008,
+      "title": "Cubic numbers and perfect cubes",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30009,
+      "title": "Taxicab numbers and Ramanujan's 1729",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30010,
+      "title": "Cubes as sums of consecutive odd numbers",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30011,
+      "title": "Cube roots by prime factorisation",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30012,
+      "title": "Successive differences of square and cube sequences",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30013,
+      "title": "History of square and cube computation",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30014,
+      "title": "A Square and a Cube: guided examples and applications",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30015,
+      "title": "A Square and a Cube: mastery assessment and revision",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30016,
+      "title": "A Square and a Cube: practice set 1.1",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30017,
+      "title": "A Square and a Cube: practice set 1.2",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30018,
+      "title": "Repeated doubling and exponential growth",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30019,
+      "title": "Multiplying and dividing powers with a common base",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30020,
+      "title": "Power of a power and powers of products",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30021,
+      "title": "Zero exponents and nonzero-base restrictions",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30022,
+      "title": "Negative powers and reciprocals",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30023,
+      "title": "Powers of ten and place value",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30024,
+      "title": "Scientific notation for large and small quantities",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30025,
+      "title": "Comparing quantities in scientific notation",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30026,
+      "title": "Order-of-magnitude estimates and Fermi questions",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30027,
+      "title": "Indian large-number naming and history",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30028,
+      "title": "Power Play: guided examples and applications",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30029,
+      "title": "Power Play: mastery assessment and revision",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30030,
+      "title": "Power Play: practice set 2.1",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30031,
+      "title": "Power Play: practice set 2.2",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30032,
+      "title": "Need for numeral systems and counting symbols",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30033,
+      "title": "Indian numerals and zero as a placeholder",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30034,
+      "title": "Roman numerals and additive/subtractive rules",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30035,
+      "title": "Limits of non-positional numeral systems",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30036,
+      "title": "Egyptian numerals and additive representation",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30037,
+      "title": "Place value and the base of a number system",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30038,
+      "title": "Historical base systems and representations",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30039,
+      "title": "Reading and converting representations across bases",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    },
+    {
+      "id": 30040,
+      "title": "History and contributions to positional notation",
+      "controls": true,
+      "validation": true,
+      "reset": true,
+      "tabs": true,
+      "practice": true,
+      "mobileOverflow": false
+    }
+  ],
+  "errors": [],
+  "catalogMapping": true,
+  "cubeDrag": true
+}

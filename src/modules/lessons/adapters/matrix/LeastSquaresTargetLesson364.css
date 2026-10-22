@@ -432,3 +432,5 @@ body:has(.ls364-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.ls364-page :is(.ls364-main,.ls364-concepts,.ls364-lower){grid-template-columns:minmax(0,1fr);height:auto}.ls364-page :is(.ls364-tabs){overflow-x:auto}.ls364-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.ls364-page .ls364-lab > header{flex-wrap:wrap;height:auto;gap:8px}.ls364-page .ls364-lab > header nav{width:auto;display:flex;flex-wrap:wrap}}

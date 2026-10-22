@@ -9,3 +9,5 @@ body:has(.proportion84-page) #main-content .flex.items-center.gap-2:has(>nav[ari
 .proportion84-tape-row>div{display:flex;height:31px;border:1px solid #dce5eb;border-radius:4px;overflow:hidden}
 .proportion84-tapes button,.proportion84-tapes .ghost{min-width:0;padding:0;flex:1;border:0;border-right:1px solid #fff;background:#09a8b8}
 .proportion84-tapes .ghost{border-right:1px dashed #b9c9d7;background:#fff}
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .proportion84-page .proportion84-lab{overflow-x:auto!important;max-width:100%}}

@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import FDistributionLesson531 from "./FDistributionLesson531";
@@ -5,7 +6,7 @@ import FDistributionLesson531 from "./FDistributionLesson531";
 describe("FDistributionLesson531", () => {
   it("renders the target F distribution workspace", () => {
     const html = renderToStaticMarkup(
-      <FDistributionLesson531 resetToken={0} onInteraction={vi.fn()} />,
+      <FDistributionLesson531 lesson={lessonCatalog.find(item => item.id === 531)!} resetToken={0} onInteraction={vi.fn()} />,
     );
     expect(html).toContain('data-testid="probability-mockup-0494"');
     expect(html).toContain("Explore the F distribution");

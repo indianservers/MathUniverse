@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/discrete-and-applied-mathematics/587-truth-tables",
+  "action": {
+    "control": "Truth table statement",
+    "before": "implies",
+    "after": "and",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    },
+    {
+      "width": 768,
+      "client": 735,
+      "scroll": 735
+    },
+    {
+      "width": 1440,
+      "client": 1407,
+      "scroll": 1407
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

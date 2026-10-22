@@ -579,3 +579,6 @@ body:has(.seq339-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq339-page :is(.seq339-pair,.seq339-learning,.seq339-check){grid-template-columns:minmax(0,1fr);height:auto}.seq339-page .seq339-lab{height:auto}.seq339-page .seq339-tabs{overflow-x:auto}.seq339-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.seq339-page footer{height:auto;flex-wrap:wrap}}
+@media(max-width:799px){.seq339-page .seq339-lab > main{grid-template-columns:minmax(0,1fr);height:auto}.seq339-page .animation > div{grid-template-columns:repeat(auto-fit,minmax(60px,1fr));height:auto}.seq339-page .animation footer{flex-wrap:wrap;height:auto}}

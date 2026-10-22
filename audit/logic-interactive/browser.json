@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "base": "https://maths.aimersociety.com",
+  "checks": [
+    "all 20 gate/assignment combinations",
+    "clickable gate, undo, redo, reset",
+    "truth-table row selection and next assignment",
+    "DNF grading covers correct and incorrect expressions",
+    "equivalence and loaded counterexamples",
+    "SAT edit, empty clause, contradiction, witness, remove clause",
+    "shared figure reload preserves SAT clauses; keyboard input switch"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "mode": "Circuit",
+      "client": 349,
+      "scroll": 349
+    },
+    {
+      "width": 390,
+      "mode": "Truth Table",
+      "client": 349,
+      "scroll": 349
+    },
+    {
+      "width": 390,
+      "mode": "Equivalence",
+      "client": 349,
+      "scroll": 349
+    },
+    {
+      "width": 390,
+      "mode": "CNF/DNF",
+      "client": 349,
+      "scroll": 349
+    },
+    {
+      "width": 390,
+      "mode": "SAT",
+      "client": 349,
+      "scroll": 349
+    },
+    {
+      "width": 768,
+      "mode": "Circuit",
+      "client": 727,
+      "scroll": 727
+    },
+    {
+      "width": 768,
+      "mode": "Truth Table",
+      "client": 727,
+      "scroll": 727
+    },
+    {
+      "width": 768,
+      "mode": "Equivalence",
+      "client": 727,
+      "scroll": 727
+    },
+    {
+      "width": 768,
+      "mode": "CNF/DNF",
+      "client": 727,
+      "scroll": 727
+    },
+    {
+      "width": 768,
+      "mode": "SAT",
+      "client": 727,
+      "scroll": 727
+    },
+    {
+      "width": 1440,
+      "mode": "Circuit",
+      "client": 711,
+      "scroll": 711
+    },
+    {
+      "width": 1440,
+      "mode": "Truth Table",
+      "client": 711,
+      "scroll": 711
+    },
+    {
+      "width": 1440,
+      "mode": "Equivalence",
+      "client": 711,
+      "scroll": 711
+    },
+    {
+      "width": 1440,
+      "mode": "CNF/DNF",
+      "client": 711,
+      "scroll": 711
+    },
+    {
+      "width": 1440,
+      "mode": "SAT",
+      "client": 711,
+      "scroll": 711
+    }
+  ],
+  "errors": []
+}

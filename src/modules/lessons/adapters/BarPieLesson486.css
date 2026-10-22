@@ -236,3 +236,5 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.bp486-work > aside{min-width:0;overflow-x:auto}

@@ -64,7 +64,7 @@ export function NumberLine({
     return Math.min(max, Math.max(min, Math.round(raw / step) * step));
   };
 
-  const onPointerDown = (event: PointerEvent<SVGSVGElement>, id: string) => {
+  const onPointerDown = (event: PointerEvent<SVGSVGElement | SVGGElement>, id: string) => {
     event.preventDefault();
     onSelect?.(id);
     const point = points.find((item) => item.id === id);

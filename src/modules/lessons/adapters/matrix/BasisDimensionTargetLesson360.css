@@ -433,3 +433,7 @@ body:has(.basis360-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.basis360-page :is(.basis360-summary,.basis360-work,.basis360-info,.basis360-example,.basis360-challenge){grid-template-columns:minmax(0,1fr);height:auto}.basis360-page .basis360-tabs{overflow-x:auto}.basis360-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.basis360-page .basis360-lab{height:auto}.basis360-page .basis360-lab footer{width:auto;max-width:100%;height:auto;flex-wrap:wrap}}
+
+@media(max-width:799px){.basis360-page .basis360-work > footer{position:static;margin:0;grid-column:1/-1}}

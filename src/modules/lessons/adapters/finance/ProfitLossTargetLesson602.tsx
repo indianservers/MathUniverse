@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./ProfitLossTargetLesson602.css";
 import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
@@ -13,6 +13,7 @@ export default function ProfitLossTargetLesson602({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  const dragging = useRef(false);
   const cost = 800,
     [selling, setSelling] = useState(1100),
     [display, setDisplay] = useState<"profit" | "loss">("profit"),
@@ -150,6 +151,10 @@ export default function ProfitLossTargetLesson602({
               viewBox="0 0 650 300"
               role="img"
               aria-label="Cost and selling price model"
+              style={{touchAction:'none'}}
+              onPointerMove={event => { if(!dragging.current)return; const matrix=event.currentTarget.getScreenCTM(); if(!matrix)return; const point=new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse()); act(()=>setSelling(Math.max(400,Math.min(2000,Math.round(400+(point.x-130)/440*1600))))); }}
+              onPointerUp={event=>{dragging.current=false;if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);}}
+              onPointerCancel={()=>{dragging.current=false;}}
             >
               <line x1="70" x2="610" y1="270" y2="270" />
               <line x1="70" x2="70" y1="40" y2="270" />
@@ -161,7 +166,7 @@ export default function ProfitLossTargetLesson602({
                 cy={270 - (cost / 2000) * 205}
                 r="10"
               />
-              <circle className="selling" cx={x} cy={y} r="11" />
+              <circle className="selling" cx={x} cy={y} r="11" role="button" tabIndex={0} aria-label="Move selling price. Use left and right arrow keys." style={{cursor:'grab'}} onPointerDown={event=>{event.preventDefault();dragging.current=true;event.currentTarget.focus();event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId);}} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();act(()=>setSelling(Math.max(400,Math.min(2000,selling+(event.key==='ArrowRight'?10:-10)))));}}} />
               <text x="115" y={250 - (cost / 2000) * 205}>
                 Cost{` ₹${cost}`}
               </text>

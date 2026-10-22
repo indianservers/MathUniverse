@@ -47,7 +47,7 @@ const small = [
     "eighty",
     "ninety",
   ];
-function below1000(n: number) {
+function below1000(n: number): string {
   if (n < 20) return small[n];
   if (n < 100)
     return `${tens[Math.floor(n / 10)]}${n % 10 ? `-${small[n % 10]}` : ""}`;

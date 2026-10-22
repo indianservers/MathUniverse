@@ -6,28 +6,15 @@ import {
   RotateCcw,
   TriangleAlert,
 } from "lucide-react";
-import { type DragEventHandler, useState } from "react";
+import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TriangleInequalityTargetLesson10072.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{triangleInequality10072,tiIntegers10072,tiGrade10072}from'./triangleInequalityModel10072';
 
 type Sides = { a: number; b: number; c: number };
 const START: Sides = { a: 4, b: 5, c: 8 };
 const colors = { a: "purple", b: "blue", c: "teal" };
-function checks(s: Sides) {
-  return [s.a + s.b > s.c, s.a + s.c > s.b, s.b + s.c > s.a];
-}
-function valid(s: Sides) {
-  return s.a > 0 && s.b > 0 && s.c > 0 && checks(s).every(Boolean);
-}
-function trianglePoint(s: Sides) {
-  if (!valid(s)) return null;
-  const x = (s.a ** 2 + s.c ** 2 - s.b ** 2) / (2 * s.c),
-    y = Math.sqrt(Math.max(0, s.a ** 2 - x ** 2));
-  return { x, y };
-}
-
 export default function TriangleInequalityTargetLesson10072({
   lesson: _lesson,
 }: {
@@ -41,10 +28,9 @@ export default function TriangleInequalityTargetLesson10072({
       5, 6, 7, 8, 9, 10, 11, 12, 13,
     ]),
     [actions, setActions] = useState(0);
-  const verdicts = checks(sides),
-    isValid = valid(sides),
-    point = trianglePoint(sides),
-    perimeter = sides.a + sides.b + sides.c;
+  const model=triangleInequality10072(sides),verdicts=model.checks,isValid=model.kind==='proper',point=model.point,perimeter=model.perimeter,grade=tiGrade10072(challenge);
+  const [version,setVersion]=useState(0),[graded,setGraded]=useState(false);
+  const dropRef=useRef<HTMLDivElement>(null);
   const act = (fn: () => void) => {
     fn();
     setActions((n) => n + 1);
@@ -56,18 +42,18 @@ export default function TriangleInequalityTargetLesson10072({
     });
   const preset = (next: Sides) =>
     act(() => {
-      setSides(next);
+      setSides(next);setVersion(n=>n+1);
       setPlaced([]);
     });
   const place = (key: string) =>
     act(() =>
       setPlaced((current) =>
-        current.includes(key) ? current : [...current, key],
+        !['a','b','c'].includes(key)||current.includes(key) ? current : [...current, key],
       ),
     );
   const reset = () =>
     act(() => {
-      setSides(START);
+      setSides(START);setVersion(n=>n+1);
       setPlaced([]);
       setView("triangle");
     });
@@ -78,14 +64,14 @@ export default function TriangleInequalityTargetLesson10072({
       data-object-model="dedicated-segment-drop-triangle-inequality-engine"
       data-sides={`${sides.a},${sides.b},${sides.c}`}
       data-checks={verdicts.map(Number).join(",")}
-      data-valid={String(isValid)}
+      data-valid={String(isValid)} data-kind={model.kind} data-grade={graded?(grade.correct?"correct":"incorrect"):"ungraded"}
       data-perimeter={perimeter}
       data-placed={placed.join(",")}
       data-view={view}
       data-challenge={challenge.join(",")}
       data-actions={actions}
     >
-      <header className="ti10072-hero">
+      <div role="banner" className="ti10072-hero"><Link className="ti10072-school" to="/lessons/school">← School lessons</Link>
         <small>CLASS 9 · TRIANGLE PROOFS</small>
         <h1>Triangle Inequality</h1>
         <p>
@@ -98,21 +84,21 @@ export default function TriangleInequalityTargetLesson10072({
           <span>VISUAL EXPLORATION</span>
           <span>geometry2d</span>
         </div>
-      </header>
-      <nav className="ti10072-tabs">
+      </div>
+      <div role="group" aria-label="Lesson sections" className="ti10072-tabs">
         {["INTERACT", "LEARN", "EXAMPLE", "FORMULA", "PRACTICE"].map((x, i) => (
           <button
             key={x}
             className={tab === i ? "active" : ""}
-            aria-selected={tab === i}
-            onClick={() => act(() => setTab(i))}
+            aria-pressed={tab === i}
+            onClick={() => act(() => {setTab(i);document.getElementById(['ti10072-interact','ti10072-learn','ti10072-example','ti10072-formula','ti10072-practice'][i])?.scrollIntoView({behavior:'smooth',block:'start'});})}
           >
             {x}
           </button>
         ))}
-      </nav>
+      </div>
       <main>
-        <section className="ti10072-builder">
+        <section id="ti10072-interact" className="ti10072-builder">
           <header>
             <div>
               <h2>1. BUILD A TRIANGLE</h2>
@@ -123,18 +109,18 @@ export default function TriangleInequalityTargetLesson10072({
             </div>
             <nav>
               <button
-                className={view === "triangle" ? "active" : ""}
+                aria-label="Triangle view" aria-pressed={view==="triangle"} className={view === "triangle" ? "active" : ""}
                 onClick={() => act(() => setView("triangle"))}
               >
                 ▣ Triangle view
               </button>
               <button
-                className={view === "line" ? "active" : ""}
+                aria-label="Number line view" aria-pressed={view==="line"} className={view === "line" ? "active" : ""}
                 onClick={() => act(() => setView("line"))}
               >
                 ▤ Number line view
               </button>
-              <button onClick={() => act(() => setPlaced([]))}>
+              <button aria-label="Clear triangle" onClick={() => act(() => setPlaced([]))}>
                 ▱ Clear triangle
               </button>
             </nav>
@@ -150,18 +136,11 @@ export default function TriangleInequalityTargetLesson10072({
                       aria-label={`Side ${key}`}
                       type="range"
                       min="1"
-                      max="20"
+                      max="20" step="0.1"
                       value={sides[key]}
                       onChange={(e) => update(key, +e.target.value)}
                     />
-                    <input
-                      aria-label={`Side ${key} value`}
-                      type="number"
-                      min="1"
-                      max="20"
-                      value={sides[key]}
-                      onChange={(e) => update(key, +e.target.value)}
-                    />
+                    <SideDraft key={`${key}-${version}`} name={key} value={sides[key]} onCommit={n=>update(key,n)}/>
                   </span>
                 </label>
               ))}
@@ -189,20 +168,20 @@ export default function TriangleInequalityTargetLesson10072({
                     id={key}
                     value={sides[key]}
                     color={colors[key]}
-                    onPlace={place}
+                    onPlace={place} dropRef={dropRef} placed={placed.includes(key)}
                   />
                 ))}
               </div>
               <span className="arrow">→</span>
               <div
-                className={`drop ${isValid ? "valid" : "invalid"}`}
+                ref={dropRef} className={`drop ${isValid ? "valid" : "invalid"}`}
                 role="region"
                 aria-label="Triangle construction drop zone"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                   e.preventDefault();
                   const id = e.dataTransfer.getData("text/plain");
-                  if (id) place(id);
+                  if (['a','b','c'].includes(id)) place(id);
                 }}
               >
                 {view === "triangle" ? (
@@ -210,7 +189,7 @@ export default function TriangleInequalityTargetLesson10072({
                 ) : (
                   <LineView sides={sides} />
                 )}
-                <p>
+                <p className={placed.length===3?"built-caption":""}>
                   {placed.length === 3
                     ? isValid
                       ? "Triangle built from all three segments"
@@ -221,14 +200,14 @@ export default function TriangleInequalityTargetLesson10072({
               <footer className={isValid ? "valid" : "invalid"}>
                 {isValid ? <Check /> : <TriangleAlert />}
                 <span>
-                  <b>{isValid ? "Valid triangle!" : "Not a triangle"}</b>
+                  <b>{isValid ? "Valid triangle!" : model.kind==="flat"?"Degenerate: flat figure":"Cannot form a triangle"}</b>
                   <small>
                     {isValid
                       ? "All three inequalities are satisfied."
                       : "At least one strict inequality fails."}
                   </small>
                 </span>
-                <strong>Perimeter = {perimeter}</strong>
+                <strong>{isValid?"Perimeter":"Length sum"} = {perimeter}</strong>
                 <svg
                   className="mini-triangle"
                   viewBox="0 0 42 34"
@@ -240,15 +219,15 @@ export default function TriangleInequalityTargetLesson10072({
             </section>
           </div>
         </section>
-        <section className="ti10072-checks">
+        <section id="ti10072-formula" className="ti10072-checks">
           <header>
             <h2>2. CHECK THE TRIANGLE INEQUALITY</h2>
             <p>All three inequalities must be true.</p>
           </header>
           {[
-            ["a + b > c", sides.a + sides.b, sides.c, verdicts[0]],
-            ["a + c > b", sides.a + sides.c, sides.b, verdicts[1]],
-            ["b + c > a", sides.b + sides.c, sides.a, verdicts[2]],
+            ["a + b > c", model.pairSums[0], sides.c, verdicts[0]],
+            ["a + c > b", model.pairSums[1], sides.b, verdicts[1]],
+            ["b + c > a", model.pairSums[2], sides.a, verdicts[2]],
           ].map(([label, sum, third, ok]) => (
             <article key={String(label)}>
               <h2>{label}</h2>
@@ -257,14 +236,7 @@ export default function TriangleInequalityTargetLesson10072({
                   String(sides[m as keyof Sides]),
                 )}
               </strong>
-              <div className={`inequality-line ${ok ? "true" : "false"}`}>
-                <i
-                  style={{
-                    width: `${Math.min(100, (Number(sum) / 20) * 100)}%`,
-                  }}
-                />
-                {ok ? <Check /> : <TriangleAlert />}
-              </div>
+              <CompareBars sum={Number(sum)} third={Number(third)} ok={Boolean(ok)}/>
               <p>
                 {sum} &gt; {third}
               </p>
@@ -276,7 +248,7 @@ export default function TriangleInequalityTargetLesson10072({
             cannot form a non-degenerate triangle.
           </footer>
         </section>
-        <section className="ti10072-theory">
+        <section id="ti10072-learn" className="ti10072-theory">
           <article>
             <h2>3. WHY IT WORKS</h2>
             <p>
@@ -294,7 +266,7 @@ export default function TriangleInequalityTargetLesson10072({
             </strong>
           </article>
           <article>
-            <h2>4. WORKED EXAMPLE</h2>
+            <h2 id="ti10072-example">4. WORKED EXAMPLE</h2>
             <h3>Valid triangle: 4, 5, 8</h3>
             <ExampleTriangle sides={START} />
             <p>
@@ -311,16 +283,16 @@ export default function TriangleInequalityTargetLesson10072({
             <h2>
               <TriangleAlert /> COMMON MISTAKE
             </h2>
-            <h3>Checking only the two shortest sides is not enough.</h3>
+            <h3>Checking an arbitrary pair is not enough.</h3>
             <section>
-              <b>× Mistake: 2 + 3 &gt; 4</b>
+              <b>× Mistake: checking only 2 + 6 &gt; 3</b>
               <p>
-                Example: 2, 3, 4<br />2 + 3 = 5 &gt; 4 (true)
+                Example: 2, 3, 6<br />2 + 6 = 8 &gt; 3 (true)
                 <br />
-                But 2 + 4 = 6 &gt; 3 (true)
-                <br />3 + 4 = 7 &gt; 2 (true)
+                But 2 + 3 = 5 &lt; 6 (false)
+                <br />3 + 6 = 9 &gt; 2 (true)
                 <br />
-                Actually this set works.
+                The longest side is too long; no triangle exists.
               </p>
             </section>
             <section className="correct">
@@ -328,12 +300,12 @@ export default function TriangleInequalityTargetLesson10072({
               <p>
                 All three pair sums must be strictly greater than the third.
                 <br />
-                Use &gt;, not ≥.
+                Use &gt;, not ≥. For positive lengths sorted from shortest to longest, checking shortest + middle &gt; longest is sufficient.
               </p>
             </section>
           </article>
         </section>
-        <section className="ti10072-challenge">
+        <section id="ti10072-practice" className="ti10072-challenge">
           <header>
             <h2>6. CHALLENGE</h2>
             <p>
@@ -347,21 +319,17 @@ export default function TriangleInequalityTargetLesson10072({
             <div className="number-line">
               {Array.from({ length: 16 }, (_, x) => (
                 <button
-                  key={x}
+                  key={x} aria-label={`Select integer ${x}`} aria-pressed={challenge.includes(x)}
                   className={
-                    challenge.includes(x)
-                      ? "active"
-                      : x <= 4 || x >= 14
-                        ? "invalid"
-                        : ""
+                    `${challenge.includes(x)?"active":""} ${x<=4||x>=14?"invalid":""}`
                   }
                   onClick={() =>
                     act(() =>
-                      setChallenge((current) =>
+                      (setGraded(false),setChallenge((current) =>
                         current.includes(x)
                           ? current.filter((n) => n !== x)
                           : [...current, x].sort((a, b) => a - b),
-                      ),
+                      )),
                     )
                   }
                 >
@@ -379,137 +347,31 @@ export default function TriangleInequalityTargetLesson10072({
             <h2>Solution</h2>
             <p>We need both: |9 − 5| &lt; x &lt; 9 + 5</p>
             <strong>4 &lt; x &lt; 14</strong>
-            <p>Integers: {challenge.join(", ")}</p>
+            <p>Solution integers: {tiIntegers10072.join(", ")}</p><p>Your selection: {challenge.length?challenge.join(", "):"none"}</p><button onClick={()=>setGraded(true)}>Check selection</button><button onClick={()=>{setChallenge([]);setGraded(false);}}>Clear selection</button>{graded&&<p role="status">{grade.correct?"Correct! All nine integers selected.":`Try again: ${grade.missing.length} missing and ${grade.extra.length} invalid selections.`}</p>}
             <p>
-              There are <b>{challenge.filter((x) => x > 4 && x < 14).length}</b>{" "}
+              There are <b>{tiIntegers10072.length}</b>{" "}
               possible integer values.
             </p>
           </aside>
         </section>
       </main>
-      <nav className="ti10072-adjacent">
+      <nav className="ti10072-nav">
         <Link to="/lessons/school/class-9/class-9-triangle-proofs-equal-sides-and-equal-angles">
-          <ArrowLeft /> Previous: Equal Sides and Equal Angles
+          <ArrowLeft /> Equal Sides and Equal Angles
         </Link>
-        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-exterior-angle-theorem">
-          Next: Exterior Angle Theorem <ArrowRight />
+        <Link to="/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-sides">
+          Parallelogram Opposite Sides <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10072} view={view} />
+      <footer className="ti10072-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
 }
-function DraggableSegment({
-  id,
-  value,
-  color,
-  onPlace,
-}: {
-  id: string;
-  value: number;
-  color: string;
-  onPlace: (id: string) => void;
-}) {
-  const drag: DragEventHandler<HTMLButtonElement> = (e) =>
-    e.dataTransfer.setData("text/plain", id);
-  return (
-    <button
-      className={`ti10072-segment ${color}`}
-      draggable
-      onDragStart={drag}
-      onClick={() => onPlace(id)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") onPlace(id);
-      }}
-    >
-      <b>
-        {id} = {value}
-      </b>
-      <i style={{ width: `${45 + value * 7}px` }} />
-    </button>
-  );
-}
-function BuildTriangle({
-  sides,
-  point,
-  placed,
-}: {
-  sides: Sides;
-  point: { x: number; y: number } | null;
-  placed: string[];
-}) {
-  if (!point || placed.length < 3)
-    return (
-      <svg viewBox="0 0 310 220" aria-label="Triangle segment drop zone">
-        <path className="outline" d="M20 190L155 25L290 190Z" />
-      </svg>
-    );
-  const scale = 28;
-  return (
-    <svg viewBox="0 0 310 220" aria-label="Constructed triangle from segments">
-      <path
-        className="shape"
-        d={`M25 190L${25 + sides.c * scale} 190L${25 + point.x * scale} ${190 - point.y * scale}Z`}
-      />
-      <text x="135" y="210">
-        c = {sides.c}
-      </text>
-      <text x="55" y="120">
-        a = {sides.a}
-      </text>
-      <text x="225" y="120">
-        b = {sides.b}
-      </text>
-    </svg>
-  );
-}
-function LineView({ sides }: { sides: Sides }) {
-  return (
-    <svg
-      className="ti10072-line"
-      viewBox="0 0 300 80"
-      aria-label="Triangle inequality number line"
-    >
-      <line x1="20" y1="42" x2="280" y2="42" />
-      <circle cx="20" cy="42" r="5" />
-      <circle cx={20 + sides.a * 12} cy="42" r="5" />
-      <circle cx={20 + (sides.a + sides.b) * 12} cy="42" r="5" />
-      <circle cx={20 + sides.c * 12} cy="42" r="5" />
-      <text x="50" y="30">
-        a
-      </text>
-      <text x="120" y="30">
-        b
-      </text>
-      <text x="210" y="64">
-        c
-      </text>
-    </svg>
-  );
-}
-function LineExample({ type }: { type: string }) {
-  return (
-    <div className="ti10072-line-example">
-      <i />
-      <i />
-      <i className={type} />
-    </div>
-  );
-}
-function ExampleTriangle({ sides }: { sides: Sides }) {
-  return (
-    <svg className="ti10072-example" viewBox="0 0 230 120">
-      <path d="M10 105L220 105L100 15Z" />
-      <text x="45" y="58">
-        {sides.a}
-      </text>
-      <text x="165" y="58">
-        {sides.b}
-      </text>
-      <text x="105" y="118">
-        {sides.c}
-      </text>
-    </svg>
-  );
-}
+function SideDraft({name,value,onCommit}:{name:string;value:number;onCommit:(n:number)=>void}){const[d,setD]=useState(String(value)),[editing,setEditing]=useState(false);const shown=editing?d:String(value),n=Number(shown),ok=shown.trim()!==''&&Number.isFinite(n)&&n>=1&&n<=20;return <span className="ti10072-draft"><input aria-label={`Side ${name} value`} type="number" min="1" max="20" step="any" value={shown} aria-invalid={!ok} onFocus={()=>{setD(String(value));setEditing(true);}} onChange={e=>{setD(e.target.value);setEditing(true);const v=Number(e.target.value);if(e.target.value!==''&&Number.isFinite(v)&&v>=1&&v<=20)onCommit(v);}} onBlur={()=>{if(ok)setEditing(false);}}/>{!ok&&<small role="alert">Enter 1–20.</small>}</span>;}
+function DraggableSegment({id,value,color,onPlace,dropRef,placed}:{id:string;value:number;color:string;onPlace:(id:string)=>void;dropRef:React.RefObject<HTMLDivElement|null>;placed:boolean}){const g=useRef<{x:number;y:number;moved:boolean}|null>(null),[offset,setOffset]=useState({x:0,y:0});const move=(e:PointerEvent<HTMLButtonElement>)=>{if(!g.current)return;const x=e.clientX-g.current.x,y=e.clientY-g.current.y;if(Math.hypot(x,y)>4)g.current.moved=true;if(g.current.moved)setOffset({x,y});};return <button className={`ti10072-segment ${color}`} aria-label={`Place segment ${id}`} aria-pressed={placed} style={{transform:`translate(${offset.x}px,${offset.y}px)`,zIndex:g.current?5:1}} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);g.current={x:e.clientX,y:e.clientY,moved:false};}} onPointerMove={move} onPointerUp={e=>{const q=g.current,box=dropRef.current?.getBoundingClientRect();if(q?.moved&&box&&e.clientX>=box.x&&e.clientX<=box.right&&e.clientY>=box.y&&e.clientY<=box.bottom)onPlace(id);setOffset({x:0,y:0});if(q?.moved)e.currentTarget.dataset.suppress='true';g.current=null;}} onPointerCancel={()=>{g.current=null;setOffset({x:0,y:0});}} onClick={e=>{if(e.currentTarget.dataset.suppress){delete e.currentTarget.dataset.suppress;return;}onPlace(id);}}><b>{id} = {value}{placed?' ✓':''}</b><i style={{width:`${value/20*100}%`}}/></button>;}
+function BuildTriangle({sides,point,placed}:{sides:Sides;point:{x:number;y:number}|null;placed:string[]}){if(!point&&placed.length===3)return <LineView sides={sides}/>;if(!point||!placed.length)return <svg viewBox="0 0 310 220" aria-label="Triangle segment drop zone"><path className="ti-outline" d="M20 190L155 25L290 190Z"/></svg>;return <ExampleTriangle sides={sides} placed={placed}/>;}
+function LineView({sides}:{sides:Sides}){const scale=260/Math.max(sides.a+sides.b,sides.c),x=(v:number)=>20+v*scale;return <svg className="ti10072-line" viewBox="0 0 300 100" aria-label="Triangle inequality number line"><line className="axis" x1="20" y1="48" x2="280" y2="48"/><line className="side-a" x1="20" y1="28" x2={x(sides.a)} y2="28"/><line className="side-b" x1={x(sides.a)} y1="28" x2={x(sides.a+sides.b)} y2="28"/><line className="side-c" x1="20" y1="68" x2={x(sides.c)} y2="68"/>{[0,sides.a,sides.a+sides.b].map((v,i)=><circle key={i} cx={x(v)} cy="28" r="4"/>)}<circle cx="20" cy="68" r="4"/><circle cx={x(sides.c)} cy="68" r="4"/><text x={x(sides.a/2)} y="15">a = {sides.a}</text><text x={x(sides.a+sides.b/2)} y="15">b = {sides.b}</text><text x={x(sides.c/2)} y="91">c = {sides.c}</text></svg>;}
+function LineExample({type}:{type:string}){return <LineView sides={type==='equal'?{a:3,b:4,c:7}:{a:2,b:3,c:7}}/>;}
+function ExampleTriangle({sides,placed=['a','b','c']}:{sides:Sides;placed?:string[]}){const m=triangleInequality10072(sides);if(!m.point)return <LineView sides={sides}/>;const {x,y}=m.point,min=Math.min(0,x),max=Math.max(sides.c,x),k=Math.min(250/(max-min),150/y),p=[{x:30-min*k,y:185},{x:30+(x-min)*k,y:185-y*k},{x:30+(sides.c-min)*k,y:185}];return <svg className="ti10072-example" viewBox="0 0 310 220" aria-label="Triangle drawn to scale" data-apex={`${x},${y}`}><path className="ti-outline" d={`M${p[0].x} ${p[0].y}L${p[1].x} ${p[1].y}L${p[2].x} ${p[2].y}Z`}/>{(['a','b','c'] as const).map((key,i)=>{const u=p[i],v=p[(i+1)%3];return placed.includes(key)?<g key={key}><line className={`side-${key}`} x1={u.x} y1={u.y} x2={v.x} y2={v.y}/><text className={`label-${key}`} x={(u.x+v.x)/2+(i===0?-12:i===1?12:0)} y={(u.y+v.y)/2+(i===2?20:-10)}>{key} = {sides[key]}</text></g>:null;})}</svg>;}
+function CompareBars({sum,third,ok}:{sum:number;third:number;ok:boolean}){const k=210/Math.max(sum,third);return <svg className="ti10072-compare" viewBox="0 0 260 75" aria-label={`${sum} greater than ${third}: ${ok}`}><line className="axis" x1="12" y1="35" x2="230" y2="35"/><line className="sum" x1="12" y1="22" x2={12+sum*k} y2="22"/><line className="third" x1="12" y1="48" x2={12+third*k} y2="48"/><text x="12" y="12">sum = {sum}</text><text x="12" y="72">third = {third}</text><text className={ok?'good':'bad'} x="240" y="37">{ok?'✓':'×'}</text></svg>;}

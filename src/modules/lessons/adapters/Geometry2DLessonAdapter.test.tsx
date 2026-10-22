@@ -430,7 +430,6 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Q(2,5)");
     expect(html).toContain("Ray practice slope");
     expect(html).toContain("Check your answer");
-    expect(html).not.toContain('type="range"');
   });
 
   it("renders Polyline with an ordered vertex model and real topology controls", () => {

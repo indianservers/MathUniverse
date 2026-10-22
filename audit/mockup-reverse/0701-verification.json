@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "acute"
+    },
+    {
+      "width": 1680,
+      "state": "obtuse"
+    },
+    {
+      "width": 1680,
+      "state": "draft"
+    },
+    {
+      "width": 1680,
+      "state": "cleared"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "acute"
+    },
+    {
+      "width": 1280,
+      "state": "obtuse"
+    },
+    {
+      "width": 1280,
+      "state": "draft"
+    },
+    {
+      "width": 1280,
+      "state": "cleared"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 992,
+      "state": "default"
+    },
+    {
+      "width": 992,
+      "state": "acute"
+    },
+    {
+      "width": 992,
+      "state": "obtuse"
+    },
+    {
+      "width": 992,
+      "state": "draft"
+    },
+    {
+      "width": 992,
+      "state": "cleared"
+    },
+    {
+      "width": 992,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 924,
+      "state": "default"
+    },
+    {
+      "width": 924,
+      "state": "acute"
+    },
+    {
+      "width": 924,
+      "state": "obtuse"
+    },
+    {
+      "width": 924,
+      "state": "draft"
+    },
+    {
+      "width": 924,
+      "state": "cleared"
+    },
+    {
+      "width": 924,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "acute"
+    },
+    {
+      "width": 768,
+      "state": "obtuse"
+    },
+    {
+      "width": 768,
+      "state": "draft"
+    },
+    {
+      "width": 768,
+      "state": "cleared"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "acute"
+    },
+    {
+      "width": 390,
+      "state": "obtuse"
+    },
+    {
+      "width": 390,
+      "state": "draft"
+    },
+    {
+      "width": 390,
+      "state": "cleared"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "true compass arc centers/radii and transferred chord; actual D/parallel geometry across acute and obtuse cases",
+    "five stage objects and timed1–5 replay/Stop, tools/erase and actual toggles, native range step",
+    "P/D inverseCTM captured movement with grab offset, near-only physical snap, fine keys, zoom/letterbox, cancel/lost capture",
+    "actual independent challenge requiring placement, equal radii, both arc distances, corresponding side and drawn line; wrong-side circle intersection rejected despite equal angle; new acute/right/obtuse challenges",
+    "certificate no-op/cancel restoration, edit invalidation and independent main reset; real390x844 native P/D touch and touchCancel plus challenge solve",
+    "36 responsive states at6 widths, live quick check/tabs/catalog navigation and canonical Docs, no page errors/overflow"
+  ]
+}

@@ -1,369 +1,42 @@
-import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./VerticalAnglesTargetLesson10058.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-const tabs = ["Interact", "Learn", "Example", "Formula", "Practice"];
-
-export default function VerticalAnglesTargetLesson10058({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [angle, setAngle] = useState(68);
-  const [challenge, setChallenge] = useState(125);
-  const [tab, setTab] = useState("Interact");
-  const [actions, setActions] = useState(0);
-  const act = (value: number, setter: (value: number) => void) => {
-    setter(Math.max(25, Math.min(155, Math.round(value))));
-    setActions((n) => n + 1);
-  };
-  return (
-    <section
-      className="va10058-page"
-      data-testid="school-mockup-0732"
-      data-object-model="dedicated-intersecting-lines-drag-angle-pair-engine"
-      data-angle={angle}
-      data-supplement={180 - angle}
-      data-challenge={challenge}
-      data-actions={actions}
-    >
-      <header className="va10058-hero">
-        <small>CLASS 9 · EUCLIDEAN GEOMETRY</small>
-        <h1>Vertically Opposite Angles</h1>
-        <p>
-          Discover why opposite angles formed by intersecting lines are equal.
-        </p>
-        <div>
-          <span>30 min</span>
-          <span>RIGOROUS</span>
-          <span>PROOF</span>
-          <span>geometry2d</span>
-        </div>
-        <Link to="/lessons/school">
-          <ArrowLeft /> School lessons
-        </Link>
-      </header>
-      <nav className="va10058-tabs">
-        {tabs.map((item) => (
-          <button
-            key={item}
-            className={tab === item ? "active" : ""}
-            aria-selected={tab === item}
-            onClick={() => {
-              setTab(item);
-              setActions((n) => n + 1);
-            }}
-          >
-            {item}
-          </button>
-        ))}
-      </nav>
-      <main>
-        <section className="va10058-explore">
-          <header>
-            <div>
-              <h2>Explore: Drag the lines</h2>
-              <p>
-                Drag either line to change the angles.
-                <br />
-                Watch the measures update in real time.
-              </p>
-            </div>
-            <label>
-              Rotate lines{" "}
-              <input
-                aria-label="Angle between lines"
-                type="range"
-                min="25"
-                max="155"
-                value={angle}
-                onChange={(e) => act(+e.target.value, setAngle)}
-              />
-            </label>
-            <button title="Reset angle" onClick={() => act(68, setAngle)}>
-              <RotateCcw />
-            </button>
-          </header>
-          <div className="va10058-stage">
-            <AngleDiagram angle={angle} onAngle={(v) => act(v, setAngle)} />
-            <AngleReadout angle={angle} />
-          </div>
-          <footer>
-            ⓘ &nbsp; Drag either line (<i>p</i> or <i>q</i>), or use Rotate, to
-            explore.
-          </footer>
-        </section>
-        <section className="va10058-theory">
-          <article>
-            <h2>💡 Why it works</h2>
-            <p>
-              When two lines intersect, vertical angles have their sides
-              extended in opposite directions.
-            </p>
-            <p>
-              They are formed by the same pair of lines, so they are always
-              equal.
-            </p>
-            <MiniDiagram />
-            <p>Adjacent angles form a linear pair and always sum to 180°.</p>
-          </article>
-          <article>
-            <h2>▣ Worked Example</h2>
-            <p>If ∠1 = 68°, find all other angles.</p>
-            <ol>
-              <li>
-                ∠1 and ∠3 are vertically opposite.
-                <br />
-                <b>So, ∠3 = 68°.</b>
-              </li>
-              <li>
-                ∠1 and ∠2 form a linear pair.
-                <br />
-                <b>∠2 = 180° − 68° = 112°.</b>
-              </li>
-              <li>
-                ∠2 and ∠4 are vertically opposite.
-                <br />
-                <b>So, ∠4 = 112°.</b>
-              </li>
-            </ol>
-            <AngleGrid angle={68} />
-          </article>
-          <article>
-            <h2 className="warn">△ Common Misconception</h2>
-            <p>
-              Vertical angles are opposite,
-              <br />
-              not adjacent.
-            </p>
-            <MiniDiagram />
-            <b className="good">Correct: ∠1 and ∠3 are vertical.</b>
-            <MiniDiagram adjacent />
-            <b className="bad">Incorrect: ∠1 and ∠2 are adjacent.</b>
-          </article>
-        </section>
-        <section className="va10058-challenge">
-          <header>
-            <h2>🏆 Challenge</h2>
-            <p>
-              Drag line <i>q</i> to make ∠1 an obtuse angle of 125°.
-              <br />
-              Then predict all four angles.
-            </p>
-          </header>
-          <div className="va10058-challenge-grid">
-            <div>
-              <strong>
-                Target
-                <br />
-                ∠1 = 125°
-              </strong>
-              <button onClick={() => act(125, setChallenge)}>
-                Drag line q ☝
-              </button>
-            </div>
-            <AngleDiagram
-              angle={challenge}
-              onAngle={(v) => act(v, setChallenge)}
-              compact
-            />
-            <AngleReadout angle={challenge} challenge />
-          </div>
-        </section>
-      </main>
-      <nav className="va10058-adjacent">
-        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-proof-structure-and-logical-statements">
-          <ArrowLeft /> Previous: Intersecting Lines
-        </Link>
-        <Link to="/lessons/school">
-          Next: Angle Pairs and Properties <ArrowRight />
-        </Link>
-      </nav>
-      <section className="va10058-takeaway">
-        <h2>🏆 Key Takeaway</h2>
-        <p>
-          If two lines intersect, vertically opposite angles are equal.
-          <br />
-          Adjacent angles form a linear pair and sum to 180°.
-        </p>
-        <div>
-          <b>You explored</b>
-          <span>Intersecting lines</span>
-          <span>Angle measures</span>
-          <span>Angle relationships</span>
-        </div>
-        <div>
-          <b>You proved</b>
-          <span>Vertical angles are equal</span>
-          <span>Linear pairs sum to 180°</span>
-        </div>
-      </section>
-      <LessonTopicStudyBoard lessonId={10058} view={tab} />
-
-    </section>
-  );
+import {ArrowLeft,ArrowRight,Check,X,RotateCcw,Trophy,Lightbulb,BookOpen,TriangleAlert} from 'lucide-react';
+import {useRef,useState} from 'react';
+import {Link}from'react-router-dom';
+import type{SchoolSyllabusLesson}from'../syllabus/lessonSyllabusTypes';
+import{vaInitial10058,vaTarget10058,vaModel10058,vaSet10058,vaMove10058,vaClamp10058,vaMatch10058,type VAState10058,type VAPoint10058}from'./verticalAnglesModel10058';
+import{paSector10074}from'./parallelogramAnglesModel10074';
+import './VerticalAnglesTargetLesson10058.css';
+const tabs=['Interact','Learn','Example','Formula','Practice'],targets=[125,55,125,55];
+const fmt=(n:number|null)=>n===null?'Undefined':`${Number(n.toFixed(2))}°`;
+export default function VerticalAnglesTargetLesson10058({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[g,setG]=useState(vaInitial10058),[challenge,setChallenge]=useState(vaTarget10058),[predictions,setPredictions]=useState(['125','55','125','55']),[tab,setTab]=useState('Interact'),[actions,setActions]=useState(0);
+ const main=vaModel10058(g),targetReached=challenge.angle===125,score=predictions.filter((s,i)=>vaMatch10058(s,targets[i])).length,solved=targetReached&&score===4,sections=['va10058-interact','va10058-learn','va10058-example','va10058-formula','va10058-practice'];
+ const act=(fn:()=>void)=>{fn();setActions(n=>n+1);};
+ return <section className="va10058-page" data-testid="school-mockup-0732" data-object-model="dedicated-intersecting-lines-drag-angle-pair-engine" data-angle={g.angle} data-supplement={180-g.angle} data-main-state={JSON.stringify(g)} data-main-values={JSON.stringify(main.values)} data-challenge={challenge.angle} data-target-reached={targetReached} data-predictions={JSON.stringify(predictions)} data-prediction-score={score} data-solved={solved} data-actions={actions}>
+ <div role="banner" className="va10058-hero"><small>CLASS 9 · EUCLIDEAN GEOMETRY</small><h1>Vertically Opposite Angles</h1><p>Discover why opposite angles formed by intersecting lines are equal.</p><div><span>30 min</span><span>RIGOROUS</span><span>PROOF</span><span>geometry2d</span></div><Link to="/lessons/school"><ArrowLeft/> School lessons</Link></div>
+ <div role="group" aria-label="Lesson sections" className="va10058-tabs">{tabs.map((item,i)=><button key={item} className={tab===item?'active':''} aria-pressed={tab===item} onClick={()=>act(()=>{setTab(item);document.getElementById(sections[i])?.scrollIntoView({behavior:'smooth',block:'start'});})}>{item}</button>)}</div>
+ <main><section id="va10058-interact" className="va10058-explore"><header><div><h2>Explore: Drag the lines</h2><p>Drag either line to change the angles.<br/>Watch the measures update in real time.</p></div><label>Rotate lines <input aria-label="Angle between lines" type="range" min="25" max="155" step="1" value={g.angle} onChange={e=>act(()=>setG(vaSet10058(g,+e.target.value)))}/><b>{fmt(g.angle)}</b></label><button aria-label="Reset explorer" title="Reset angle" onClick={()=>act(()=>setG(vaInitial10058))}><RotateCcw/></button></header><div className="va10058-stage"><AngleDiagram state={g} change={next=>act(()=>setG(next))} restore={setG}/><AngleReadout state={g}/></div><footer>ⓘ Drag either line (<i>p</i> or <i>q</i>), or use Rotate. Pointer gestures use whole-degree steps; arrow keys rotate by 1°, or 5° with Shift.</footer></section>
+ <section id="va10058-learn" className="va10058-theory"><article><h2><Lightbulb/> Why it works</h2><p>When two lines intersect, vertically opposite angles have their sides extended in opposite directions.</p><p>The two linear pairs give ∠1 + ∠2 = 180° and ∠2 + ∠3 = 180°. Subtracting ∠2 gives ∠1 = ∠3. Similarly, ∠2 = ∠4.</p><MiniDiagram/><aside id="va10058-formula">Opposite: ∠1 = ∠3, ∠2 = ∠4.<br/>Each adjacent pair sums to 180°.</aside></article>
+ <article><h2 id="va10058-example"><BookOpen/> Worked Example</h2><p>If ∠1 = 68°, find all other angles.</p><ol><li>∠1 and ∠3 are vertically opposite.<br/><b>So, ∠3 = 68°.</b></li><li>∠1 and ∠2 form a linear pair.<br/><b>∠2 = 180° − 68° = 112°.</b></li><li>∠2 and ∠4 are vertically opposite.<br/><b>So, ∠4 = 112°.</b></li></ol><AngleGrid values={vaModel10058(vaInitial10058).values}/></article>
+ <article className="va10058-warning"><h2 className="warn"><TriangleAlert/> Common Misconception</h2><p>Vertical angles are opposite, not adjacent. “Vertical” names the opposite pair; the lines need not be upright.</p><div className="va10058-comparison"><MiniDiagram selection="opposite"/><Check/></div><b className="va10058-correct-caption">Vertical: ∠1 and ∠3 are opposite.</b><div className="va10058-comparison"><MiniDiagram selection="adjacent"/><X/></div><b className="va10058-incorrect-caption">Not vertical: ∠1 and ∠2 are adjacent.</b></article></section>
+ <section id="va10058-practice" className="va10058-challenge"><header><h2><Trophy/> Challenge</h2><p>Drag line <i>q</i> to make ∠1 an obtuse angle of 125°.<br/>Then predict all four angles.</p><button className="va10058-challenge-reset" onClick={()=>act(()=>{setChallenge({angle:68,p:27.5});setPredictions(['','','','']);})}>Reset challenge</button></header><div className="va10058-challenge-grid"><div className="va10058-target"><strong>Target<br/>∠1 = 125°</strong><button onClick={()=>{const node=document.getElementById('va10058-challenge-canvas')?.querySelector<SVGElement>('[data-handle-line="q"]');node?.focus();}}>Drag line q ☝</button><label>Set ∠1<input aria-label="Challenge angle one" type="range" min="25" max="155" step="1" value={challenge.angle} onChange={e=>act(()=>setChallenge(s=>({...s,angle:vaClamp10058(+e.target.value)})))}/><b>{fmt(challenge.angle)}</b></label></div>
+ <AngleDiagram state={challenge} change={next=>act(()=>setChallenge(next))} restore={setChallenge} compact onlyQ/>
+ <aside className="va10058-readout va10058-predictions"><h3>Your predictions</h3><small>For the 125° target</small><div className="va10058-prediction-rows">{predictions.map((raw,i)=>{const correct=vaMatch10058(raw,targets[i]),entered=raw.trim()!=='';return <label key={i} className={`c${i}`}><span>∠{i+1}</span><input aria-label={`Predict angle ${i+1}`} type="text" role="spinbutton" inputMode="decimal" maxLength={64} aria-valuemin={1} aria-valuemax={179} aria-valuenow={raw.trim()!==''&&Number.isFinite(Number(raw))?Number(raw):undefined} aria-valuetext={raw+' degrees'} aria-invalid={entered&&!correct} value={raw} onChange={e=>setPredictions(v=>v.map((s,n)=>n===i?e.target.value:s))} onKeyDown={e=>{if((e.key==='ArrowUp'||e.key==='ArrowDown')&&raw.trim()!==''&&Number.isFinite(Number(raw))){e.preventDefault();const n=Math.max(1,Math.min(179,Number(raw)+(e.key==='ArrowUp'?1:-1)*(e.shiftKey?5:1)));setPredictions(v=>v.map((s,j)=>j===i?String(n):s));}}}/><span className={correct?'va10058-prediction-correct':entered?'va10058-prediction-wrong':'va10058-prediction-empty'}>{correct?<Check/>:entered?<X/>:'○'}</span></label>;})}</div><strong role="status" className={solved?'va10058-solved':'va10058-pending'}>{solved?'Great! All results are correct.':!targetReached?'Make ∠1 = 125°. Predictions refer to that target.':'Enter all four predictions for the target.'}</strong></aside></div></section></main>
+ <nav className="va10058-nav"><Link to="/lessons/school/class-9/class-9-euclidean-geometry-proof-structure-and-logical-statements"><ArrowLeft/> Proof Structure and Logical Statements</Link><Link to="/lessons/school/class-9/class-9-euclidean-geometry-linear-pair-axiom-and-converse">Linear Pair Axiom and Converse <ArrowRight/></Link></nav>
+ <section className="va10058-takeaway"><div><h2><Trophy/> Key Takeaway</h2><p>If two lines intersect, vertically opposite angles are equal.<br/>Adjacent angles form a linear pair and sum to 180°.</p></div><div><b>You explored</b><span>Intersecting lines</span><span>Angle measures</span><span>Angle relationships</span></div><div><b>You proved</b><span>Vertical angles are equal</span><span>Linear pairs sum to 180°</span></div></section>
+ <footer className="va10058-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><div><Link to="/sitemap">Sitemap</Link><Link to="/docs">Docs</Link><Link to="/about">About</Link></div><small>©2026 INDIAN SERVERS PRIVATE LIMITED. RIGHT NOT TO REPRODUCE IT.</small></footer></section>;
 }
-
-function AngleDiagram({
-  angle,
-  onAngle,
-  compact = false,
-}: {
-  angle: number;
-  onAngle: (n: number) => void;
-  compact?: boolean;
-}) {
-  const cx = 250,
-    cy = 180,
-    r = compact ? 135 : 205,
-    p = 35,
-    q = p - angle;
-  const point = (degrees: number) => ({
-    x: cx + r * Math.cos((degrees * Math.PI) / 180),
-    y: cy + r * Math.sin((degrees * Math.PI) / 180),
-  });
-  const a = point(p),
-    b = point(p + 180),
-    c = point(q),
-    d = point(q + 180);
-  const drag = (e: React.PointerEvent<SVGCircleElement>) => {
-    const rect = e.currentTarget.ownerSVGElement!.getBoundingClientRect();
-    const x = e.clientX - rect.left - (rect.width * cx) / 500;
-    const y = e.clientY - rect.top - (rect.height * cy) / 360;
-    const degrees = (Math.atan2(y, x) * 180) / Math.PI;
-    let value = p - degrees;
-    while (value < 0) value += 180;
-    onAngle(value);
-  };
-  return (
-    <svg
-      className={`va10058-diagram ${compact ? "compact" : ""}`}
-      viewBox="0 0 500 360"
-      aria-label="Interactive intersecting lines diagram"
-    >
-      <line className="p" x1={a.x} y1={a.y} x2={b.x} y2={b.y} />
-      <line className="q" x1={c.x} y1={c.y} x2={d.x} y2={d.y} />
-      <circle className="handle p" cx={b.x} cy={b.y} r="8" />
-      <circle
-        className="handle q"
-        cx={c.x}
-        cy={c.y}
-        r="9"
-        tabIndex={0}
-        onPointerMove={(e) => e.buttons === 1 && drag(e)}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") onAngle(angle + 1);
-          if (e.key === "ArrowLeft") onAngle(angle - 1);
-        }}
-      />
-      <circle className="origin" cx={cx} cy={cy} r="7" />
-      <text x={cx - 8} y={cy - 82}>
-        1
-      </text>
-      <text x={cx - 20} y={cy - 58}>
-        {angle}°
-      </text>
-      <text x={cx - 105} y={cy - 4}>
-        2
-      </text>
-      <text x={cx - 119} y={cy + 20}>
-        {180 - angle}°
-      </text>
-      <text x={cx - 7} y={cy + 88}>
-        3
-      </text>
-      <text x={cx - 20} y={cy + 113}>
-        {angle}°
-      </text>
-      <text x={cx + 99} y={cy - 4}>
-        4
-      </text>
-      <text x={cx + 90} y={cy + 20}>
-        {180 - angle}°
-      </text>
-      <text x={cx - 7} y={cy + 24}>
-        O
-      </text>
-      <text className="line-label" x={b.x + 10} y={b.y}>
-        p
-      </text>
-      <text className="line-label" x={c.x + 8} y={c.y - 8}>
-        q
-      </text>
-    </svg>
-  );
+function AngleDiagram({state,change,restore,compact=false,onlyQ=false}:{state:VAState10058;change:(s:VAState10058)=>void;restore:(s:VAState10058)=>void;compact?:boolean;onlyQ?:boolean}){
+ const ref=useRef<SVGSVGElement>(null),gesture=useRef<{pid:number;line:'p'|'q';before:VAState10058;arm:number;startDirection:number;x:number;y:number;moved:boolean;cancel:(s:VAState10058)=>void}|null>(null),m=vaModel10058(state),q=state.p-180+state.angle;
+ const start=(line:'p'|'q')=>(e:React.PointerEvent<SVGElement>)=>{if(gesture.current||e.button!==0&&e.pointerType!=='touch')return;const matrix=ref.current?.getScreenCTM();if(!matrix)return;e.preventDefault();e.stopPropagation();const pt=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse()),unit=line==='p'?m.p:m.q,arm=(pt.x-300)*unit.x+(pt.y-230)*unit.y>=0?1:-1;e.currentTarget.setPointerCapture(e.pointerId);gesture.current={pid:e.pointerId,line,before:state,arm,startDirection:(line==='p'?state.p:q)+(arm<0?180:0),x:e.clientX,y:e.clientY,moved:false,cancel:restore};};
+ const update=(e:React.PointerEvent<SVGElement>,end=false)=>{const g=gesture.current;if(!g||g.pid!==e.pointerId)return;e.stopPropagation();if(Math.hypot(e.clientX-g.x,e.clientY-g.y)>.5)g.moved=true;if(g.moved){const matrix=ref.current?.getScreenCTM();if(matrix){const pt=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());if(Math.hypot(pt.x-300,pt.y-230)>20){const a=Math.atan2(pt.y-230,pt.x-300)*180/Math.PI,unwrapped=a+360*Math.round((g.startDirection-a)/360)-(g.arm<0?180:0);change(vaMove10058(g.before,g.line,unwrapped));}}}if(end)gesture.current=null;};
+ const cancel=(e:React.PointerEvent<SVGElement>)=>{const g=gesture.current;if(g?.pid===e.pointerId){g.cancel(g.before);gesture.current=null;}};
+ const key=(line:'p'|'q')=>(e:React.KeyboardEvent<SVGElement>)=>{if(!e.key.startsWith('Arrow'))return;e.preventDefault();change(vaMove10058(state,line,(line==='p'?state.p:q)+(e.key==='ArrowRight'||e.key==='ArrowUp'?1:-1)*(e.shiftKey?5:1)));};
+ const hit=(pair:VAPoint10058[])=>{const[a,b]=pair,dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy),n={x:-dy/len*11,y:dx/len*11};return[{x:a.x+n.x,y:a.y+n.y},{x:b.x+n.x,y:b.y+n.y},{x:b.x-n.x,y:b.y-n.y},{x:a.x-n.x,y:a.y-n.y}].map(p=>`${p.x},${p.y}`).join(' ');};
+ const names={p:m.point({x:-m.p.x,y:-m.p.y},225),q:m.point(m.q,225)};
+ return <svg ref={ref} id={compact?'va10058-challenge-canvas':undefined} className={`va10058-diagram ${compact?'compact':''}`} viewBox="0 0 600 460" aria-label={compact?'Challenge intersecting lines diagram':'Interactive intersecting lines diagram'} data-state={JSON.stringify(state)} data-values={JSON.stringify(m.values)} data-proper={m.proper} onLostPointerCapture={cancel}>
+ <AngleInk state={state} labels/>{(['p','q']as const).map(line=><g key={line}><line className={`va10058-line ${line}`} data-line={line} x1={m.endpoints[line][0].x} y1={m.endpoints[line][0].y} x2={m.endpoints[line][1].x} y2={m.endpoints[line][1].y}/>{(!onlyQ||line==='q')&&<polygon className="va10058-line-hit" points={hit(m.endpoints[line])} role="slider" tabIndex={0} aria-label={`Rotate line ${line}`} aria-valuenow={line==='p'?state.p:q} aria-valuemin={line==='p'?q+25:state.p-155} aria-valuemax={line==='p'?q+155:state.p-25} aria-valuetext={`Angle1 is ${state.angle} degrees`} onPointerDown={start(line)} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={cancel} onKeyDown={key(line)}/>} {m.endpoints[line].map((p,i)=><g key={i}><circle className={`va10058-point ${line}`} cx={p.x} cy={p.y} r="6"/>{(!onlyQ||line==='q')&&<circle className="va10058-handle" data-handle-line={line} role="slider" tabIndex={0} aria-label={`Drag ${line} endpoint ${i+1}`} aria-valuenow={line==='p'?state.p:q} aria-valuemin={line==='p'?q+25:state.p-155} aria-valuemax={line==='p'?q+155:state.p-25} cx={p.x} cy={p.y} r="18" onPointerDown={start(line)} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={cancel} onKeyDown={key(line)}/>}</g>)}<text className={`va10058-line-label ${line}`} x={Math.max(20,Math.min(580,names[line].x))} y={Math.max(20,Math.min(448,names[line].y-6))}>{line}</text></g>)}<circle className="origin" cx="300" cy="230" r="6"/><text className="va10058-origin-label" x="294" y="255">O</text></svg>;
 }
-
-function AngleReadout({
-  angle,
-  challenge = false,
-}: {
-  angle: number;
-  challenge?: boolean;
-}) {
-  return (
-    <aside className="va10058-readout">
-      <h3>{challenge ? "Your results" : "Angle Measures"}</h3>
-      <AngleGrid angle={angle} />
-      {!challenge && (
-        <>
-          <hr />
-          <h3>Opposite (Vertical) Pairs</h3>
-          <p>
-            ∠1 = ∠3 <Check />
-          </p>
-          <p>
-            ∠2 = ∠4 <Check />
-          </p>
-          <hr />
-          <h3>Adjacent (Linear Pair) Sums</h3>
-          {[
-            "∠1 + ∠2 = 180°",
-            "∠2 + ∠3 = 180°",
-            "∠3 + ∠4 = 180°",
-            "∠4 + ∠1 = 180°",
-          ].map((x) => (
-            <p key={x}>
-              {x}
-              <Check />
-            </p>
-          ))}
-        </>
-      )}
-      {challenge && <strong>Great! All results are correct.</strong>}
-    </aside>
-  );
-}
-function AngleGrid({ angle }: { angle: number }) {
-  return (
-    <div className="va10058-values">
-      {[angle, 180 - angle, angle, 180 - angle].map((v, i) => (
-        <span key={i}>
-          ∠{i + 1}
-          <b>{v}°</b>
-          <Check />
-        </span>
-      ))}
-    </div>
-  );
-}
-function MiniDiagram({ adjacent = false }: { adjacent?: boolean }) {
-  return (
-    <svg className="va10058-mini" viewBox="0 0 180 130">
-      <line x1="20" y1="110" x2="160" y2="15" />
-      <line x1="25" y1="20" x2="155" y2="115" />
-      <path className="blue" d="M90 65 L68 49 A28 28 0 0 1 112 49Z" />
-      <path
-        className={adjacent ? "green" : "purple"}
-        d={
-          adjacent
-            ? "M90 65 L112 49 A28 28 0 0 1 115 85Z"
-            : "M90 65 L112 81 A28 28 0 0 1 68 81Z"
-        }
-      />
-    </svg>
-  );
-}
+function AngleInk({state,labels=false,selection='all'}:{state:VAState10058;labels?:boolean;selection?:'all'|'opposite'|'adjacent'}){const m=vaModel10058(state);return <>{m.proper?m.arms.map((a,i)=>{const b=m.arms[(i+1)%4],p=m.point(a),q=m.point(b),s=paSector10074(m.origin,p,q,45),dx=a.x+b.x,dy=a.y+b.y,len=Math.hypot(dx,dy),label={x:300+90*dx/len,y:230+90*dy/len},active=selection==='all'||(selection==='opposite'?[0,2]:[0,1]).includes(i);return s&&<g key={i} className={`va10058-angle c${i} ${active?'':'va10058-muted'}`} data-angle-index={i+1} data-measure={m.values[i]} data-ray-a={`${a.x},${a.y}`} data-ray-b={`${b.x},${b.y}`}><path d={s.path}/>{labels&&<><text className="va10058-number" x={label.x} y={label.y-12} textAnchor="middle">{i+1}</text><text className="va10058-angle-value" x={label.x} y={label.y+14} textAnchor="middle">{fmt(m.values[i])}</text></>}</g>;}):<text x="300" y="130" textAnchor="middle">Coincident lines: four interior angles are undefined.</text>}</>;}
+function AngleReadout({state}:{state:VAState10058}){const m=vaModel10058(state);return <aside className="va10058-readout"><h3>Angle Measures</h3><AngleGrid values={m.values}/><hr/><h3>Opposite (Vertical) Pairs</h3><p>∠1 = ∠3 {m.proper&&<Check/>}</p><p>∠2 = ∠4 {m.proper&&<Check/>}</p><hr/><h3>Adjacent (Linear Pair) Sums</h3>{['∠1 + ∠2 = 180°','∠2 + ∠3 = 180°','∠3 + ∠4 = 180°','∠4 + ∠1 = 180°'].map(s=><p key={s}>{s}{m.proper&&<Check/>}</p>)}</aside>;}
+function AngleGrid({values}:{values:(number|null)[]}){return <div className="va10058-values">{values.map((v,i)=><span key={i}><i/>∠{i+1}<b>{fmt(v)}</b></span>)}</div>;}
+function MiniDiagram({selection='all'}:{selection?:'all'|'opposite'|'adjacent'}){const m=vaModel10058(vaInitial10058);return <svg className="va10058-mini" viewBox="170 100 260 260" aria-label={selection==='adjacent'?'Adjacent angles1 and2 share a ray':selection==='opposite'?'Opposite angles1 and3 share no ray':'Four angles formed by two intersecting lines'}><AngleInk state={vaInitial10058} selection={selection}/>{(['p','q']as const).map(line=><line key={line} x1={m.endpoints[line][0].x} y1={m.endpoints[line][0].y} x2={m.endpoints[line][1].x} y2={m.endpoints[line][1].y}/>)}</svg>;}

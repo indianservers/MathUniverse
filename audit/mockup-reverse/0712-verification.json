@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "blocked"
+    },
+    {
+      "width": 1680,
+      "state": "diagonal"
+    },
+    {
+      "width": 1680,
+      "state": "fractional"
+    },
+    {
+      "width": 1680,
+      "state": "coincident"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "blocked"
+    },
+    {
+      "width": 1280,
+      "state": "diagonal"
+    },
+    {
+      "width": 1280,
+      "state": "fractional"
+    },
+    {
+      "width": 1280,
+      "state": "coincident"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "blocked"
+    },
+    {
+      "width": 768,
+      "state": "diagonal"
+    },
+    {
+      "width": 768,
+      "state": "fractional"
+    },
+    {
+      "width": 768,
+      "state": "coincident"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "blocked"
+    },
+    {
+      "width": 390,
+      "state": "diagonal"
+    },
+    {
+      "width": 390,
+      "state": "fractional"
+    },
+    {
+      "width": 390,
+      "state": "coincident"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual9km route and sqrt41 displacement",
+    "all four rendered closures and long-edge collision checks",
+    "shortest legal preview/load, active clear and waypoint edits",
+    "inverse-CTM mouse/letterbox and fractional snaps",
+    "no-op/cancel/lost-capture restoration and no extra waypoints",
+    "overlapping endpoint drag and keyboard movement",
+    "native touch and touch cancel",
+    "actual challenge endpoint/9km/turns/closures, solution independence and transfer",
+    "map switches/bookmark/tabs/navigation and20 responsive cases"
+  ]
+}

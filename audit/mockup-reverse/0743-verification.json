@@ -1,0 +1,324 @@
+{
+  "status": "passed",
+  "errors": [],
+  "states": [
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "None"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Translate"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Rotate"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Flip"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        6,
+        6,
+        7
+      ],
+      "congruent": false,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        7
+      ],
+      "congruent": true,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        10,
+        10,
+        10
+      ],
+      "b": [
+        10,
+        10,
+        10
+      ],
+      "congruent": true,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        10,
+        3,
+        7
+      ],
+      "b": [
+        10,
+        3,
+        7
+      ],
+      "congruent": false,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        10,
+        1,
+        7
+      ],
+      "b": [
+        10,
+        1,
+        7
+      ],
+      "congruent": false,
+      "mode": "Perfect Overlay"
+    },
+    {
+      "a": [
+        5,
+        6,
+        7
+      ],
+      "b": [
+        5,
+        6,
+        3
+      ],
+      "congruent": false,
+      "mode": "Perfect Overlay"
+    }
+  ],
+  "layouts": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "large",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "large",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "large",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "large",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "flat",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "flat",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "flat",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "flat",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "impossible",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "impossible",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "impossible",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "impossible",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "unlinked",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "unlinked",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "unlinked",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "unlinked",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

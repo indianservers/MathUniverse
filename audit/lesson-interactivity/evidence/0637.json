@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/discrete-and-applied-mathematics/580-travelling-salesperson",
+  "action": {
+    "control": "Clear order",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    },
+    {
+      "width": 768,
+      "client": 732,
+      "scroll": 732
+    },
+    {
+      "width": 1440,
+      "client": 1404,
+      "scroll": 1404
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

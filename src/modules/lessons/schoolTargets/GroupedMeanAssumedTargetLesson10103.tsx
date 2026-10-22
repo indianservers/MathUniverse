@@ -12,7 +12,8 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GroupedMeanAssumedTargetLesson10103.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{groupedMeanStepModel}from "./groupedMeanStepModel";
+import MathExpression from "../../../components/ui/MathExpression";
 
 type MeanRow = { id: number; lower: number; upper: number; frequency: number };
 const defaults: MeanRow[] = [
@@ -36,42 +37,30 @@ export default function GroupedMeanAssumedTargetLesson10103({
   const [editing, setEditing] = useState(false);
   const [actions, setActions] = useState(0);
   const lineRef = useRef<SVGSVGElement>(null);
-  const enriched = rows.map((row) => {
-    const midpoint = (row.lower + row.upper) / 2;
-    const deviation = midpoint - assumed;
-    return { ...row, midpoint, deviation, product: row.frequency * deviation };
-  });
-  const totalFrequency = enriched.reduce((sum, row) => sum + row.frequency, 0);
-  const totalDeviation = enriched.reduce((sum, row) => sum + row.product, 0);
-  const mean = totalFrequency ? assumed + totalDeviation / totalFrequency : 0;
-  const directMean = totalFrequency
-    ? enriched.reduce((sum, row) => sum + row.frequency * row.midpoint, 0) /
-      totalFrequency
-    : 0;
-  const invariant = Math.abs(mean - directMean) < 0.0001;
-  const markerX = 30 + (assumed / 50) * 580;
+  const {enriched,totalFrequency,totalStep:totalDeviation,mean}=groupedMeanStepModel(rows,assumed,1);
+  const directMean=mean,invariant=mean!==null&&Math.abs(assumed+totalDeviation/totalFrequency-mean)<=1e-8*Math.max(1,Math.abs(mean));
+  const [draftKey,setDraftKey]=useState<string|null>(null),[draft,setDraft]=useState(''),[error,setError]=useState('');
+  const frame=useRef<{min:number;max:number}|null>(null);
+  const minX=frame.current?.min??Math.min(rows[0].lower,assumed),maxX=frame.current?.max??Math.max(rows.at(-1)!.upper,assumed);
+  const sx=(x:number)=>30+(x-minX)/(maxX-minX)*580,markerX=sx(assumed);
+  const meanText=mean===null?'—':String(round(mean));
 
   const act = (fn: () => void) => {
     fn();
     setActions((value) => value + 1);
   };
-  const setA = (value: number) =>
-    setAssumed(Math.max(0, Math.min(50, round(value, 1))));
-  const updateRow = (id: number, patch: Partial<MeanRow>) =>
-    setRows((current) =>
-      current.map((row) => (row.id === id ? { ...row, ...patch } : row)),
-    );
-  const updateMarker = (event: PointerEvent<SVGSVGElement>) => {
-    const box = lineRef.current?.getBoundingClientRect();
-    if (!box) return;
-    const x = ((event.clientX - box.left) / box.width) * 640;
-    setA(((Math.max(30, Math.min(610, x)) - 30) / 580) * 50);
-  };
+  const setA=(value:number)=>{if(Number.isFinite(value))setAssumed(Math.max(-1e9,Math.min(1e9,round(value,3))));};
+  const updateRow=(id:number,patch:Partial<MeanRow>)=>setRows(current=>current.map(row=>row.id===id?{...row,...patch}:row));
+  const edit=(key:string,text:string,apply:(v:number)=>void,okay:(v:number)=>boolean)=>{setDraftKey(key);setDraft(text);const v=text.trim()===''?NaN:Number(text);if(!Number.isFinite(v)||!okay(v)){setError('Use finite ordered boundaries, whole nonnegative frequencies and a finite assumed mean.');return;}setError('');act(()=>apply(v));};
+  const inputValue=(key:string,v:number)=>draftKey===key?draft:v;
+  const blur=()=>{setDraftKey(null);setError('');};
+  const updateMarker=(event:PointerEvent<SVGSVGElement>)=>{if(!lineRef.current)return;const m=lineRef.current.getScreenCTM();if(!m)return;const pt=new DOMPoint(event.clientX,event.clientY).matrixTransform(m.inverse());setA(minX+Math.max(0,Math.min(1,(pt.x-30)/580))*(maxX-minX));};
+
   const reset = () =>
     act(() => {
       setRows(defaults);
       setAssumed(25);
-      setEditing(false);
+      setEditing(false);setDragging(false);frame.current=null;setDraftKey(null);setError('');
     });
 
   return (
@@ -82,14 +71,16 @@ export default function GroupedMeanAssumedTargetLesson10103({
       data-assumed-mean={assumed}
       data-total-frequency={round(totalFrequency)}
       data-total-deviation={round(totalDeviation)}
-      data-mean={round(mean)}
-      data-direct-mean={round(directMean)}
+      data-mean={mean===null?"none":mean}
+      data-exact-deviation={totalDeviation}
+      data-direct-mean={directMean===null?"none":directMean}
       data-invariant={String(invariant)}
       data-actions={actions}
     >
-      <header className="gma10103-hero">
+      <div className="gma10103-hero">
         <div>
           <small>CLASS 10 · STATISTICS</small>
+          <Link className="gma10103-school" to="/lessons/school">← School lessons</Link>
           <h1>Grouped Mean by Assumed Mean</h1>
           <p>
             Use a convenient assumed mean A to simplify calculations. The final
@@ -105,7 +96,7 @@ export default function GroupedMeanAssumedTargetLesson10103({
         <button onClick={reset}>
           <RotateCcw /> Reset all
         </button>
-      </header>
+      </div>
       <main>
         <section className="gma10103-workbench">
           <h2>
@@ -125,23 +116,25 @@ export default function GroupedMeanAssumedTargetLesson10103({
               </thead>
               <tbody>
                 {enriched.map((row, index) => (
-                  <tr key={row.id}>
+                  <tr key={row.id} data-row-id={row.id} data-midpoint={row.midpoint} data-deviation={row.deviation} data-product={row.product}>
                     <td>
                       <input
                         aria-label={`Lower bound row ${index + 1}`}
                         type="number"
-                        value={row.lower}
+                        value={inputValue(`lower-${row.id}`,row.lower)}
+                        onBlur={blur} step="any"
                         onChange={(event) =>
-                          updateRow(row.id, { lower: +event.target.value })
+                          edit(`lower-${row.id}`,event.target.value,v=>updateRow(row.id,{lower:v}),v=>v<row.upper&&(index===0||v>=rows[index-1].upper))
                         }
                       />
                       <span>–</span>
                       <input
                         aria-label={`Upper bound row ${index + 1}`}
                         type="number"
-                        value={row.upper}
+                        value={inputValue(`upper-${row.id}`,row.upper)}
+                        onBlur={blur} step="any"
                         onChange={(event) =>
-                          updateRow(row.id, { upper: +event.target.value })
+                          edit(`upper-${row.id}`,event.target.value,v=>updateRow(row.id,{upper:v}),v=>v>row.lower&&(index===rows.length-1||v<=rows[index+1].lower))
                         }
                       />
                     </td>
@@ -150,11 +143,10 @@ export default function GroupedMeanAssumedTargetLesson10103({
                         aria-label={`Frequency row ${index + 1}`}
                         type="number"
                         min="0"
-                        value={row.frequency}
+                        value={inputValue(`frequency-${row.id}`,row.frequency)}
+                        onBlur={blur} max="1000000" step="1"
                         onChange={(event) =>
-                          updateRow(row.id, {
-                            frequency: Math.max(0, +event.target.value),
-                          })
+                          edit(`frequency-${row.id}`,event.target.value,v=>updateRow(row.id,{frequency:v}),v=>Number.isInteger(v)&&v>=0&&v<=1e6)
                         }
                       />
                     </td>
@@ -199,6 +191,7 @@ export default function GroupedMeanAssumedTargetLesson10103({
               </tfoot>
             </table>
           </div>
+          {error&&<p role="alert">{error}</p>}
           <aside>
             <TriangleAlert />
             <p>
@@ -213,7 +206,7 @@ export default function GroupedMeanAssumedTargetLesson10103({
         </section>
         <section className="gma10103-model">
           <article>
-            <header>
+            <div className="gma10103-heading">
               <h2>
                 <b>2</b> ASSUMED MEAN ON NUMBER LINE
               </h2>
@@ -224,10 +217,11 @@ export default function GroupedMeanAssumedTargetLesson10103({
                     <input
                       aria-label="Assumed mean"
                       type="number"
-                      min="0"
-                      max="50"
-                      value={assumed}
-                      onChange={(event) => setA(+event.target.value)}
+                      min="-1000000000"
+                      max="1000000000" step="any"
+                      value={inputValue('A',assumed)}
+                      onBlur={blur}
+                      onChange={event=>edit('A',event.target.value,setA,v=>Math.abs(v)<=1e9)}
                     />
                   )}
                 </label>
@@ -237,7 +231,7 @@ export default function GroupedMeanAssumedTargetLesson10103({
                 >
                   <Minus />
                 </button>
-                <strong>{assumed.toFixed(1)}</strong>
+                <strong>{assumed}</strong>
                 <button
                   aria-label="Increase assumed mean"
                   onClick={() => act(() => setA(assumed + 1))}
@@ -246,45 +240,50 @@ export default function GroupedMeanAssumedTargetLesson10103({
                 </button>
                 <button
                   aria-label="Edit assumed mean"
+                  aria-pressed={editing}
                   onClick={() => act(() => setEditing((value) => !value))}
                 >
                   <Edit3 />
                 </button>
               </div>
-            </header>
+            </div>
             <p>Choose A. Deviations dᵢ = xᵢ − A update automatically.</p>
             <svg
               ref={lineRef}
               viewBox="0 0 640 190"
               aria-label="Assumed mean number line"
               onPointerMove={(event) => dragging && updateMarker(event)}
-              onPointerUp={() => dragging && act(() => setDragging(false))}
-              onPointerLeave={() => dragging && act(() => setDragging(false))}
+              onPointerUp={event=>{if(dragging)updateMarker(event);frame.current=null;act(()=>setDragging(false));}}
+              onPointerCancel={()=>{frame.current=null;setDragging(false);}}
             >
+              <defs><marker id="gma10103-neg-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#ff5728" stroke="none"/></marker><marker id="gma10103-pos-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#71d35a" stroke="none"/></marker></defs>
               <line className="axis" x1="30" y1="75" x2="610" y2="75" />
               {Array.from({ length: 51 }, (_, i) => (
                 <line
                   key={i}
-                  x1={30 + i * 11.6}
+                  x1={30+i/50*580}
                   y1={i % 5 === 0 ? 68 : 72}
-                  x2={30 + i * 11.6}
+                  x2={30+i/50*580}
                   y2={i % 5 === 0 ? 82 : 78}
                 />
               ))}
-              {[0, 10, 20, 30, 40, 50].map((tick) => (
-                <text key={tick} x={26 + tick * 11.6} y="98">
-                  {tick}
+              {Array.from({length:6},(_,i)=>minX+i/5*(maxX-minX)).map((tick) => (
+                <text key={tick} x={sx(tick)} textAnchor="middle" y="98">
+                  {round(tick)}
                 </text>
               ))}
               {enriched.map((row, index) => {
-                const x = 30 + (row.midpoint / 50) * 580;
+                const x=sx(row.midpoint);
                 return (
-                  <g key={row.id} onClick={() => act(() => setA(row.midpoint))}>
+                  <g key={row.id} data-deviation-id={row.id} role="button" tabIndex={0} aria-label={`Set assumed mean to midpoint ${row.midpoint}`} onKeyDown={event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();act(()=>setA(row.midpoint));}}} onClick={() => act(() => setA(row.midpoint))}>
                     <circle cx={x} cy="68" r="6" />
-                    <text x={x - 5} y="45">
+                    <text textAnchor="middle" x={x} y="45">
                       {round(row.midpoint)}
                     </text>
                     <path
+                      data-deviation-arrow={row.id}
+                      style={{display:row.deviation===0?'none':undefined}}
+                      markerEnd={`url(#gma10103-${row.deviation<0?'neg':'pos'}-arrow)`}
                       className={
                         row.deviation < 0
                           ? "negative"
@@ -302,8 +301,8 @@ export default function GroupedMeanAssumedTargetLesson10103({
                             ? "positive"
                             : "zero"
                       }
-                      x={(markerX + x) / 2 - 8}
-                      y={142 + index * 7}
+                      x={x} textAnchor="middle"
+                      y={148}
                     >
                       {round(row.deviation)}
                     </text>
@@ -318,14 +317,15 @@ export default function GroupedMeanAssumedTargetLesson10103({
                 role="slider"
                 tabIndex={0}
                 aria-label="Assumed mean marker"
-                aria-valuemin="0"
-                aria-valuemax="50"
+                aria-valuemin={minX}
+                aria-valuemax={maxX}
                 aria-valuenow={assumed}
                 onPointerDown={(event) => {
                   event.currentTarget.setPointerCapture(event.pointerId);
-                  act(() => setDragging(true));
+                  frame.current={min:minX,max:maxX};act(() => setDragging(true));
                 }}
                 onKeyDown={(event) => {
+                  event.stopPropagation();
                   if (event.key === "ArrowLeft") {
                     event.preventDefault();
                     act(() => setA(assumed - 1));
@@ -352,25 +352,16 @@ export default function GroupedMeanAssumedTargetLesson10103({
               <h2>
                 <b>3</b> MEAN USING ASSUMED MEAN METHOD
               </h2>
-              <p>x̄ = A + Σfᵢdᵢ / Σfᵢ</p>
-              <p>
-                = {assumed.toFixed(1)} + {round(totalDeviation)} /{" "}
-                {round(totalFrequency)}
-              </p>
-              <p>
-                = {assumed.toFixed(1)} +{" "}
-                {(totalDeviation / totalFrequency).toFixed(2)}
-              </p>
-              <strong>= {mean.toFixed(2)}</strong>
+              {mean===null?<p>No observations: the mean is undefined.</p>:<><p><MathExpression value={String.raw`\bar{x}=A+\frac{\sum_{i} f_i d_i}{\sum_{i} f_i}`}/></p><p><MathExpression value={String.raw`=${assumed}+\frac{${round(totalDeviation,4)}}{${totalFrequency}}`}/></p><p><MathExpression value={String.raw`=${assumed}+(${round(totalDeviation/totalFrequency,4)})`}/></p><strong>= {meanText}</strong></>}
+
             </div>
             <aside>
               <h3>Mean (invariant)</h3>
-              <strong>{mean.toFixed(2)}</strong>
+              <strong>{meanText}</strong>
               <p>
-                The mean remains {directMean.toFixed(2)} for any valid choice of
-                A.
+                {mean===null?'Enter at least one observation to calculate the mean.':`The mean remains ${meanText} for any valid choice of A.`}
               </p>
-              <b>{invariant ? "Verified" : "Check data"}</b>
+              <b>{mean===null?"No observations":invariant?"Verified":"Check data"}</b>
             </aside>
           </article>
         </section>
@@ -394,7 +385,7 @@ export default function GroupedMeanAssumedTargetLesson10103({
         </div>
         <p>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</p>
       </footer>
-      <LessonTopicStudyBoard lessonId={10103} alwaysVisible />
+
 
     </section>
   );

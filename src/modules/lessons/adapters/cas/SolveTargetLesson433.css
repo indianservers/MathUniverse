@@ -746,3 +746,11 @@ body:has(.sol433-page) .lesson-adjacent-nav {
     height: 61px;
   }
 }
+
+@media(max-width:900px){.sol433-page .sol433-flow,.sol433-page .sol433-body,.sol433-page .sol433-inputs,.sol433-page .sol433-side,.sol433-page .sol433-bottom{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.sol433-page .sol433-flow>*,.sol433-page .sol433-body>*,.sol433-page .sol433-inputs>*,.sol433-page .sol433-side>*,.sol433-page .sol433-bottom>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.sol433-page .sol433-flow article>svg:last-child{position:static}.sol433-page .sol433-inputs{gap:10px}.sol433-page .sol433-bottom article:first-child>div,.sol433-page .sol433-bottom label,.sol433-page .sol433-bottom em{position:static;width:auto;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.sol433-page input{min-width:0;max-width:100%}}
+
+@media(max-width:900px){.sol433-lab>header,.sol433-lab>header>div{height:auto;flex-wrap:wrap;gap:8px}.sol433-lab>header>*{min-width:0;max-width:100%}}
+
+@media(max-width:900px){.sol433-lab>footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.sol433-lab>footer>*{min-width:0;max-width:100%}}

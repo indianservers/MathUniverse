@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/354-matrix-inverse",
+  "action": {
+    "control": "Inverse matrix row 1 column 1",
+    "before": "2",
+    "after": "3",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 348,
+      "scroll": 348
+    },
+    {
+      "width": 768,
+      "client": 726,
+      "scroll": 726
+    },
+    {
+      "width": 1440,
+      "client": 1398,
+      "scroll": 1398
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

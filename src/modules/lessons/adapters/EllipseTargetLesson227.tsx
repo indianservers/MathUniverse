@@ -1,3 +1,4 @@
+import "./EllipseTargetLesson227.css";
 import {
   ArrowLeft,
   ArrowRight,

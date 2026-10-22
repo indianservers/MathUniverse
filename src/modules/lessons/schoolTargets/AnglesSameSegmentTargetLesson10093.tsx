@@ -10,10 +10,13 @@ import {
 } from "lucide-react";
 import { type PointerEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import {createPortal} from "react-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AnglesSameSegmentTargetLesson10093.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
+import MathExpression from "../../../components/ui/MathExpression";
+import {sameSegmentModel,safeSegmentPosition,segmentAngleLabel} from "./sameSegmentModel";
+import {cyclicSector} from "./oppositeCyclicModel";
+
 
 type PointName = "C" | "D";
 type Point = { x: number; y: number };
@@ -21,17 +24,7 @@ const A_ANGLE = 218;
 const B_ANGLE = 322;
 const round = (value: number, places = 1) =>
   Math.round(value * 10 ** places) / 10 ** places;
-const unit = (degrees: number): Point => ({
-  x: Math.cos((degrees * Math.PI) / 180),
-  y: Math.sin((degrees * Math.PI) / 180),
-});
-const angleAt = (p: Point, a: Point, b: Point) => {
-  const u = { x: a.x - p.x, y: a.y - p.y };
-  const v = { x: b.x - p.x, y: b.y - p.y };
-  const cosine =
-    (u.x * v.x + u.y * v.y) / (Math.hypot(u.x, u.y) * Math.hypot(v.x, v.y));
-  return round((Math.acos(Math.max(-1, Math.min(1, cosine))) * 180) / Math.PI);
-};
+function SegmentFigure({opposite=false}:{opposite?:boolean}){const m=sameSegmentModel(125,opposite?270:55,opposite?218:212,opposite?322:328),project=(p:Point)=>({x:160+p.x*100,y:145-p.y*100}),a=project(m.a),b=project(m.b),c=project(m.c),d=project(m.d);return <svg className="ass10093-mini-svg" viewBox="0 0 320 290" role="img" aria-label={opposite?'Opposite segments with angles52 and128 degrees':'Worked example with two58degree inscribed angles'}><circle className="circle" cx="160" cy="145" r="100"/><path className="chord" d={`M${a.x} ${a.y}L${b.x} ${b.y}`}/>{[c,d].map((p,i)=>{const label=segmentAngleLabel(p,a,b,30);return <g key={i}><path className="side" d={`M${a.x} ${a.y}L${p.x} ${p.y}L${b.x} ${b.y}`}/><path className="angle-sector" d={cyclicSector(p,a,b,18)}/><text className="angle-label" x={label.x} y={label.y} textAnchor="middle">{(i?m.angleD:m.angleC)?.toFixed(0)}°</text></g>;})}{[['A',a],['B',b],['C',c],['D',d]].map(([n,p])=>{const q=p as Point;return <g key={n as string}><circle className={n==='A'||n==='B'?'fixed':'drag-point'} cx={q.x} cy={q.y} r="4"/><text className={n==='C'||n==='D'?'point-label':''} x={160+(q.x-160)*1.13} y={145+(q.y-145)*1.13}>{n as string}</text></g>;})}<circle className="center" cx="160" cy="145" r="3"/><text x="167" y="138">O</text></svg>;}
 
 export default function AnglesSameSegmentTargetLesson10093({
   lesson: _lesson,
@@ -62,17 +55,8 @@ export default function AnglesSameSegmentTargetLesson10093({
     fn();
     setActions((value) => value + 1);
   };
-  const a = unit(A_ANGLE);
-  const b = unit(B_ANGLE);
-  const c = unit(angles.C);
-  const d = unit(angles.D);
-  const angleC = angleAt(c, a, b);
-  const angleD = angleAt(d, a, b);
-  const chordSide = (p: Point) =>
-    Math.sign((b.x - a.x) * (p.y - a.y) - (b.y - a.y) * (p.x - a.x));
-  const sameSegment = chordSide(c) === chordSide(d);
-  const difference = round(Math.abs(angleC - angleD));
-  const sum = round(angleC + angleD);
+  const geometry=sameSegmentModel(angles.C,angles.D,A_ANGLE,B_ANGLE),{a,b,c,d,sameSegment}=geometry;
+  const angleC=geometry.angleC??0,angleD=geometry.angleD??0,difference=geometry.difference??0,sum=geometry.sum??0;
   const correct = answer === (sameSegment ? "equal" : "supplementary");
   const cx = 355,
     cy = 260,
@@ -86,43 +70,39 @@ export default function AnglesSameSegmentTargetLesson10093({
     pc = screen(c),
     pd = screen(d);
   const setPoint = (name: PointName, degrees: number) => {
-    const normalized = (degrees + 360) % 360;
-    setAngles((value) => ({ ...value, [name]: normalized }));
+    setAngles(value=>({...value,[name]:safeSegmentPosition(degrees,value[name])}));
     setAnswer(null);
   };
   const pointerAngle = (event: PointerEvent<SVGSVGElement>) => {
-    const box = svgRef.current?.getBoundingClientRect();
-    if (!box) return 0;
-    const x = ((event.clientX - box.left) / box.width) * 710 - cx;
-    const y = cy - ((event.clientY - box.top) / box.height) * 520;
-    let degrees = (Math.atan2(y, x) * 180) / Math.PI;
-    if (degrees < 0) degrees += 360;
-    return degrees;
+    const matrix=svgRef.current?.getScreenCTM();if(!matrix)return 0;const p=new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse());return Math.atan2(cy-p.y,p.x-cx)*180/Math.PI;
   };
+  const finishPointer=(e:PointerEvent<SVGSVGElement>)=>{if(dragging){setPoint(dragging,pointerAngle(e));act(()=>setDragging(null));}};
+  const navigateTab=(i:number)=>{act(()=>setTab(i));const selectors=['.ass10093-explore','.ass10093-why','.ass10093-cards article:first-child','.ass10093-why','.ass10093-challenge'];svgRef.current?.closest('main')?.querySelector(selectors[i])?.scrollIntoView({behavior:'smooth',block:'start'});};
   const reset = () =>
     act(() => {
       setAngles({ C: 125, D: 55 });
       setDragging(null);
-      setAnswer(null);
+      setAnswer(null);setTab(0);
     });
 
-  return (
+  const content=(
     <section
       className="ass10093-page"
       data-testid="school-mockup-0767"
       data-object-model="dedicated-two-point-same-segment-inscribed-angle-engine"
       data-c-angle={round(angles.C)}
       data-d-angle={round(angles.D)}
-      data-angle-c={angleC}
-      data-angle-d={angleD}
-      data-difference={difference}
-      data-sum={sum}
+      data-angle-c={round(angleC)}
+      data-angle-d={round(angleD)}
+      data-difference={round(difference)}
+      data-sum={round(sum)}
       data-relation={sameSegment ? "equal" : "supplementary"}
       data-answer={answer ?? "none"}
       data-correct={String(correct)}
+      data-exact-c-position={angles.C} data-exact-d-position={angles.D} data-exact-angle-c={angleC} data-exact-angle-d={angleD} data-exact-sum={sum} data-exact-difference={difference}
       data-actions={actions}
     >
-      <header className="ass10093-hero">
+      <div className="ass10093-hero"><Link className="ass10093-school" to="/lessons/school">← School lessons</Link>
         <small>CLASS 10 · CIRCLE PROOFS</small>
         <h1>Angles in the Same Segment</h1>
         <p>
@@ -135,26 +115,26 @@ export default function AnglesSameSegmentTargetLesson10093({
           <span>PROOF</span>
           <span>geometry2d</span>
         </div>
-      </header>
-      <nav className="ass10093-tabs">
+      </div>
+      <div className="ass10093-tabs" role="group" aria-label="Lesson sections">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map(
           (label, index) => (
             <button
               key={label}
               className={tab === index ? "active" : ""}
-              onClick={() => act(() => setTab(index))}
+              aria-pressed={tab===index} onClick={() => navigateTab(index)}
             >
               {label}
             </button>
           ),
         )}
-      </nav>
+      </div>
       <main>
         <section className="ass10093-explore">
-          <header>
+          <div className="ass10093-explore-heading">
             <h2>Explore the theorem</h2>
             <p>Drag points C and D along the circle.</p>
-          </header>
+          </div>
           <aside>
             <div
               className={
@@ -187,8 +167,7 @@ export default function AnglesSameSegmentTargetLesson10093({
               </p>
             </div>
             <p className="notice">
-              <Info /> C and D may move anywhere on the circle. Their chord-side
-              relation drives the result.
+              <Info /> Move C and D to either side of chord AB. A small clearance from A and B keeps both angles defined.
             </p>
           </aside>
           <article
@@ -212,12 +191,11 @@ export default function AnglesSameSegmentTargetLesson10093({
               ref={svgRef}
               viewBox="0 0 710 520"
               aria-label="Two draggable angles standing on chord AB"
-              {...lessonGraphInkProps}
               onPointerMove={(event) =>
                 dragging && setPoint(dragging, pointerAngle(event))
               }
-              onPointerUp={() => dragging && act(() => setDragging(null))}
-              onPointerLeave={() => dragging && act(() => setDragging(null))}
+              onPointerUp={finishPointer}
+              onPointerCancel={()=>setDragging(null)}
             >
               <defs>
                 <pattern
@@ -235,7 +213,6 @@ export default function AnglesSameSegmentTargetLesson10093({
                 height="520"
                 fill="url(#ass-dots)"
               />
-              <LessonGraphInkLegend />
               <circle className="circle" cx={cx} cy={cy} r={radius} />
               <line className="radius" x1={cx} y1={cy} x2={pa.x} y2={pa.y} />
               <line className="radius" x1={cx} y1={cy} x2={pb.x} y2={pb.y} />
@@ -262,6 +239,7 @@ export default function AnglesSameSegmentTargetLesson10093({
               <text x={cx + 8} y={cy - 8}>
                 O
               </text>
+              <path className="central-sector" d={cyclicSector({x:cx,y:cy},pa,pb,44)}/>
               <text className="central-label" x={cx - 42} y={cy + 86}>
                 ∠AOB = 104.0°
               </text>
@@ -277,6 +255,7 @@ export default function AnglesSameSegmentTargetLesson10093({
                 const p = name === "C" ? pc : pd;
                 return (
                   <g key={name}>
+                    <path className="angle-sector" d={cyclicSector(p,pa,pb,30)}/>
                     <circle
                       className="drag-point"
                       cx={p.x}
@@ -292,7 +271,7 @@ export default function AnglesSameSegmentTargetLesson10093({
                         event.currentTarget.setPointerCapture(event.pointerId);
                         act(() => setDragging(name));
                       }}
-                      onKeyDown={(event) => {
+                      onKeyDown={(event) => {event.stopPropagation();
                         if (event.key === "ArrowLeft") {
                           event.preventDefault();
                           act(() => setPoint(name, angles[name] + 3));
@@ -303,7 +282,7 @@ export default function AnglesSameSegmentTargetLesson10093({
                         }
                         if (event.key === "ArrowDown") {
                           event.preventDefault();
-                          act(() => setPoint(name, 270));
+                          act(() => setPoint(name, angles[name]>218&&angles[name]<322?90:270));
                         }
                       }}
                     />
@@ -313,23 +292,16 @@ export default function AnglesSameSegmentTargetLesson10093({
                   </g>
                 );
               })}
-              <text className="angle-label" x={pc.x - 26} y={pc.y + 54}>
-                {angleC.toFixed(1)}°
-              </text>
-              <text className="angle-label" x={pd.x - 8} y={pd.y + 54}>
-                {angleD.toFixed(1)}°
-              </text>
+              {[pc,pd].map((p,i)=>{const label=segmentAngleLabel(p,pa,pb);return <text key={i} className="angle-label" x={label.x} y={label.y} textAnchor="middle">{(i?angleD:angleC).toFixed(1)}°</text>;})}
             </svg>
           </article>
         </section>
 
         <section className="ass10093-why">
           <h2>Why this is true</h2>
-          <p>
-            The central angle subtended by chord AB is twice the angle at the
-            circumference standing on the same chord in the same segment.
-          </p>
-          <p>So ∠ACB = ∠ADB = ½ ∠AOB = ½ × 104.0° = 52.0°.</p>
+          <p>An inscribed angle equals half the central angle for its intercepted arc, the arc that does not contain the vertex.</p>
+          {sameSegment?<MathExpression value={`\\angle ACB=\\angle ADB=\\frac12\\times ${geometry.interceptedC?.toFixed(1)}^\\circ=${angleC.toFixed(1)}^\\circ`}/>:<MathExpression value={String.raw`\angle ACB+\angle ADB=\frac12(104^\circ+256^\circ)=180^\circ`}/>}
+          <p>{sameSegment?(angleC>90?'Both points lie on the minor segment; they intercept the 256° major arc.':'Both points lie on the major segment; they intercept the 104° minor arc.'):'Opposite segments intercept the two arcs that make the full circle, so the angles are supplementary.'}</p>
         </section>
 
         <section className="ass10093-cards">
@@ -339,12 +311,7 @@ export default function AnglesSameSegmentTargetLesson10093({
               In the figure, AB is a chord of a circle with centre O. ∠ACB =
               58°. Find ∠ADB.
             </p>
-            <div className="mini same">
-              <i>C</i>
-              <i>D</i>
-              <b>A</b>
-              <b>B</b>
-            </div>
+            <SegmentFigure/>
             <p>
               <b>Solution</b>
             </p>
@@ -357,12 +324,7 @@ export default function AnglesSameSegmentTargetLesson10093({
             </h2>
             <p>Points on opposite segments do not give equal angles.</p>
             <p>They give supplementary angles.</p>
-            <div className="mini opposite">
-              <i>C</i>
-              <i>D</i>
-              <b>A</b>
-              <b>B</b>
-            </div>
+            <SegmentFigure opposite/>
             <strong>
               If C and D lie on opposite segments of AB, then ∠ACB + ∠ADB =
               180°.
@@ -408,7 +370,7 @@ export default function AnglesSameSegmentTargetLesson10093({
             </button>
           </div>
           {answer && (
-            <strong className={correct ? "correct" : "incorrect"}>
+            <strong role="status" aria-live="polite" className={correct ? "correct" : "incorrect"}>
               {correct
                 ? "Correct. The classification matches the current geometry."
                 : "Check which side of chord AB contains each point."}
@@ -427,8 +389,9 @@ export default function AnglesSameSegmentTargetLesson10093({
           </Link>
         </nav>
       </main>
-      <LessonTopicStudyBoard lessonId={10093} view={tab} />
+      <footer className="ass10093-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
+  return visualFullscreen?createPortal(content,document.body):content;
 }

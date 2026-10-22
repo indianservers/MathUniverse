@@ -530,3 +530,5 @@ body:has(.loan597-page) footer[aria-label="Site footer"] {
     height: auto;
   }
 }
+
+.loan597-page .loan597-lower > article { min-width: 0; overflow-x: auto; }

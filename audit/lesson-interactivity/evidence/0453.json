@@ -1,0 +1,27 @@
+{
+  "checks": [
+    "keyboard point movement",
+    "pointer point dragging",
+    "fitted curve",
+    "responsive layout",
+    "lesson-specific mathematical feedback"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

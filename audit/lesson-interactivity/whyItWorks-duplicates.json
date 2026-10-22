@@ -1,0 +1,23 @@
+[
+  [
+    "Area Between Curves works because the definition forces one consistent calculation.",
+    [
+      "311: Area Between Curves",
+      "10185: Area Between Curves"
+    ]
+  ],
+  [
+    "Integration by Parts works because the definition forces one consistent calculation.",
+    [
+      "313: Integration by Parts",
+      "10181: Integration by Parts"
+    ]
+  ],
+  [
+    "Direction Fields works because the definition forces one consistent calculation.",
+    [
+      "323: Direction Fields",
+      "10192: Direction Fields"
+    ]
+  ]
+]

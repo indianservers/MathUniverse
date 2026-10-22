@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "errors": [],
+  "gestures": [
+    {
+      "type": "B expands base",
+      "ab": 8
+    },
+    {
+      "type": "A shortens base",
+      "ab": 7
+    },
+    {
+      "type": "Cancelled base gesture restores AB",
+      "ab": 7
+    }
+  ],
+  "checks": [
+    "visible tangent/separate/contained circle cases and lower reflection",
+    "no-snap checked-point no-op preserves certificate",
+    "native390x844 A/B base resize and cancellation, finger remains inside viewport",
+    "challenge certificate independent of main endpoint edits"
+  ]
+}

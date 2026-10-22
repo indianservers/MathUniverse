@@ -1,0 +1,28 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "three fitted curves",
+    "editable data redraws fits",
+    "linear and quadratic presets",
+    "correct and incorrect model-choice feedback",
+    "unsupported exponential fit handled without invalid visible numbers"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

@@ -12,12 +12,12 @@ export const exponentialDefault = [
 ];
 export function exponentialFit(points = exponentialDefault) {
   const valid = points.filter((p) => p.y > 0),
-    n = valid.length,
+    n = Math.max(1,valid.length),
     x = valid.reduce((s, p) => s + p.x, 0) / n,
     ly = valid.reduce((s, p) => s + Math.log(p.y), 0) / n,
     xx = valid.reduce((s, p) => s + (p.x - x) ** 2, 0),
     xy = valid.reduce((s, p) => s + (p.x - x) * (Math.log(p.y) - ly), 0),
-    slope = xy / xx,
+    slope = xx > 0 ? xy / xx : 0,
     intercept = ly - slope * x,
     a = Math.exp(intercept),
     b = Math.exp(slope),
@@ -25,5 +25,5 @@ export function exponentialFit(points = exponentialDefault) {
     sse = residuals.reduce((s, e) => s + e ** 2, 0),
     mean = valid.reduce((s, p) => s + p.y, 0) / n,
     sst = valid.reduce((s, p) => s + (p.y - mean) ** 2, 0);
-  return { a, b, rate: (b - 1) * 100, residuals, sse, r2: 1 - sse / sst };
+  return { defined: valid.length === points.length && valid.length > 1 && xx > 0, a, b, rate: (b - 1) * 100, residuals, sse, r2: sst > 0 ? 1 - sse / sst : 0 };
 }

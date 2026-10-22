@@ -587,3 +587,5 @@ body:has(.phase329-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.phase329-page .phase329-system>div,.phase329-page .phase329-worked>div,.phase329-page .phase329-practice{grid-template-columns:minmax(0,1fr);height:auto}.phase329-page .phase329-practice article{min-width:0;padding-block:12px}.phase329-page .phase329-practice article>div{flex-wrap:wrap}.phase329-page .phase329-insights{height:auto;grid-template-columns:minmax(0,1fr)}.phase329-page .phase329-hero>div{position:static;grid-template-columns:minmax(0,1fr)}.phase329-page .phase329-hero{height:auto}}

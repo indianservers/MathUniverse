@@ -333,7 +333,7 @@ export default function DimensionalAnalysisTargetLesson613({
             You cannot add 5 km + 3 m. First convert to the same unit, then add.
           </p>
           <strong>
-            ✕ Incorrect: 5 km + 300 m = 5300 m &nbsp;&nbsp; ✓ Correct: 5 km +
+            ✕ Incorrect: 5 km + 300 m = 305 km &nbsp;&nbsp; ✓ Correct: 5 km +
             300 m = 5.3 km
           </strong>
         </article>

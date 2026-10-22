@@ -619,3 +619,5 @@
     margin-bottom: 12px;
   }
 }
+
+@media(max-width:900px){.inv151-left,.inv151-mapping-card{min-width:0;max-width:100%;height:auto}.inv151-mapping-head{grid-template-columns:minmax(0,1fr) 50px minmax(0,1fr)}.inv151-ordered-note{white-space:normal;overflow-wrap:anywhere}.inv151-mapping-table button{grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);height:auto;min-height:35px}}

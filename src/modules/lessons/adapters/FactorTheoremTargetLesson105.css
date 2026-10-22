@@ -987,3 +987,5 @@ body:has(.factor105-page) footer[aria-label="Site footer"] {
   min-width: 0;
   flex: 1;
 }
+
+@media(max-width:900px){.factor105-controls{height:auto;flex-wrap:wrap;gap:8px}.factor105-controls>h3{position:static;width:100%;margin:0}.factor105-controls>h3:after{display:none}.factor105-synthetic{height:auto}.factor105-synthetic>article,.factor105-synthetic>aside,.factor105-synthetic>header{position:static;width:auto;max-width:100%;height:auto;margin:10px}.factor105-practice{height:auto}.factor105-practice>article{position:static;width:auto!important;max-width:100%;height:auto;margin:10px 0}.factor105-practice article>div,.factor105-practice article>button,.factor105-practice article>footer{position:static;width:auto;height:auto;margin-top:8px}}

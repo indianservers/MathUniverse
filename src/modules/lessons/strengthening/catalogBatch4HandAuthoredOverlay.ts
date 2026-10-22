@@ -974,8 +974,8 @@ const overlays: Record<number, HandOverlay> = {
     introduction: "Area Between Curves works this concrete case: Find the labelled area between curves for base 10 and height 7. The labelled answer is 70. Measure bounded regions. Finds intersections and shades the difference. A common labelled error is using a nearby formula that is not the Area Between Curves rule. Area Between Curves keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
     definition: "Area Between Curves is the Integral Calculus and Differential Equations rule that produces one labelled numerical result from the given inputs.",
     basicIdea: "Area Between Curves works this concrete case: Find the labelled area between curves for base 10 and height 7.",
-    howItWorks: "Read the Area Between Curves inputs, apply the exact rule, and report the labelled output.",
-    whyItWorks: "Area Between Curves works because the definition forces one consistent calculation.",
+    howItWorks: "Find intersections and split the interval where the upper curve changes. Integrate upper minus lower on each piece and add the positive areas.",
+    whyItWorks: "Vertical strips have area equal to their height times width, so integration accumulates the nonnegative separation between the curves.",
     worked: [
       { prompt: "Find the labelled area between curves for base 10 and height 7.", steps: ["Use the Area Between Curves formula.", "10 and 7 are the measured sides.", "The value is 70."], answer: "70" },
       { prompt: "If the height doubles from 7 to 14, what happens to this area model?", steps: ["Area scales with perpendicular height.", "New height 14.", "It doubles."], answer: "doubles" },
@@ -998,8 +998,8 @@ const overlays: Record<number, HandOverlay> = {
     introduction: "Integration by Parts works this concrete case: Find ∫ 3x dx from 0 to 4. The labelled answer is 24. Integrate products. Displays tabular or formula-based steps. A common labelled error is using a nearby formula that is not the Integration by Parts rule. Integration by Parts keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
     definition: "Integration by Parts is the Integral Calculus and Differential Equations rule that produces one labelled numerical result from the given inputs.",
     basicIdea: "Integration by Parts works this concrete case: Find ∫ 3x dx from 0 to 4.",
-    howItWorks: "Read the Integration by Parts inputs, apply the exact rule, and report the labelled output.",
-    whyItWorks: "Integration by Parts works because the definition forces one consistent calculation.",
+    howItWorks: "Choose u and dv, compute du and v, then use the boundary term uv minus the integral of v du.",
+    whyItWorks: "Rearranging the product rule and integrating both sides gives the integration-by-parts identity.",
     worked: [
       { prompt: "Find ∫ 3x dx from 0 to 4.", steps: ["Antiderivative 3/2 x^2.", "Evaluate at 4 minus 0.", "24."], answer: "24" },
       { prompt: "If F'=3, what is F(4)-F(0) when F(t)=3t?", steps: ["F(4)=12.", "F(0)=0.", "12."], answer: "12" },
@@ -1118,8 +1118,8 @@ const overlays: Record<number, HandOverlay> = {
     introduction: "Direction Fields works this concrete case: Find ∫ 7x dx from 0 to 6. The labelled answer is 126. Visualise differential equations. Displays slope segments over the plane. A common labelled error is using a nearby formula that is not the Direction Fields rule. Direction Fields keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
     definition: "Direction Fields is the Integral Calculus and Differential Equations rule that produces one labelled numerical result from the given inputs.",
     basicIdea: "Direction Fields works this concrete case: Find ∫ 7x dx from 0 to 6.",
-    howItWorks: "Read the Direction Fields inputs, apply the exact rule, and report the labelled output.",
-    whyItWorks: "Direction Fields works because the definition forces one consistent calculation.",
+    howItWorks: "At each selected point (x, y), evaluate the differential equation slope f(x, y) and draw a short segment with that slope.",
+    whyItWorks: "A solution tangent has slope dy/dx = f(x, y), so nearby segments show the local direction a solution must follow.",
     worked: [
       { prompt: "Find ∫ 7x dx from 0 to 6.", steps: ["Antiderivative 7/2 x^2.", "Evaluate at 6 minus 0.", "126."], answer: "126" },
       { prompt: "If F'=7, what is F(6)-F(0) when F(t)=7t?", steps: ["F(6)=42.", "F(0)=0.", "42."], answer: "42" },
@@ -2784,10 +2784,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   462: {
     introduction: "Spreadsheet Charts works this concrete case: Which chart is best for paired number data? The labelled answer is scatter plot. Visualise selected data. Creates common statistical charts. A common labelled error is using a chart type that does not match the data. Spreadsheet Charts keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Spreadsheet In Spreadsheet Charts, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Spreadsheet charts turn selected cells into visual displays such as bar charts, line charts, or scatter plots. Select the correct cell range, choose a chart type, and check that labels match the data.",
     basicIdea: "Spreadsheet Charts works this concrete case: Which chart is best for paired number data?",
-    howItWorks: "tool",
-    whyItWorks: "Spreadsheet charts turn selected cells into visual displays such as bar charts, line charts, or scatter plots.",
+    howItWorks: "Select the correct cell range, choose a chart type, and check that labels match the data.",
+    whyItWorks: "Charts help people see patterns faster than reading many rows.",
     worked: [
       { prompt: "Which chart is best for paired number data?", steps: ["tool", "Read the labelled result.", "scatter plot"], answer: "scatter plot" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -2796,10 +2796,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   463: {
     introduction: "Regression from Data works this concrete case: A fair die. P(score ≤ 3)? The labelled answer is 3/6. Fit mathematical models. Builds regression equations and plots. A common labelled error is forcing a straight line onto clearly curved data. Regression from Data keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Spreadsheet In Regression from Data, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Regression from data fits an equation to points so a trend can be described. Plot the paired data, choose a model, and inspect the fitted equation and residuals.",
     basicIdea: "Regression from Data works this concrete case: A fair die. P(score ≤ 3)?",
-    howItWorks: "tool",
-    whyItWorks: "Regression from data fits an equation to points so a trend can be described.",
+    howItWorks: "Plot the paired data, choose a model, and inspect the fitted equation and residuals.",
+    whyItWorks: "Regression gives a useful summary when data has a visible pattern.",
     worked: [
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
       { prompt: "If P(A)=3/10, what is P(A')?", steps: ["1-3/10.", "7/10.", "7/10."], answer: "7/10" },
@@ -2808,10 +2808,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   464: {
     introduction: "Dynamic Cell Links works this concrete case: A dynamic link should update when the source what changes? The labelled answer is cell. Maintain live connections. Updates graphics when cell values change. A common labelled error is linking the output to the wrong range. Dynamic Cell Links keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Spreadsheet In Dynamic Cell Links, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Dynamic cell links connect spreadsheet cells to live outputs such as charts or workspace objects. Link the output to the correct cells, edit one source cell, and confirm the output updates.",
     basicIdea: "Dynamic Cell Links works this concrete case: A dynamic link should update when the source what changes?",
-    howItWorks: "tool",
-    whyItWorks: "Dynamic cell links connect spreadsheet cells to live outputs such as charts or workspace objects.",
+    howItWorks: "Link the output to the correct cells, edit one source cell, and confirm the output updates.",
+    whyItWorks: "A link keeps the same data source, so changes flow through automatically.",
     worked: [
       { prompt: "A dynamic link should update when the source what changes?", steps: ["tool", "Read the labelled result.", "cell"], answer: "cell" },
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
@@ -2820,10 +2820,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   465: {
     introduction: "Import CSV works this concrete case: What separator does a normal CSV file use? The labelled answer is comma. Load external datasets. Imports comma-separated files. A common labelled error is importing with the wrong separator so columns shift. Import CSV keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Spreadsheet In Import CSV, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Import CSV loads comma-separated text data into rows and columns. Choose the file, check the separator, confirm headings, and inspect data types.",
     basicIdea: "Import CSV works this concrete case: What separator does a normal CSV file use?",
-    howItWorks: "tool",
-    whyItWorks: "Import CSV loads comma-separated text data into rows and columns.",
+    howItWorks: "Choose the file, check the separator, confirm headings, and inspect data types.",
+    whyItWorks: "CSV works because commas mark where one cell ends and the next begins.",
     worked: [
       { prompt: "What separator does a normal CSV file use?", steps: ["tool", "Read the labelled result.", "comma"], answer: "comma" },
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
@@ -2832,10 +2832,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   466: {
     introduction: "Export Data works this concrete case: What should usually be included when exporting a table? The labelled answer is headings. Reuse processed data. Exports tables or calculated results. A common labelled error is exporting numbers without labels. Export Data keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Spreadsheet In Export Data, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Export data saves a table or result so another tool can read it. Select the correct range, choose the file format, and include headings when needed.",
     basicIdea: "Export Data works this concrete case: What should usually be included when exporting a table?",
-    howItWorks: "tool",
-    whyItWorks: "Export data saves a table or result so another tool can read it.",
+    howItWorks: "Select the correct range, choose the file format, and include headings when needed.",
+    whyItWorks: "Exporting preserves the values needed for sharing, checking, or later analysis.",
     worked: [
       { prompt: "What should usually be included when exporting a table?", steps: ["tool", "Read the labelled result.", "headings"], answer: "headings" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -2844,10 +2844,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   467: {
     introduction: "Data Types works this concrete case: Is favourite colour categorical or numerical? The labelled answer is categorical. Distinguish variable types. Classifies categorical, discrete and continuous data. A common labelled error is treating category names like measured numbers. Data Types keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Data Types, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Data types describe what kind of values a data set contains, such as categories, counts, or measurements. Identify whether each variable is categorical, discrete numerical, or continuous numerical.",
     basicIdea: "Data Types works this concrete case: Is favourite colour categorical or numerical?",
-    howItWorks: "concept",
-    whyItWorks: "Data types describe what kind of values a data set contains, such as categories, counts, or measurements.",
+    howItWorks: "Identify whether each variable is categorical, discrete numerical, or continuous numerical.",
+    whyItWorks: "The data type decides which graph, summary, or model is appropriate.",
     worked: [
       { prompt: "Is favourite colour categorical or numerical?", steps: ["concept", "Read the labelled result.", "categorical"], answer: "categorical" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -2856,10 +2856,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   468: {
     introduction: "Frequency Tables works this concrete case: A frequency table records how many times values what? The labelled answer is occur. Summarise repeated values. Counts and displays occurrences. A common labelled error is counting one observation in two categories. Frequency Tables keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Frequency Tables, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A frequency table counts how many times each value or category occurs. Make clear categories, tally every data value once, and write the final counts.",
     basicIdea: "Frequency Tables works this concrete case: A frequency table records how many times values what?",
-    howItWorks: "concept",
-    whyItWorks: "A frequency table counts how many times each value or category occurs.",
+    howItWorks: "Make clear categories, tally every data value once, and write the final counts.",
+    whyItWorks: "Counting frequencies summarises raw data without changing the total number of observations.",
     worked: [
       { prompt: "A frequency table records how many times values what?", steps: ["concept", "Read the labelled result.", "occur"], answer: "occur" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -2868,10 +2868,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   469: {
     introduction: "Grouped Frequency Tables works this concrete case: Grouped tables use non-overlapping what? The labelled answer is intervals. Organise continuous data. Creates intervals and frequencies. A common labelled error is using class intervals that overlap at endpoints. Grouped Frequency Tables keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Grouped Frequency Tables, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A grouped frequency table counts data inside intervals, or class groups. Choose non-overlapping intervals, place each value in one interval, and count the values.",
     basicIdea: "Grouped Frequency Tables works this concrete case: Grouped tables use non-overlapping what?",
-    howItWorks: "concept",
-    whyItWorks: "A grouped frequency table counts data inside intervals, or class groups.",
+    howItWorks: "Choose non-overlapping intervals, place each value in one interval, and count the values.",
+    whyItWorks: "Grouping makes large or continuous data easier to read.",
     worked: [
       { prompt: "Grouped tables use non-overlapping what?", steps: ["concept", "Read the labelled result.", "intervals"], answer: "intervals" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -2880,10 +2880,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   470: {
     introduction: "Mean works this concrete case: What must you do before finding the median? The labelled answer is sort. Understand arithmetic average. Calculates and visualises balance point. A common labelled error is adding values but not dividing by the number of values. Mean keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Mean, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The mean is the sum of all values divided by the number of values. Add the values, count how many values there are, then divide.",
     basicIdea: "Mean works this concrete case: What must you do before finding the median?",
-    howItWorks: "concept",
-    whyItWorks: "The mean is the sum of all values divided by the number of values.",
+    howItWorks: "Add the values, count how many values there are, then divide.",
+    whyItWorks: "The mean shares the total equally among all data positions.",
     worked: [
       { prompt: "What must you do before finding the median?", steps: ["concept", "Read the labelled result.", "sort"], answer: "sort" },
       { prompt: "Find the mean of 9, 4, 5, 10.", steps: ["Sum=28.", "Count=4.", "7."], answer: "7" },
@@ -2892,10 +2892,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   471: {
     introduction: "Median works this concrete case: What must you do before finding the median? The labelled answer is sort. Understand positional centre. Orders data and marks the middle. A common labelled error is finding the middle before sorting the data. Median keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Median, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The median is the middle value after the data is ordered. Order the values, find the middle position, or average the two middle values.",
     basicIdea: "Median works this concrete case: What must you do before finding the median?",
-    howItWorks: "concept",
-    whyItWorks: "The median is the middle value after the data is ordered.",
+    howItWorks: "Order the values, find the middle position, or average the two middle values.",
+    whyItWorks: "The median splits ordered data into two equal halves.",
     worked: [
       { prompt: "What must you do before finding the median?", steps: ["concept", "Read the labelled result.", "sort"], answer: "sort" },
       { prompt: "Find the median of 5, 6, 10.", steps: ["Order the list.", "The middle is 6.", "6."], answer: "6" },
@@ -2904,10 +2904,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   472: {
     introduction: "Mode works this concrete case: What is the mode of 2, 3, 3, 5? The labelled answer is 3. Identify common values. Highlights highest-frequency observations. A common labelled error is thinking every data set has exactly one mode. Mode keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Mode, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The mode is the value or category that appears most often. Count the frequency of each value, then choose the highest frequency.",
     basicIdea: "Mode works this concrete case: What is the mode of 2, 3, 3, 5?",
-    howItWorks: "concept",
-    whyItWorks: "The mode is the value or category that appears most often.",
+    howItWorks: "Count the frequency of each value, then choose the highest frequency.",
+    whyItWorks: "The mode shows the most common result in the data.",
     worked: [
       { prompt: "What is the mode of 2, 3, 3, 5?", steps: ["concept", "Read the labelled result.", "3"], answer: "3" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -2916,10 +2916,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   473: {
     introduction: "Weighted Mean works this concrete case: Find the mean of 4, 7, 8, 5. The labelled answer is 6. Use unequal importance. Calculates averages with adjustable weights. A common labelled error is averaging values without using their weights. Weighted Mean keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Weighted Mean, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A weighted mean is an average where some values count more than others. Multiply each value by its weight, add the products, then divide by the total weight.",
     basicIdea: "Weighted Mean works this concrete case: Find the mean of 4, 7, 8, 5.",
-    howItWorks: "concept",
-    whyItWorks: "A weighted mean is an average where some values count more than others.",
+    howItWorks: "Multiply each value by its weight, add the products, then divide by the total weight.",
+    whyItWorks: "Weights show how much each value should influence the average.",
     worked: [
       { prompt: "Find the mean of 4, 7, 8, 5.", steps: ["Sum=24.", "Count=4.", "6."], answer: "6" },
       { prompt: "If one value increases by 7, how does the mean change?", steps: ["The total rises by 7.", "Mean rises by 7/4.", "1.75."], answer: "1.75" },
@@ -2928,10 +2928,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   474: {
     introduction: "Range works this concrete case: A fair die. P(score ≤ 2)? The labelled answer is 2/6. Measure overall spread. Displays maximum minus minimum. A common labelled error is subtracting largest from smallest and getting a negative range. Range keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Range, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The range is the largest value minus the smallest value. Find the maximum, find the minimum, then subtract minimum from maximum.",
     basicIdea: "Range works this concrete case: A fair die. P(score ≤ 2)?",
-    howItWorks: "concept",
-    whyItWorks: "The range is the largest value minus the smallest value.",
+    howItWorks: "Find the maximum, find the minimum, then subtract minimum from maximum.",
+    whyItWorks: "Range measures the total spread from one end of the data to the other.",
     worked: [
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
       { prompt: "If P(A)=2/10, what is P(A')?", steps: ["1-2/10.", "8/10.", "8/10."], answer: "8/10" },
@@ -2940,10 +2940,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   475: {
     introduction: "Quartiles and IQR works this concrete case: A fair die. P(score ≤ 3)? The labelled answer is 3/6. Measure central distribution. Calculates quartiles and box width. A common labelled error is finding quartiles before ordering the data. Quartiles and IQR keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Quartiles and IQR, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Quartiles split ordered data into four parts, and IQR is the upper quartile minus the lower quartile. Order the data, find Q1 and Q3, then subtract Q1 from Q3.",
     basicIdea: "Quartiles and IQR works this concrete case: A fair die. P(score ≤ 3)?",
-    howItWorks: "concept",
-    whyItWorks: "Quartiles split ordered data into four parts, and IQR is the upper quartile minus the lower quartile.",
+    howItWorks: "Order the data, find Q1 and Q3, then subtract Q1 from Q3.",
+    whyItWorks: "IQR measures the spread of the middle half of the data.",
     worked: [
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
       { prompt: "If P(A)=3/10, what is P(A')?", steps: ["1-3/10.", "7/10.", "7/10."], answer: "7/10" },
@@ -2952,10 +2952,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   476: {
     introduction: "Variance and Standard Deviation works this concrete case: A fair die. P(score ≤ 4)? The labelled answer is 4/6. Quantify dispersion. Shows distances from the mean and squared deviations. A common labelled error is using only range to describe all spread. Variance and Standard Deviation keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Variance and Standard Deviation, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Variance and standard deviation measure how far values usually are from the mean. Find the mean, measure deviations, square them for variance, then take the square root for standard deviation.",
     basicIdea: "Variance and Standard Deviation works this concrete case: A fair die. P(score ≤ 4)?",
-    howItWorks: "concept",
-    whyItWorks: "Variance and standard deviation measure how far values usually are from the mean.",
+    howItWorks: "Find the mean, measure deviations, square them for variance, then take the square root for standard deviation.",
+    whyItWorks: "Squaring keeps distances positive, and the square root returns to the original units.",
     worked: [
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
       { prompt: "If P(A)=4/10, what is P(A')?", steps: ["1-4/10.", "6/10.", "6/10."], answer: "6/10" },
@@ -2964,10 +2964,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   477: {
     introduction: "Percentiles works this concrete case: Does the 80th percentile always mean score 80? The labelled answer is no. Interpret relative standing. Finds selected percentile cut-offs. A common labelled error is thinking the 80th percentile means a score of 80. Percentiles keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Percentiles, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A percentile tells the value below which a given percent of data lies. Order the data, choose the percentile position, and read or interpolate the value if required.",
     basicIdea: "Percentiles works this concrete case: Does the 80th percentile always mean score 80?",
-    howItWorks: "concept",
-    whyItWorks: "A percentile tells the value below which a given percent of data lies.",
+    howItWorks: "Order the data, choose the percentile position, and read or interpolate the value if required.",
+    whyItWorks: "Percentiles compare one value with the rest of an ordered data set.",
     worked: [
       { prompt: "Does the 80th percentile always mean score 80?", steps: ["concept", "Read the labelled result.", "no"], answer: "no" },
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
@@ -2976,10 +2976,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   478: {
     introduction: "Z-Scores works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Standardise values. Converts data to standard units. A common labelled error is ignoring whether the z-score is positive or negative. Z-Scores keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Z-Scores, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A z-score tells how many standard deviations a value is from the mean. Subtract the mean from the value, then divide by the standard deviation.",
     basicIdea: "Z-Scores works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "concept",
-    whyItWorks: "A z-score tells how many standard deviations a value is from the mean.",
+    howItWorks: "Subtract the mean from the value, then divide by the standard deviation.",
+    whyItWorks: "Z-scores let values from different scales be compared fairly.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=6/10, what is P(A')?", steps: ["1-6/10.", "4/10.", "4/10."], answer: "4/10" },
@@ -2988,10 +2988,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   479: {
     introduction: "Outliers works this concrete case: Should you check an outlier before deleting it? The labelled answer is yes. Identify unusual observations. Applies IQR or z-score rules. A common labelled error is deleting an outlier without checking why it happened. Outliers keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Outliers, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "An outlier is a data value that is unusually far from the rest of the data. Inspect the data, use a clear rule such as the 1.5 IQR rule when required, and check for recording errors.",
     basicIdea: "Outliers works this concrete case: Should you check an outlier before deleting it?",
-    howItWorks: "concept",
-    whyItWorks: "An outlier is a data value that is unusually far from the rest of the data.",
+    howItWorks: "Inspect the data, use a clear rule such as the 1.5 IQR rule when required, and check for recording errors.",
+    whyItWorks: "Outliers matter because they can strongly change the mean and some models.",
     worked: [
       { prompt: "Should you check an outlier before deleting it?", steps: ["concept", "Read the labelled result.", "yes"], answer: "yes" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3012,10 +3012,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   481: {
     introduction: "Dot Plot works this concrete case: In a dot plot, repeated values are shown by stacking what? The labelled answer is dots. Display individual values. Stacks repeated observations. A common labelled error is using uneven spacing on the number line. Dot Plot keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Dot Plot, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A dot plot places one dot for each data value on a number line. Draw a scale, place each dot above its value, and stack repeated values.",
     basicIdea: "Dot Plot works this concrete case: In a dot plot, repeated values are shown by stacking what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A dot plot places one dot for each data value on a number line.",
+    howItWorks: "Draw a scale, place each dot above its value, and stack repeated values.",
+    whyItWorks: "Dot plots show shape, clusters, gaps, and repeated values clearly.",
     worked: [
       { prompt: "In a dot plot, repeated values are shown by stacking what?", steps: ["visual_exploration", "Read the labelled result.", "dots"], answer: "dots" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3024,10 +3024,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   482: {
     introduction: "Stem-and-Leaf Plot works this concrete case: In 67, if tens are stems, what is the leaf? The labelled answer is 7. Preserve raw values. Builds an ordered stem-and-leaf display. A common labelled error is leaving leaves unordered inside each stem. Stem-and-Leaf Plot keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Stem-and-Leaf Plot, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A stem-and-leaf plot splits numbers into stems and final digits called leaves. Choose place values, write stems in order, and place leaves in sorted order.",
     basicIdea: "Stem-and-Leaf Plot works this concrete case: In 67, if tens are stems, what is the leaf?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A stem-and-leaf plot splits numbers into stems and final digits called leaves.",
+    howItWorks: "Choose place values, write stems in order, and place leaves in sorted order.",
+    whyItWorks: "It keeps the original data values while showing the distribution shape.",
     worked: [
       { prompt: "In 67, if tens are stems, what is the leaf?", steps: ["visual_exploration", "Read the labelled result.", "7"], answer: "7" },
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
@@ -3036,10 +3036,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   483: {
     introduction: "Histogram works this concrete case: Do histogram bars usually touch? The labelled answer is yes. Visualise distributions. Changes bin width and counts. A common labelled error is drawing gaps between histogram bars as if categories are separate. Histogram keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Histogram, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A histogram uses touching bars to show frequencies for numerical intervals. Choose equal-width intervals when suitable, count values in each interval, and draw touching bars.",
     basicIdea: "Histogram works this concrete case: Do histogram bars usually touch?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A histogram uses touching bars to show frequencies for numerical intervals.",
+    howItWorks: "Choose equal-width intervals when suitable, count values in each interval, and draw touching bars.",
+    whyItWorks: "Touching bars show that the number line is continuous across intervals.",
     worked: [
       { prompt: "Do histogram bars usually touch?", steps: ["visual_exploration", "Read the labelled result.", "yes"], answer: "yes" },
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
@@ -3048,10 +3048,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   484: {
     introduction: "Frequency Polygon works this concrete case: A frequency polygon plots frequencies at class what? The labelled answer is midpoints. Compare grouped patterns. Connects class midpoints. A common labelled error is plotting class endpoints instead of class midpoints. Frequency Polygon keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Frequency Polygon, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A frequency polygon joins points plotted at class midpoints and their frequencies. Find each class midpoint, plot midpoint against frequency, and join neighbouring points.",
     basicIdea: "Frequency Polygon works this concrete case: A frequency polygon plots frequencies at class what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A frequency polygon joins points plotted at class midpoints and their frequencies.",
+    howItWorks: "Find each class midpoint, plot midpoint against frequency, and join neighbouring points.",
+    whyItWorks: "Joining points shows the overall shape of grouped numerical data.",
     worked: [
       { prompt: "A frequency polygon plots frequencies at class what?", steps: ["visual_exploration", "Read the labelled result.", "midpoints"], answer: "midpoints" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3060,10 +3060,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   485: {
     introduction: "Cumulative Frequency Curve works this concrete case: Cumulative frequency uses running what? The labelled answer is totals. Show accumulated counts. Builds an ogive and reads percentiles. A common labelled error is plotting ordinary frequencies instead of cumulative totals. Cumulative Frequency Curve keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Cumulative Frequency Curve, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A cumulative frequency curve shows running totals up to each class boundary. Add frequencies cumulatively, plot each running total, and join the points smoothly.",
     basicIdea: "Cumulative Frequency Curve works this concrete case: Cumulative frequency uses running what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A cumulative frequency curve shows running totals up to each class boundary.",
+    howItWorks: "Add frequencies cumulatively, plot each running total, and join the points smoothly.",
+    whyItWorks: "Running totals show how many observations are less than or equal to a value.",
     worked: [
       { prompt: "Cumulative frequency uses running what?", steps: ["visual_exploration", "Read the labelled result.", "totals"], answer: "totals" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3072,10 +3072,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   486: {
     introduction: "Bar and Pie Charts works this concrete case: A pie chart should show parts of one what? The labelled answer is whole. Compare categories. Creates category-frequency and proportional charts. A common labelled error is using a pie chart when categories do not form one whole. Bar and Pie Charts keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Bar and Pie Charts, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Bar charts compare category frequencies, and pie charts show category parts of a whole. Count each category, draw bars or convert each share into a sector angle.",
     basicIdea: "Bar and Pie Charts works this concrete case: A pie chart should show parts of one what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "Bar charts compare category frequencies, and pie charts show category parts of a whole.",
+    howItWorks: "Count each category, draw bars or convert each share into a sector angle.",
+    whyItWorks: "Both charts show categorical data, but pie charts require a meaningful whole.",
     worked: [
       { prompt: "A pie chart should show parts of one what?", steps: ["visual_exploration", "Read the labelled result.", "whole"], answer: "whole" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -3084,10 +3084,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   487: {
     introduction: "Scatter Plot works this concrete case: A scatter plot uses paired what? The labelled answer is numbers. Explore bivariate relationships. Plots paired observations. A common labelled error is joining scatter points as if they are a time line. Scatter Plot keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Scatter Plot, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A scatter plot shows paired numerical data as points on coordinate axes. Plot each pair as one point and look for direction, form, and strength.",
     basicIdea: "Scatter Plot works this concrete case: A scatter plot uses paired what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A scatter plot shows paired numerical data as points on coordinate axes.",
+    howItWorks: "Plot each pair as one point and look for direction, form, and strength.",
+    whyItWorks: "Scatter plots reveal relationships between two numerical variables.",
     worked: [
       { prompt: "A scatter plot uses paired what?", steps: ["visual_exploration", "Read the labelled result.", "numbers"], answer: "numbers" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3096,10 +3096,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   488: {
     introduction: "Time-Series Plot works this concrete case: Which axis usually shows time? The labelled answer is horizontal. Analyse trends over time. Connects chronological observations. A common labelled error is plotting dates out of order. Time-Series Plot keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Time-Series Plot, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A time-series plot shows how a quantity changes over time. Put time on the horizontal axis, plot values in order, and join neighbouring time points.",
     basicIdea: "Time-Series Plot works this concrete case: Which axis usually shows time?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A time-series plot shows how a quantity changes over time.",
+    howItWorks: "Put time on the horizontal axis, plot values in order, and join neighbouring time points.",
+    whyItWorks: "Time order matters because each value happened before or after another.",
     worked: [
       { prompt: "Which axis usually shows time?", steps: ["visual_exploration", "Read the labelled result.", "horizontal"], answer: "horizontal" },
       { prompt: "For 2, 4, 8, ... what is term 4?", steps: ["Each term doubles.", "2,4,8,16.", "16."], answer: "16" },
@@ -3108,10 +3108,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   489: {
     introduction: "Correlation Coefficient works this concrete case: A fair die. P(score ≤ 5)? The labelled answer is 5/6. Measure linear association. Calculates r and displays direction and strength. A common labelled error is thinking correlation proves one variable causes the other. Correlation Coefficient keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Correlation Coefficient, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The correlation coefficient r measures the direction and strength of a linear relationship. Make a scatter plot, check that a linear pattern is sensible, then read r between -1 and 1.",
     basicIdea: "Correlation Coefficient works this concrete case: A fair die. P(score ≤ 5)?",
-    howItWorks: "concept",
-    whyItWorks: "The correlation coefficient r measures the direction and strength of a linear relationship.",
+    howItWorks: "Make a scatter plot, check that a linear pattern is sensible, then read r between -1 and 1.",
+    whyItWorks: "Values near 1 or -1 show strong linear association; values near 0 show weak linear association.",
     worked: [
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
       { prompt: "If P(A)=5/10, what is P(A')?", steps: ["1-5/10.", "5/10.", "5/10."], answer: "5/10" },
@@ -3120,10 +3120,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   490: {
     introduction: "Linear Regression works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Fit a least-squares line. Displays equation, residuals and R². A common labelled error is using a fitted line far outside the data range. Linear Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Linear Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Linear regression fits a straight line that best models paired numerical data. Plot the data, fit y = mx + b, then check residuals and context.",
     basicIdea: "Linear Regression works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "modelling",
-    whyItWorks: "Linear regression fits a straight line that best models paired numerical data.",
+    howItWorks: "Plot the data, fit y = mx + b, then check residuals and context.",
+    whyItWorks: "Least-squares linear regression chooses a line by making squared vertical errors as small as possible.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=6/10, what is P(A')?", steps: ["1-6/10.", "4/10.", "4/10."], answer: "4/10" },
@@ -3132,10 +3132,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   491: {
     introduction: "Polynomial Regression works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Fit curved models. Changes polynomial degree and compares fits. A common labelled error is choosing a very high degree just to hit every point. Polynomial Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Polynomial Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Polynomial regression fits a polynomial curve to paired numerical data. Plot the data, choose a sensible degree, fit the curve, and inspect residuals.",
     basicIdea: "Polynomial Regression works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "modelling",
-    whyItWorks: "Polynomial regression fits a polynomial curve to paired numerical data.",
+    howItWorks: "Plot the data, choose a sensible degree, fit the curve, and inspect residuals.",
+    whyItWorks: "Powers of x let the model bend to match curved patterns.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=7/10, what is P(A')?", steps: ["1-7/10.", "3/10.", "3/10."], answer: "3/10" },
@@ -3144,10 +3144,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   492: {
     introduction: "Exponential Regression works this concrete case: A fair die. P(score ≤ 2)? The labelled answer is 2/6. Model multiplicative trends. Fits a·b^x or equivalent models. A common labelled error is using a line for data that changes by repeated percent growth. Exponential Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Exponential Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Exponential regression fits a model where values change by a repeated multiplying factor. Plot the data, check for multiplicative change, fit the model, and inspect residuals.",
     basicIdea: "Exponential Regression works this concrete case: A fair die. P(score ≤ 2)?",
-    howItWorks: "modelling",
-    whyItWorks: "Exponential regression fits a model where values change by a repeated multiplying factor.",
+    howItWorks: "Plot the data, check for multiplicative change, fit the model, and inspect residuals.",
+    whyItWorks: "Equal input steps cause equal multiplication in an exponential pattern.",
     worked: [
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
       { prompt: "If P(A)=2/10, what is P(A')?", steps: ["1-2/10.", "8/10.", "8/10."], answer: "8/10" },
@@ -3156,10 +3156,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   493: {
     introduction: "Logarithmic Regression works this concrete case: A fair die. P(score ≤ 3)? The labelled answer is 3/6. Model slowing growth. Fits logarithmic curves. A common labelled error is using logarithmic regression when x values are zero or negative. Logarithmic Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Logarithmic Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Logarithmic regression fits data that changes quickly at first and then changes more slowly. Plot the data, check for slowing growth, fit a logarithmic model, and inspect residuals.",
     basicIdea: "Logarithmic Regression works this concrete case: A fair die. P(score ≤ 3)?",
-    howItWorks: "modelling",
-    whyItWorks: "Logarithmic regression fits data that changes quickly at first and then changes more slowly.",
+    howItWorks: "Plot the data, check for slowing growth, fit a logarithmic model, and inspect residuals.",
+    whyItWorks: "A logarithm grows by smaller and smaller amounts as x increases.",
     worked: [
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
       { prompt: "If P(A)=3/10, what is P(A')?", steps: ["1-3/10.", "7/10.", "7/10."], answer: "7/10" },
@@ -3168,10 +3168,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   494: {
     introduction: "Power Regression works this concrete case: A fair die. P(score ≤ 4)? The labelled answer is 4/6. Model scaling laws. Fits ax^b relationships. A common labelled error is confusing a power model y = ax^b with an exponential model y = ab^x. Power Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Power Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Power regression fits data where one variable is proportional to a power of another. Plot the data, check for a power pattern, fit y = ax^b, and inspect residuals.",
     basicIdea: "Power Regression works this concrete case: A fair die. P(score ≤ 4)?",
-    howItWorks: "modelling",
-    whyItWorks: "Power regression fits data where one variable is proportional to a power of another.",
+    howItWorks: "Plot the data, check for a power pattern, fit y = ax^b, and inspect residuals.",
+    whyItWorks: "Power models describe scale laws where multiplying x changes y by a predictable factor.",
     worked: [
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
       { prompt: "If P(A)=4/10, what is P(A')?", steps: ["1-4/10.", "6/10.", "6/10."], answer: "6/10" },
@@ -3180,10 +3180,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   495: {
     introduction: "Logistic Regression works this concrete case: A fair die. P(score ≤ 5)? The labelled answer is 5/6. Model bounded growth. Fits S-shaped curves. A common labelled error is using logistic regression when there is no sensible maximum level. Logistic Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Logistic Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Logistic regression for growth fits an S-shaped curve with an upper limit. Plot the data, check for a leveling pattern, fit the model, and compare residuals.",
     basicIdea: "Logistic Regression works this concrete case: A fair die. P(score ≤ 5)?",
-    howItWorks: "modelling",
-    whyItWorks: "Logistic regression for growth fits an S-shaped curve with an upper limit.",
+    howItWorks: "Plot the data, check for a leveling pattern, fit the model, and compare residuals.",
+    whyItWorks: "The model grows fast in the middle but slows near a carrying capacity.",
     worked: [
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
       { prompt: "If P(A)=5/10, what is P(A')?", steps: ["1-5/10.", "5/10.", "5/10."], answer: "5/10" },
@@ -3192,10 +3192,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   496: {
     introduction: "Sinusoidal Regression works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Model periodic data. Fits amplitude, frequency and phase. A common labelled error is using a sinusoidal model for data with no repeated cycle. Sinusoidal Regression keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Sinusoidal Regression, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Sinusoidal regression fits data that repeats in a wave pattern. Plot the data, estimate period and amplitude, fit a sine or cosine model, and inspect residuals.",
     basicIdea: "Sinusoidal Regression works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "modelling",
-    whyItWorks: "Sinusoidal regression fits data that repeats in a wave pattern.",
+    howItWorks: "Plot the data, estimate period and amplitude, fit a sine or cosine model, and inspect residuals.",
+    whyItWorks: "Sine and cosine repeat because angles cycle around a circle.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=6/10, what is P(A')?", steps: ["1-6/10.", "4/10.", "4/10."], answer: "4/10" },
@@ -3204,10 +3204,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   497: {
     introduction: "Residual Plot works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Diagnose fit quality. Plots observed minus predicted values. A common labelled error is ignoring a clear curve or pattern in residuals. Residual Plot keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Residual Plot, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A residual plot shows prediction errors from a fitted model. Find each residual as observed minus predicted, plot residuals, and look for patterns.",
     basicIdea: "Residual Plot works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A residual plot shows prediction errors from a fitted model.",
+    howItWorks: "Find each residual as observed minus predicted, plot residuals, and look for patterns.",
+    whyItWorks: "A good model often leaves residuals with no clear shape around zero.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=7/10, what is P(A')?", steps: ["1-7/10.", "3/10.", "3/10."], answer: "3/10" },
@@ -3216,10 +3216,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   498: {
     introduction: "Model Comparison works this concrete case: Besides error size, what should model comparison check? The labelled answer is context. Choose appropriate models. Compares errors, residuals and R². A common labelled error is choosing a model only because it has the smallest error. Model Comparison keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Model Comparison, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Model comparison decides which model explains data best without adding needless complexity. Compare plots, residuals, error size, simplicity, and context.",
     basicIdea: "Model Comparison works this concrete case: Besides error size, what should model comparison check?",
-    howItWorks: "modelling",
-    whyItWorks: "Model comparison decides which model explains data best without adding needless complexity.",
+    howItWorks: "Compare plots, residuals, error size, simplicity, and context.",
+    whyItWorks: "A model should fit the pattern and still make scientific or practical sense.",
     worked: [
       { prompt: "Besides error size, what should model comparison check?", steps: ["modelling", "Read the labelled result.", "context"], answer: "context" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -3228,10 +3228,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   499: {
     introduction: "Interpolation and Extrapolation works this concrete case: Which is usually safer: interpolation or extrapolation? The labelled answer is interpolation. Estimate values responsibly. Predicts within or beyond the data range and flags risk. A common labelled error is trusting far extrapolation as if it were measured data. Interpolation and Extrapolation keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Statistics and Regression In Interpolation and Extrapolation, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Interpolation predicts inside the data range, while extrapolation predicts outside it. Locate the known data range, then decide whether the prediction is inside or outside that range.",
     basicIdea: "Interpolation and Extrapolation works this concrete case: Which is usually safer: interpolation or extrapolation?",
-    howItWorks: "concept",
-    whyItWorks: "Interpolation predicts inside the data range, while extrapolation predicts outside it.",
+    howItWorks: "Locate the known data range, then decide whether the prediction is inside or outside that range.",
+    whyItWorks: "Predictions inside observed data are usually safer than predictions far beyond it.",
     worked: [
       { prompt: "Which is usually safer: interpolation or extrapolation?", steps: ["concept", "Read the labelled result.", "interpolation"], answer: "interpolation" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3240,10 +3240,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   500: {
     introduction: "Sample Spaces works this concrete case: How many outcomes are in one fair die roll? The labelled answer is 6. Enumerate possible outcomes. Builds lists, grids or diagrams of outcomes. A common labelled error is leaving possible outcomes out of the sample space. Sample Spaces keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Sample Spaces, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A sample space is the set of all possible outcomes of a random experiment. List every possible outcome once before counting favourable outcomes.",
     basicIdea: "Sample Spaces works this concrete case: How many outcomes are in one fair die roll?",
-    howItWorks: "concept",
-    whyItWorks: "A sample space is the set of all possible outcomes of a random experiment.",
+    howItWorks: "List every possible outcome once before counting favourable outcomes.",
+    whyItWorks: "Probability needs the full set of possible outcomes as its denominator when outcomes are equally likely.",
     worked: [
       { prompt: "How many outcomes are in one fair die roll?", steps: ["concept", "Read the labelled result.", "6"], answer: "6" },
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
@@ -3252,10 +3252,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   501: {
     introduction: "Events works this concrete case: For a die, how many outcomes are in the event even? The labelled answer is 3. Define outcome subsets. Selects and highlights event members. A common labelled error is thinking an event must contain only one outcome. Events keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Events, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "An event is a set of outcomes from a sample space. Choose the outcomes that match the condition and group them as the event.",
     basicIdea: "Events works this concrete case: For a die, how many outcomes are in the event even?",
-    howItWorks: "concept",
-    whyItWorks: "An event is a set of outcomes from a sample space.",
+    howItWorks: "Choose the outcomes that match the condition and group them as the event.",
+    whyItWorks: "Events let us talk about one question inside a larger random experiment.",
     worked: [
       { prompt: "For a die, how many outcomes are in the event even?", steps: ["concept", "Read the labelled result.", "3"], answer: "3" },
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
@@ -3264,10 +3264,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   502: {
     introduction: "Probability Scale works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Understand probability magnitude. Places events between impossible and certain. A common labelled error is writing a probability greater than 1. Probability Scale keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Probability Scale, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The probability scale runs from 0 for impossible to 1 for certain. Place impossible, unlikely, equally likely, likely, and certain events between 0 and 1.",
     basicIdea: "Probability Scale works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "concept",
-    whyItWorks: "The probability scale runs from 0 for impossible to 1 for certain.",
+    howItWorks: "Place impossible, unlikely, equally likely, likely, and certain events between 0 and 1.",
+    whyItWorks: "Probability measures chance as a fraction of certainty.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=6/10, what is P(A')?", steps: ["1-6/10.", "4/10.", "4/10."], answer: "4/10" },
@@ -3276,10 +3276,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   503: {
     introduction: "Complement Rule works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Use opposite events. Shows P(Aᶜ)=1-P(A). A common labelled error is adding P(A) to find the complement. Complement Rule keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Complement Rule, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The complement rule says the probability that A does not happen is 1 minus the probability that A happens. Find P(A), then subtract it from 1.",
     basicIdea: "Complement Rule works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "procedure",
-    whyItWorks: "The complement rule says the probability that A does not happen is 1 minus the probability that A happens.",
+    howItWorks: "Find P(A), then subtract it from 1.",
+    whyItWorks: "An event and its complement together cover the whole sample space without overlap.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=7/10, what is P(A')?", steps: ["1-7/10.", "3/10.", "3/10."], answer: "3/10" },
@@ -3288,10 +3288,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   504: {
     introduction: "Addition Rule works this concrete case: A fair die. P(score ≤ 2)? The labelled answer is 2/6. Calculate unions. Uses Venn diagrams and overlap correction. A common labelled error is adding overlapping events without subtracting the overlap. Addition Rule keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Addition Rule, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The addition rule finds the probability that A or B happens. Add P(A) and P(B), then subtract P(A and B) if the events overlap.",
     basicIdea: "Addition Rule works this concrete case: A fair die. P(score ≤ 2)?",
-    howItWorks: "procedure",
-    whyItWorks: "The addition rule finds the probability that A or B happens.",
+    howItWorks: "Add P(A) and P(B), then subtract P(A and B) if the events overlap.",
+    whyItWorks: "The overlap is subtracted so it is not counted twice.",
     worked: [
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
       { prompt: "If P(A)=2/10, what is P(A')?", steps: ["1-2/10.", "8/10.", "8/10."], answer: "8/10" },
@@ -3300,10 +3300,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   505: {
     introduction: "Multiplication Rule works this concrete case: A fair die. P(score ≤ 3)? The labelled answer is 3/6. Calculate joint events. Uses tree diagrams and conditional branches. A common labelled error is multiplying as if events are independent when they are not. Multiplication Rule keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Multiplication Rule, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The multiplication rule finds the probability that A and B both happen. Multiply P(A) by P(B after A), or multiply separate probabilities when events are independent.",
     basicIdea: "Multiplication Rule works this concrete case: A fair die. P(score ≤ 3)?",
-    howItWorks: "procedure",
-    whyItWorks: "The multiplication rule finds the probability that A and B both happen.",
+    howItWorks: "Multiply P(A) by P(B after A), or multiply separate probabilities when events are independent.",
+    whyItWorks: "Sequential chance shrinks because both conditions must be satisfied.",
     worked: [
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
       { prompt: "If P(A)=3/10, what is P(A')?", steps: ["1-3/10.", "7/10.", "7/10."], answer: "7/10" },
@@ -3312,10 +3312,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   506: {
     introduction: "Independent Events works this concrete case: Does one fair coin toss affect the next toss? The labelled answer is no. Test independence. Compares joint and product probabilities. A common labelled error is thinking independent means the events cannot happen together. Independent Events keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Independent Events, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Independent events are events where one happening does not change the probability of the other. Compare P(B) with P(B given A); if they are equal, the events are independent.",
     basicIdea: "Independent Events works this concrete case: Does one fair coin toss affect the next toss?",
-    howItWorks: "concept",
-    whyItWorks: "Independent events are events where one happening does not change the probability of the other.",
+    howItWorks: "Compare P(B) with P(B given A); if they are equal, the events are independent.",
+    whyItWorks: "Independence means information about one event gives no probability change for the other.",
     worked: [
       { prompt: "Does one fair coin toss affect the next toss?", steps: ["concept", "Read the labelled result.", "no"], answer: "no" },
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
@@ -3324,10 +3324,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   507: {
     introduction: "Mutually Exclusive Events works this concrete case: A fair die. P(score ≤ 5)? The labelled answer is 5/6. Recognise disjoint events. Shows non-overlapping regions. A common labelled error is confusing mutually exclusive with independent. Mutually Exclusive Events keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Mutually Exclusive Events, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Mutually exclusive events cannot happen at the same time in one trial. Check whether the two events share any outcomes in the sample space.",
     basicIdea: "Mutually Exclusive Events works this concrete case: A fair die. P(score ≤ 5)?",
-    howItWorks: "concept",
-    whyItWorks: "Mutually exclusive events cannot happen at the same time in one trial.",
+    howItWorks: "Check whether the two events share any outcomes.",
+    whyItWorks: "If there is no shared outcome, their intersection has probability 0.",
     worked: [
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
       { prompt: "If P(A)=5/10, what is P(A')?", steps: ["1-5/10.", "5/10.", "5/10."], answer: "5/10" },
@@ -3336,10 +3336,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   508: {
     introduction: "Conditional Probability works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Update based on information. Restricts the sample space dynamically. A common labelled error is using the original denominator after a condition is known. Conditional Probability keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Conditional Probability, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Conditional probability is the chance of one event when another event is already known. Restrict the sample space to the known condition, then count favourable outcomes inside it.",
     basicIdea: "Conditional Probability works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "concept",
-    whyItWorks: "Conditional probability is the chance of one event when another event is already known.",
+    howItWorks: "Restrict the sample space to the known condition, then count favourable outcomes inside it.",
+    whyItWorks: "New information can change the set of possible outcomes.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=6/10, what is P(A')?", steps: ["1-6/10.", "4/10.", "4/10."], answer: "4/10" },
@@ -3348,10 +3348,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   509: {
     introduction: "Tree Diagrams works this concrete case: In a tree diagram, do you add or multiply along one path? The labelled answer is multiply. Model sequences. Creates branches with probabilities and outcomes. A common labelled error is adding probabilities along one path. Tree Diagrams keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Tree Diagrams, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A tree diagram shows probability paths for multi-step experiments. Draw branches for each stage, multiply along a path, and add paths that match the event.",
     basicIdea: "Tree Diagrams works this concrete case: In a tree diagram, do you add or multiply along one path?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A tree diagram shows probability paths for multi-step experiments.",
+    howItWorks: "Draw branches for each stage, multiply along a path, and add paths that match the event.",
+    whyItWorks: "Branches keep sequential outcomes organised.",
     worked: [
       { prompt: "In a tree diagram, do you add or multiply along one path?", steps: ["visual_exploration", "Read the labelled result.", "multiply"], answer: "multiply" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3360,10 +3360,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   510: {
     introduction: "Venn Diagrams works this concrete case: Where do outcomes in both A and B go? The labelled answer is overlap. Visualise set-based probability. Shades unions, intersections and complements. A common labelled error is putting the overlap into both only-regions. Venn Diagrams keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Venn Diagrams, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A Venn diagram shows events as regions inside a sample space. Place overlaps first, then fill only-A, only-B, outside, and totals.",
     basicIdea: "Venn Diagrams works this concrete case: Where do outcomes in both A and B go?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A Venn diagram shows events as regions inside a sample space.",
+    howItWorks: "Place overlaps first, then fill only-A, only-B, outside, and totals.",
+    whyItWorks: "Regions help prevent double-counting event overlaps.",
     worked: [
       { prompt: "Where do outcomes in both A and B go?", steps: ["visual_exploration", "Read the labelled result.", "overlap"], answer: "overlap" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -3372,10 +3372,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   511: {
     introduction: "Two-Way Tables works this concrete case: A two-way table has row totals and column what? The labelled answer is totals. Analyse categorical probabilities. Calculates marginal, joint and conditional values. A common labelled error is confusing a row total with one joint cell. Two-Way Tables keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Two-Way Tables, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A two-way table organises counts by two categories at once. Fill joint counts, row totals, column totals, and the grand total.",
     basicIdea: "Two-Way Tables works this concrete case: A two-way table has row totals and column what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A two-way table organises counts by two categories at once.",
+    howItWorks: "Fill joint counts, row totals, column totals, and the grand total.",
+    whyItWorks: "The table shows intersections and totals needed for conditional probabilities.",
     worked: [
       { prompt: "A two-way table has row totals and column what?", steps: ["visual_exploration", "Read the labelled result.", "totals"], answer: "totals" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3384,10 +3384,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   512: {
     introduction: "Bayes' Theorem works this concrete case: A fair die. P(score ≤ 4)? The labelled answer is 4/6. Reverse conditions. Updates prior probabilities with evidence. A common labelled error is ignoring the base rate before using test evidence. Bayes' Theorem keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Bayes' Theorem, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Bayes' theorem updates a probability after new evidence is known. Multiply likelihood by prior, then divide by the total probability of the evidence.",
     basicIdea: "Bayes' Theorem works this concrete case: A fair die. P(score ≤ 4)?",
-    howItWorks: "procedure",
-    whyItWorks: "Bayes' theorem updates a probability after new evidence is known.",
+    howItWorks: "Multiply likelihood by prior, then divide by the total probability of the evidence.",
+    whyItWorks: "It reverses conditional probability in a mathematically valid way.",
     worked: [
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
       { prompt: "If P(A)=4/10, what is P(A')?", steps: ["1-4/10.", "6/10.", "6/10."], answer: "6/10" },
@@ -3396,10 +3396,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   513: {
     introduction: "Expected Value works this concrete case: Do more trials usually reduce random noise? The labelled answer is yes. Understand long-run average. Calculates outcome-weighted means. A common labelled error is thinking expected value must be the most likely single outcome. Expected Value keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Expected Value, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Expected value is the long-run average outcome of a random variable. Multiply each outcome by its probability, then add the products.",
     basicIdea: "Expected Value works this concrete case: Do more trials usually reduce random noise?",
-    howItWorks: "concept",
-    whyItWorks: "Expected value is the long-run average outcome of a random variable.",
+    howItWorks: "Multiply each outcome by its probability, then add the products.",
+    whyItWorks: "Over many repeats, the average tends toward the expected value.",
     worked: [
       { prompt: "Do more trials usually reduce random noise?", steps: ["concept", "Read the labelled result.", "yes"], answer: "yes" },
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
@@ -3408,10 +3408,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   514: {
     introduction: "Simulation works this concrete case: Do more trials usually reduce random noise? The labelled answer is yes. Approximate probabilities. Runs repeated virtual experiments. A common labelled error is trusting a very small simulation as exact. Simulation keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Simulation, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A probability simulation imitates random trials to estimate chances. Choose a random model, run many trials, count outcomes, and compare with theory.",
     basicIdea: "Simulation works this concrete case: Do more trials usually reduce random noise?",
-    howItWorks: "tool",
-    whyItWorks: "A probability simulation imitates random trials to estimate chances.",
+    howItWorks: "Choose a random model, run many trials, count outcomes, and compare with theory.",
+    whyItWorks: "More trials usually reduce random noise in the estimate.",
     worked: [
       { prompt: "Do more trials usually reduce random noise?", steps: ["tool", "Read the labelled result.", "yes"], answer: "yes" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3420,10 +3420,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   515: {
     introduction: "Law of Large Numbers works this concrete case: The law of large numbers is about long-run what? The labelled answer is frequency. Observe frequency stabilisation. Plots cumulative experimental probability. A common labelled error is thinking a tail is due just because many heads happened. Law of Large Numbers keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Law of Large Numbers, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The law of large numbers says sample results tend to get closer to the true probability as trials increase. Repeat the same random experiment many times and watch the relative frequency.",
     basicIdea: "Law of Large Numbers works this concrete case: The law of large numbers is about long-run what?",
-    howItWorks: "concept",
-    whyItWorks: "The law of large numbers says sample results tend to get closer to the true probability as trials increase.",
+    howItWorks: "Repeat the same random experiment many times and watch the relative frequency.",
+    whyItWorks: "Random ups and downs balance out better over many trials.",
     worked: [
       { prompt: "The law of large numbers is about long-run what?", steps: ["concept", "Read the labelled result.", "frequency"], answer: "frequency" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3432,10 +3432,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   516: {
     introduction: "Distribution Calculator works this concrete case: What must you choose before entering parameters? The labelled answer is distribution. Calculate distribution probabilities. Selects a distribution and parameter values. A common labelled error is using a calculator distribution that does not match the situation. Distribution Calculator keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Distribution Calculator, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A distribution calculator computes probabilities from a chosen probability model. Choose the distribution, enter valid parameters, and select point, interval, or tail probability.",
     basicIdea: "Distribution Calculator works this concrete case: What must you choose before entering parameters?",
-    howItWorks: "tool",
-    whyItWorks: "A distribution calculator computes probabilities from a chosen probability model.",
+    howItWorks: "Choose the distribution, enter valid parameters, and select point, interval, or tail probability.",
+    whyItWorks: "Different distributions have different parameter rules and shapes.",
     worked: [
       { prompt: "What must you choose before entering parameters?", steps: ["tool", "Read the labelled result.", "distribution"], answer: "distribution" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -3444,10 +3444,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   517: {
     introduction: "Probability Plot works this concrete case: A probability plot checks data against a theoretical what? The labelled answer is distribution. Visualise mass or density. Displays and shades distribution regions. A common labelled error is thinking points must lie perfectly on the line. Probability Plot keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Probability Plot, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A probability plot compares data with a theoretical distribution. Order the data, plot expected positions, and check whether points follow the reference pattern.",
     basicIdea: "Probability Plot works this concrete case: A probability plot checks data against a theoretical what?",
-    howItWorks: "visual_exploration",
-    whyItWorks: "A probability plot compares data with a theoretical distribution.",
+    howItWorks: "Order the data, plot expected positions, and check whether points follow the reference pattern.",
+    whyItWorks: "Close alignment suggests the chosen distribution may be reasonable.",
     worked: [
       { prompt: "A probability plot checks data against a theoretical what?", steps: ["visual_exploration", "Read the labelled result.", "distribution"], answer: "distribution" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3456,10 +3456,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   518: {
     introduction: "Cumulative Distribution works this concrete case: A fair die. P(score ≤ 4)? The labelled answer is 4/6. Understand cumulative probability. Plots CDF values. A common labelled error is confusing P(X = x) with P(X <= x). Cumulative Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Cumulative Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A cumulative distribution gives the probability that a random variable is at or below a value. Add probabilities up to the chosen value or read the CDF curve.",
     basicIdea: "Cumulative Distribution works this concrete case: A fair die. P(score ≤ 4)?",
-    howItWorks: "concept",
-    whyItWorks: "A cumulative distribution gives the probability that a random variable is at or below a value.",
+    howItWorks: "Add probabilities up to the chosen value or read the CDF curve.",
+    whyItWorks: "Cumulative probability builds from left to right until the total reaches 1.",
     worked: [
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
       { prompt: "If P(A)=4/10, what is P(A')?", steps: ["1-4/10.", "6/10.", "6/10."], answer: "6/10" },
@@ -3468,10 +3468,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   519: {
     introduction: "Interval / Tail Probability works this concrete case: Tail questions often ask above or below a what? The labelled answer is cutoff. Calculate selected regions. Shades left, right or bounded intervals. A common labelled error is using the left tail when the question asks for the right tail. Interval / Tail Probability keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Interval / Tail Probability, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Interval probability is chance inside a range, and tail probability is chance beyond a cutoff. Choose lower and upper bounds, then subtract cumulative probabilities or read the shaded area.",
     basicIdea: "Interval / Tail Probability works this concrete case: Tail questions often ask above or below a what?",
-    howItWorks: "procedure",
-    whyItWorks: "Interval probability is chance inside a range, and tail probability is chance beyond a cutoff.",
+    howItWorks: "Choose lower and upper bounds, then subtract cumulative probabilities or read the shaded area.",
+    whyItWorks: "Areas under a probability distribution represent probabilities.",
     worked: [
       { prompt: "Tail questions often ask above or below a what?", steps: ["procedure", "Read the labelled result.", "cutoff"], answer: "cutoff" },
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
@@ -3480,10 +3480,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   520: {
     introduction: "Inverse Probability works this concrete case: Inverse probability returns a cutoff what? The labelled answer is value. Find quantiles. Returns x-values for selected cumulative probabilities. A common labelled error is confusing the target probability with the output value. Inverse Probability keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Inverse Probability, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "Inverse probability finds the value that matches a given cumulative probability. Choose the target probability, use the inverse distribution, and check the direction.",
     basicIdea: "Inverse Probability works this concrete case: Inverse probability returns a cutoff what?",
-    howItWorks: "procedure",
-    whyItWorks: "Inverse probability finds the value that matches a given cumulative probability.",
+    howItWorks: "Choose the target probability, use the inverse distribution, and check the direction.",
+    whyItWorks: "It reverses a cumulative distribution calculation.",
     worked: [
       { prompt: "Inverse probability returns a cutoff what?", steps: ["procedure", "Read the labelled result.", "value"], answer: "value" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3492,10 +3492,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   521: {
     introduction: "Bernoulli Distribution works this concrete case: A fair die. P(score ≤ 6)? The labelled answer is 6/6. Model one binary trial. Displays success and failure probabilities. A common labelled error is using Bernoulli for many trials at once. Bernoulli Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Bernoulli Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A Bernoulli distribution models one trial with two outcomes: success or failure. Choose success probability p, assign 1 to success and 0 to failure.",
     basicIdea: "Bernoulli Distribution works this concrete case: A fair die. P(score ≤ 6)?",
-    howItWorks: "concept",
-    whyItWorks: "A Bernoulli distribution models one trial with two outcomes: success or failure.",
+    howItWorks: "Choose success probability p, assign 1 to success and 0 to failure.",
+    whyItWorks: "One yes/no trial is the simplest probability distribution.",
     worked: [
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
       { prompt: "If P(A)=7/10, what is P(A')?", steps: ["1-7/10.", "3/10.", "3/10."], answer: "3/10" },
@@ -3504,10 +3504,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   522: {
     introduction: "Binomial Distribution works this concrete case: A fair die. P(score ≤ 2)? The labelled answer is 2/6. Model repeated binary trials. Adjusts n and p and shows probabilities. A common labelled error is using binomial when trials are not independent or p changes. Binomial Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Binomial Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A binomial distribution models the number of successes in a fixed number of independent Bernoulli trials. Check fixed n, same p, independent trials, then count successes.",
     basicIdea: "Binomial Distribution works this concrete case: A fair die. P(score ≤ 2)?",
-    howItWorks: "concept",
-    whyItWorks: "A binomial distribution models the number of successes in a fixed number of independent Bernoulli trials.",
+    howItWorks: "Check fixed n, same p, independent trials, then count successes.",
+    whyItWorks: "The binomial model combines repeated yes/no trials with the same success probability.",
     worked: [
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
       { prompt: "If P(A)=2/10, what is P(A')?", steps: ["1-2/10.", "8/10.", "8/10."], answer: "8/10" },
@@ -3516,10 +3516,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   523: {
     introduction: "Hypergeometric Distribution works this concrete case: Hypergeometric draws are with or without replacement? The labelled answer is without. Model sampling without replacement. Adjusts population and sample composition. A common labelled error is using binomial when draws are without replacement. Hypergeometric Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Hypergeometric Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The hypergeometric distribution counts successes in draws without replacement from a finite group. Check population size, success count, draw count, and no replacement before calculating.",
     basicIdea: "Hypergeometric Distribution works this concrete case: Hypergeometric draws are with or without replacement?",
-    howItWorks: "concept",
-    whyItWorks: "The hypergeometric distribution counts successes in draws without replacement from a finite group.",
+    howItWorks: "Check population size, success count, draw count, and no replacement before calculating.",
+    whyItWorks: "Probabilities change after each draw because items are not replaced.",
     worked: [
       { prompt: "Hypergeometric draws are with or without replacement?", steps: ["concept", "Read the labelled result.", "without"], answer: "without" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3528,10 +3528,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   524: {
     introduction: "Poisson Distribution works this concrete case: A fair die. P(score ≤ 4)? The labelled answer is 4/6. Model event counts. Adjusts mean rate and count interval. A common labelled error is naming a rate without saying the interval. Poisson Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Poisson Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The Poisson distribution models counts of events in a fixed time, area, or space when events occur at an average rate. Identify the average rate, choose the interval, and count events in that interval.",
     basicIdea: "Poisson Distribution works this concrete case: A fair die. P(score ≤ 4)?",
-    howItWorks: "concept",
-    whyItWorks: "The Poisson distribution models counts of events in a fixed time, area, or space when events occur at an average rate.",
+    howItWorks: "Identify the average rate, choose the interval, and count events in that interval.",
+    whyItWorks: "It works when events are rare, independent enough, and the rate is roughly constant.",
     worked: [
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },
       { prompt: "If P(A)=4/10, what is P(A')?", steps: ["1-4/10.", "6/10.", "6/10."], answer: "6/10" },
@@ -3540,10 +3540,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   525: {
     introduction: "Geometric Distribution works this concrete case: A fair die. P(score ≤ 5)? The labelled answer is 5/6. Model trials to first success. Adjusts success probability. A common labelled error is confusing trial number with number of failures before success. Geometric Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Geometric Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The geometric distribution models the trial number of the first success in repeated independent Bernoulli trials. Check independent trials with the same success probability, then count until the first success.",
     basicIdea: "Geometric Distribution works this concrete case: A fair die. P(score ≤ 5)?",
-    howItWorks: "concept",
-    whyItWorks: "The geometric distribution models the trial number of the first success in repeated independent Bernoulli trials.",
+    howItWorks: "Check independent trials with the same success probability, then count until the first success.",
+    whyItWorks: "Each failed trial resets the same chance for the next trial.",
     worked: [
       { prompt: "A fair die. P(score ≤ 5)?", steps: ["Favourable faces: 5.", "5/6.", "5/6."], answer: "5/6" },
       { prompt: "If P(A)=5/10, what is P(A')?", steps: ["1-5/10.", "5/10.", "5/10."], answer: "5/10" },
@@ -3552,10 +3552,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   526: {
     introduction: "Negative Binomial Distribution works this concrete case: Negative binomial needs a fixed target number of what? The labelled answer is successes. Model trials to multiple successes. Adjusts target successes and probability. A common labelled error is forgetting the target number of successes. Negative Binomial Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Negative Binomial Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The negative binomial distribution models the trial number or failure count needed to reach a fixed number of successes.",
     basicIdea: "Negative Binomial Distribution works this concrete case: Negative binomial needs a fixed target number of what?",
-    howItWorks: "concept",
-    whyItWorks: "The negative binomial distribution models the trial number or failure count needed to reach a fixed number of successes.",
+    howItWorks: "Check independent trials, same success probability, and a fixed target number of successes.",
+    whyItWorks: "It extends the geometric distribution from one success to several successes.",
     worked: [
       { prompt: "Negative binomial needs a fixed target number of what?", steps: ["concept", "Read the labelled result.", "successes"], answer: "successes" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3564,10 +3564,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   527: {
     introduction: "Uniform Distribution works this concrete case: In a uniform distribution, allowed outcomes are equally what? The labelled answer is likely. Model equally likely intervals. Adjusts lower and upper bounds. A common labelled error is giving probability to values outside the allowed range. Uniform Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Uniform Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "A uniform distribution gives equal probability to all allowed outcomes or equal density across an interval. Identify the allowed outcomes or interval, then spread probability evenly.",
     basicIdea: "Uniform Distribution works this concrete case: In a uniform distribution, allowed outcomes are equally what?",
-    howItWorks: "concept",
-    whyItWorks: "A uniform distribution gives equal probability to all allowed outcomes or equal density across an interval.",
+    howItWorks: "Identify the allowed outcomes or interval, then spread probability evenly.",
+    whyItWorks: "No outcome is favoured over another within the allowed range.",
     worked: [
       { prompt: "In a uniform distribution, allowed outcomes are equally what?", steps: ["concept", "Read the labelled result.", "likely"], answer: "likely" },
       { prompt: "A fair die. P(score ≤ 6)?", steps: ["Favourable faces: 6.", "6/6.", "6/6."], answer: "6/6" },
@@ -3576,10 +3576,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   528: {
     introduction: "Normal Distribution works this concrete case: The normal distribution is symmetric around its what? The labelled answer is mean. Explore bell curves. Adjusts mean and standard deviation. A common labelled error is assuming every bell-shaped graph is exactly normal. Normal Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Normal Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The normal distribution is a symmetric bell-shaped distribution described by its mean and standard deviation. Locate the mean, use standard deviation for spread, and use areas for probabilities.",
     basicIdea: "Normal Distribution works this concrete case: The normal distribution is symmetric around its what?",
-    howItWorks: "concept",
-    whyItWorks: "The normal distribution is a symmetric bell-shaped distribution described by its mean and standard deviation.",
+    howItWorks: "Locate the mean, use standard deviation for spread, and use areas for probabilities.",
+    whyItWorks: "Many sums and averages become approximately normal under suitable conditions.",
     worked: [
       { prompt: "The normal distribution is symmetric around its what?", steps: ["concept", "Read the labelled result.", "mean"], answer: "mean" },
       { prompt: "A fair die. P(score ≤ 2)?", steps: ["Favourable faces: 2.", "2/6.", "2/6."], answer: "2/6" },
@@ -3588,10 +3588,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   529: {
     introduction: "Student t Distribution works this concrete case: The t distribution has heavier what than the normal? The labelled answer is tails. Model small-sample inference. Adjusts degrees of freedom. A common labelled error is using z methods when the population standard deviation is unknown. Student t Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Student t Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The Student t distribution is a bell-shaped distribution with heavier tails than the normal distribution. Use it for mean inference when population standard deviation is unknown and conditions are suitable.",
     basicIdea: "Student t Distribution works this concrete case: The t distribution has heavier what than the normal?",
-    howItWorks: "concept",
-    whyItWorks: "The Student t distribution is a bell-shaped distribution with heavier tails than the normal distribution.",
+    howItWorks: "Use it for mean inference when population standard deviation is unknown and conditions are suitable.",
+    whyItWorks: "Heavier tails account for extra uncertainty from estimating standard deviation with sample data.",
     worked: [
       { prompt: "The t distribution has heavier what than the normal?", steps: ["concept", "Read the labelled result.", "tails"], answer: "tails" },
       { prompt: "A fair die. P(score ≤ 3)?", steps: ["Favourable faces: 3.", "3/6.", "3/6."], answer: "3/6" },
@@ -3600,10 +3600,10 @@ const overlays: Record<number, HandOverlay> = {
   },
   530: {
     introduction: "Chi-Square Distribution works this concrete case: Can a chi-square statistic be negative? The labelled answer is no. Support categorical and variance inference. Adjusts degrees of freedom and tails. A common labelled error is expecting chi-square values to be negative. Chi-Square Distribution keeps one numerical story on the labelled chart, the interactive probe, and the three worked calculations so the original interaction canvas does not have to change.",
-    definition: "Probability and Distributions In Chi-Square Distribution, that statement is the exact rule used on the labelled chart and in the three numerical examples.",
+    definition: "The chi-square distribution is a right-skewed distribution used with sums of squared standard normal values. Use degrees of freedom and read right-tail areas for common tests.",
     basicIdea: "Chi-Square Distribution works this concrete case: Can a chi-square statistic be negative?",
-    howItWorks: "concept",
-    whyItWorks: "The chi-square distribution is a right-skewed distribution used with sums of squared standard normal values.",
+    howItWorks: "Use degrees of freedom and read right-tail areas for common tests.",
+    whyItWorks: "Squaring makes values non-negative, so the distribution starts at zero.",
     worked: [
       { prompt: "Can a chi-square statistic be negative?", steps: ["concept", "Read the labelled result.", "no"], answer: "no" },
       { prompt: "A fair die. P(score ≤ 4)?", steps: ["Favourable faces: 4.", "4/6.", "4/6."], answer: "4/6" },

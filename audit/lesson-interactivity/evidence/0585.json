@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/3d-mathematics/400-hemisphere",
+  "action": {
+    "control": "Radius slider",
+    "before": "4",
+    "after": "4.25",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 353,
+      "scroll": 353
+    },
+    {
+      "width": 768,
+      "client": 731,
+      "scroll": 731
+    },
+    {
+      "width": 1440,
+      "client": 1403,
+      "scroll": 1403
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}
